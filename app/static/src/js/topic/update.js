@@ -14,8 +14,13 @@ $(document).on('click', '.MCUpdate, .SAUpdate', function (e) {
         throw 'class name error'
     }
     targetModal.modal('show')
-
+    targetModal.attr('data-update', index)
+    // enter the value to modal
     targetTable.bootstrapTable('check', index)
-    console.log(targetTable.bootstrapTable('getSelections'))
+    let value = targetTable.bootstrapTable('getSelections')
     targetTable.bootstrapTable('uncheck', index)
+
+    $('#shortAnswer').val(value[0].shortAnswer)
+    $('#multipleChoice').val(value[0].multipleChoice)
+    $('#maxScore').val(value[0].maxScore)
 })

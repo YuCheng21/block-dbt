@@ -11,18 +11,18 @@
             </div>
             <div class="card-body px-5 py-4">
                 <div class="input-group mb-2">
-                    <label for="createMessageTitle" class="input-group-text">實驗編號</label>
-                    <input name="createMessageTitle" id="createMessageTitle" type="text"
+                    <label for="expId" class="input-group-text">實驗編號</label>
+                    <input name="expId" id="expId" type="text"
                            class="form-control" value="{{ id }}" disabled>
                 </div>
                 <div class="input-group mb-2">
-                    <label for="createMessageTitle" class="input-group-text">實驗名稱</label>
-                    <input name="createMessageTitle" id="createMessageTitle" type="text"
+                    <label for="expName" class="input-group-text">實驗名稱</label>
+                    <input name="expName" id="expName" type="text"
                            class="form-control" placeholder="請輸入實驗名稱">
                 </div>
                 <div class="input-group mb-2">
-                    <label for="createMessageContent" class="input-group-text">實驗內容</label>
-                    <textarea name="createMessageContent" id="createMessageContent"
+                    <label for="expContent" class="input-group-text">實驗內容</label>
+                    <textarea name="expContent" id="expContent"
                               class="form-control" placeholder="請輸入實驗內容" rows="8"></textarea>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                    <table id="MCTable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
                            data-toggle="table"
                            data-locale="zh-TW">
                         <thead>
@@ -55,16 +55,6 @@
                             <th data-width="10" data-width-unit="%" data-field="MCAction">操作</th>
                         </tr>
                         </thead>
-                        {% for row in range(5) %}
-                            <tr>
-                                <td>題目內容</td>
-                                <td>題目分數</td>
-                                <td>
-                                    <button class="btn btn-primary w-50 MCUpdate">編輯</button>
-                                    <button class="btn btn-danger w-50 MCDelete">刪除</button>
-                                </td>
-                            </tr>
-                        {% endfor %}
                     </table>
                 </div>
                 <div class="row py-4">
@@ -77,7 +67,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                    <table id="SATable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
                            data-toggle="table"
                            data-locale="zh-TW">
                         <thead>
@@ -86,28 +76,18 @@
                             <th data-width="10" data-width-unit="%" data-field="SAAction">操作</th>
                         </tr>
                         </thead>
-                        {% for row in range(5) %}
-                            <tr>
-                                <td>題目內容</td>
-                                <td>
-                                    <button class="btn btn-primary w-50 SAUpdate">編輯</button>
-                                    <button class="btn btn-danger w-50 SADelete">刪除</button>
-                                </td>
-                            </tr>
-                        {% endfor %}
                     </table>
                 </div>
                 <div class="row py-4">
                     <div class="col-6">
                         <button type="button" class="btn btn-danger w-100"
-                                onclick="location.href='#'">
+                                onclick="location.href='{{ url_for('exp.user') }}'">
                             <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                             <span>取消</span>
                         </button>
                     </div>
                     <div class="col-6">
-                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
-                                data-bs-target="#createTaskModal">
+                        <button type="button" class="btn btn-primary w-100" id="expSend">
                             <span class="iconify-inline" data-icon="subway:tick"></span>
                             <span>確認</span>
                         </button>
@@ -122,4 +102,16 @@
     {{ super() }}
     {% include 'includes/modal/topic/multiple-choice.html' %}
     {% include 'includes/modal/topic/short-answer.html' %}
+{% endblock %}
+
+
+{% block script %}
+    {{ super() }}
+    <!--  Page Customize Javascript  -->
+    <script src="{{ url_for('static', filename='src/js/topic/multiple-choice.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/topic/short-answer.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/topic/delete.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/topic/update.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/submit/exp.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/load/exp-update.js') }}"></script>
 {% endblock %}

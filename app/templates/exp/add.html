@@ -11,13 +11,13 @@
             </div>
             <div class="card-body px-5 py-4">
                 <div class="input-group mb-2">
-                    <label for="createMessageTitle" class="input-group-text">實驗名稱</label>
-                    <input name="createMessageTitle" id="createMessageTitle" type="text"
+                    <label for="expName" class="input-group-text">實驗名稱</label>
+                    <input name="expName" id="expName" type="text"
                            class="form-control" placeholder="請輸入實驗名稱">
                 </div>
                 <div class="input-group mb-2">
-                    <label for="createMessageContent" class="input-group-text">實驗內容</label>
-                    <textarea name="createMessageContent" id="createMessageContent"
+                    <label for="expContent" class="input-group-text">實驗內容</label>
+                    <textarea name="expContent" id="expContent"
                               class="form-control" placeholder="請輸入實驗內容" rows="8"></textarea>
                 </div>
             </div>
@@ -82,8 +82,7 @@
                         </button>
                     </div>
                     <div class="col-6">
-                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
-                                data-bs-target="#createTaskModal">
+                        <button type="button" class="btn btn-primary w-100" id="expSend">
                             <span class="iconify-inline" data-icon="subway:tick"></span>
                             <span>確認</span>
                         </button>
@@ -107,4 +106,5 @@
     <script src="{{ url_for('static', filename='src/js/topic/short-answer.js') }}"></script>
     <script src="{{ url_for('static', filename='src/js/topic/delete.js') }}"></script>
     <script src="{{ url_for('static', filename='src/js/topic/update.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/submit/exp.js') }}"></script>
 {% endblock %}

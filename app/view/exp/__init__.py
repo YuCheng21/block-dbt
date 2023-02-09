@@ -17,8 +17,13 @@ def add():
         title = '新增實驗'
         return render_template('./exp/add.html', **locals())
     elif request.method == 'POST':
+        form_data = request.values.to_dict()
         # TODO: add exp action
-        return '/exp/add POST'
+        # TODO: if add exp failed
+        flash('新增失敗', category='error')
+        # TODO: if add exp success
+        flash('新增成功', category='success-toast')
+        return redirect(url_for('exp.user'))
     abort(404)
 
 
@@ -36,8 +41,13 @@ def update(id):
         title = '編輯實驗'
         return render_template('./exp/update.html', **locals())
     elif request.method == 'POST':
+        form_data = request.values.to_dict()
         # TODO: update exp action
-        return '/exp/update/<id> POST'
+        # TODO: if update exp failed
+        flash('更新失敗', category='error')
+        # TODO: if update exp success
+        flash('更新成功', category='success-toast')
+        return redirect(url_for('root.index'))
     abort(404)
 
 
