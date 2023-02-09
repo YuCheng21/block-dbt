@@ -1,0 +1,37 @@
+<div class="modal fade" tabindex="-1" id="modalTopicSA">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-opacity-50">
+                <h5 class="modal-title fw-bold fs-4">
+                    <span class="iconify" data-icon="icon-park-solid:topic"></span>
+                    <span>簡答題</span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row gy-2">
+                    <div class="col-12 overflow-auto" style="max-height: 70vh">
+                        <form action="#" id="shortAnswerForm" method="POST" enctype="multipart/form-data">
+                            <div class="input-group mb-2">
+                                <label for="shortAnswer" class="input-group-text required">題目</label>
+                                <textarea name="shortAnswer" id="shortAnswer"
+                                          class="form-control" placeholder="請輸入題目內容" rows="3"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                    <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                    <span>關閉</span>
+                </button>
+                <button type="button" class="btn btn-primary" id="shortAnswerSend">
+                    <span class="iconify-inline" data-icon="subway:tick"></span>
+                    <span>確認</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

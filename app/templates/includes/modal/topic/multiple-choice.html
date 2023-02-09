@@ -1,0 +1,42 @@
+<div class="modal fade" tabindex="-1" id="modalTopicMC">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-opacity-50">
+                <h5 class="modal-title fw-bold fs-4">
+                    <span class="iconify" data-icon="ic:round-fact-check"></span>
+                    <span>選擇題</span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row gy-2">
+                    <div class="col-12 overflow-auto" style="max-height: 70vh">
+                        <form action="#" id="multipleChoiceForm" method="POST" enctype="multipart/form-data">
+                            <div class="input-group mb-2">
+                                <label for="multipleChoice" class="input-group-text required">題目</label>
+                                <textarea name="multipleChoice" id="multipleChoice"
+                                          class="form-control" placeholder="請輸入題目內容" rows="3"></textarea>
+                            </div>
+                            <div class="input-group mb-2">
+                                <label for="maxScore" class="input-group-text required">最大分數</label>
+                                <input name="maxScore" type="text" id="maxScore"
+                                       class="form-control" placeholder="請輸入最大分數">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                    <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                    <span>關閉</span>
+                </button>
+                <button type="button" class="btn btn-primary" id="multipleChoiceSend">
+                    <span class="iconify-inline" data-icon="subway:tick"></span>
+                    <span>確認</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

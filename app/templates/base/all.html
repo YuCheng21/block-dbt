@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <!-- encoding -->
+        <meta charset="UTF-8">
+        <!-- RWD -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--  Favicon  -->
+        <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='src/img/favicon/favicon.svg') }}">
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='src/img/favicon/favicon.png') }}">
+        <!--  Title  -->
+        <title>{{ title | default('Page') }} | {{ g.website_name | default('Flask Application') }}</title>
+        <!-- iconify -->
+        <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
+        <!--  JQuery  -->
+        <script src="{{ url_for('static', filename="node_modules/jquery/dist/jquery.min.js") }}"></script>
+        <!--  Bootstrap  -->
+        <script src="{{ url_for('static', filename="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js") }}"></script>
+        <!--  sweetalert  -->
+        <script src="{{ url_for('static', filename="node_modules/sweetalert2/dist/sweetalert2.all.min.js") }}"></script>
+        <!--  Axios  -->
+        <script src="{{ url_for('static', filename="node_modules/axios/dist/axios.min.js") }}"></script>
+        <!--  Customize CSS  -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='src/scss/all.css') }}">
+        <!--  Bootstrap-Table  -->
+        <script src="{{ url_for('static', filename="node_modules/bootstrap-table/dist/bootstrap-table.min.js") }}"></script>
+        <script src="{{ url_for('static', filename="node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-TW.min.js") }}"></script>
+
+    {% endblock %}
+
+    {% block style %}
+
+    {% endblock %}
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+<header>
+    {% block header %}
+        <nav class="navbar navbar-dark navbar-expand-lg bg-primary px-3 fixed-top">
+            <div class="container-fluid">
+                <a href="{{ url_for('root.index') }}"
+                   class="navbar-brand fs-1 fw-bold py-0 ds-100 hv-scale hv-color-text">
+                    <span class="iconify-inline" data-icon="game-icons:blindfold"></span>
+                    <span>{{ g.website_name }}</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
+                    {% block navbar_item %}
+                        <ul class="navbar-nav fs-4 fw-bold ds-100">
+                            <li class="nav-item hv-scale">
+                                <a href="{{ url_for('root.index') }}" class="nav-link text-white hv-color-text">
+                                    <span>所有實驗</span>
+                                </a>
+                            </li>
+                            <li class="nav-item hv-scale">
+                                <a href="{{ url_for('exp.user') }}" class="nav-link text-white hv-color-text">
+                                    <span>我的實驗</span>
+                                </a>
+                            </li>
+                            <li class="nav-item hv-scale">
+                                <a href="{{ url_for('exp.add') }}" class="nav-link text-white hv-color-text">
+                                    <span>新增實驗</span>
+                                </a>
+                            </li>
+                            <li class="nav-item hv-scale dropdown">
+                                <button type="button" class="bg-transparent border-0 fw-bold nav-link text-white hv-color-text dropdown-toggle"
+                                   data-bs-toggle="dropdown">
+                                    <span class="iconify-inline" data-icon="healthicons:ui-user-profile"></span>
+                                        <span>使用者</span>
+                                </button>
+                                <ul class="dropdown-menu fade">
+                                    <li>
+                                        <button type="button" class="dropdown-item hv-color-bg" data-bs-toggle="modal"
+                                           data-bs-target="#modalUserUpdate">
+                                            <span class="iconify-inline" data-icon="fa-solid:tools"></span>
+                                            <span>修改密碼</span>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <form method="POST" action="{{ url_for('user.logout') }}">
+                                            <a href="{{ url_for('user.logout') }}" class="dropdown-item hv-color-bg"
+                                               onclick="event.preventDefault();this.closest('form').submit();">
+                                                <span class="iconify-inline" data-icon="ls:login"></span>
+                                                <span>登出</span>
+                                            </a>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                    {% endblock %}
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+
+</header>
+<main>
+    {% block main %}
+
+    {% endblock %}
+
+</main>
+<footer class="mt-auto">
+    {% block footer %}
+        <div class="bg-primary d-flex justify-content-center align-items-center p-2">
+            <span class="text-white">
+                <span>Copyright © 2022, HPDS-Lab. All Rights Reserved.</span>
+            </span>
+        </div>
+        {% include 'includes/modal/user/update.html' %}
+    {% endblock %}
+
+</footer>
+{% block script %}
+    <!--  Active Current Page  -->
+    <script>const pageTitle = '{{title}}';</script>
+    <!--  Customize Javascript  -->
+    <script src="{{ url_for('static', filename='src/js/base.js') }}"></script>
+    <!--  Alert  -->
+    <script>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    dialog('{{ category }}', '{{ message }}');
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </script>
+
+{% endblock %}
+
+</body>
+</html>

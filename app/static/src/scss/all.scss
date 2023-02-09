@@ -1,0 +1,27 @@
+// Required
+@import "../../node_modules/bootstrap/scss/functions";
+@import "./helpers/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+// Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+// Bootstrap-Table
+@import "../../node_modules/bootstrap-table/dist/bootstrap-table";
+// Base
+@import "./base/global";
+// Components
+@import "./components/loading";
+// Layout
+@import "./layout/scrollbar";
+@import "./layout/main";
+// Utilities
+@import "./utilities/shadow";
+@import "./utilities/hover";
+@import "./utilities/active";
+@import "./utilities/white_space";
+// Customized
+//@import "./pages/index";
+
+.required:after {
+    content:" *";
+    color: $danger;
+}
