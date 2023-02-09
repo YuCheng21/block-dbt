@@ -3,3 +3,8 @@
 ## Overview
 
 building...
+
+## Install
+
+- python: requirement.txt
+- nodejs: package.json

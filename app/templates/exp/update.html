@@ -50,9 +50,9 @@
                            data-locale="zh-TW">
                         <thead>
                         <tr>
-                            <th data-width="80" data-width-unit="%">題目</th>
-                            <th data-width="10" data-width-unit="%">最大分數</th>
-                            <th data-width="10" data-width-unit="%">操作</th>
+                            <th data-width="80" data-width-unit="%" data-field="multipleChoice">題目</th>
+                            <th data-width="10" data-width-unit="%" data-field="maxScore">最大分數</th>
+                            <th data-width="10" data-width-unit="%" data-field="MCAction">操作</th>
                         </tr>
                         </thead>
                         {% for row in range(5) %}
@@ -60,14 +60,8 @@
                                 <td>題目內容</td>
                                 <td>題目分數</td>
                                 <td>
-                                    <button class="btn btn-primary w-50 updateTaskListBtn" data-bs-toggle="modal"
-                                            data-bs-target="#taskListModal">
-                                        編輯
-                                    </button>
-                                    <button class="btn btn-danger w-50 updateTaskListBtn" data-bs-toggle="modal"
-                                            data-bs-target="#taskListModal">
-                                        刪除
-                                    </button>
+                                    <button class="btn btn-primary w-50 MCUpdate">編輯</button>
+                                    <button class="btn btn-danger w-50 MCDelete">刪除</button>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -88,22 +82,16 @@
                            data-locale="zh-TW">
                         <thead>
                         <tr>
-                            <th data-width="90" data-width-unit="%">題目</th>
-                            <th data-width="10" data-width-unit="%">操作</th>
+                            <th data-width="90" data-width-unit="%" data-field="shortAnswer">題目</th>
+                            <th data-width="10" data-width-unit="%" data-field="SAAction">操作</th>
                         </tr>
                         </thead>
                         {% for row in range(5) %}
                             <tr>
                                 <td>題目內容</td>
                                 <td>
-                                    <button class="btn btn-primary w-50 updateTaskListBtn" data-bs-toggle="modal"
-                                            data-bs-target="#taskListModal">
-                                        編輯
-                                    </button>
-                                    <button class="btn btn-danger w-50 updateTaskListBtn" data-bs-toggle="modal"
-                                            data-bs-target="#taskListModal">
-                                        刪除
-                                    </button>
+                                    <button class="btn btn-primary w-50 SAUpdate">編輯</button>
+                                    <button class="btn btn-danger w-50 SADelete">刪除</button>
                                 </td>
                             </tr>
                         {% endfor %}
