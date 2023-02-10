@@ -17,8 +17,21 @@
                    class="form-control form-control-lg"
                    placeholder="請輸入密碼">
         </div>
-        <button type="submit" class="btn btn-primary w-100" id="loadingSend">
-                    <span class="iconify-inline" data-icon="subway:tick"></span>
+        <div class="input-group mb-3">
+            <label for="wallet" class="input-group-text fs-5">錢包</label>
+            <input name="wallet" type="wallet" id="wallet"
+                   class="form-control form-control-lg"
+                   placeholder="請輸入錢包地址">
+        </div>
+        <div class="text-danger fs-5 fw-bold">
+            <span>前往</span>
+            <a href="https://metamask.io/" target="_blank">
+                <span class="iconify-inline" data-icon="logos:metamask"></span>
+            </a>
+            <span>註冊錢包後，將地址複製到錢包欄位。</span>
+        </div>
+        <button type="button" class="btn btn-primary w-100" id="send">
+            <span class="iconify-inline" data-icon="subway:tick"></span>
             <span>確認註冊</span>
         </button>
     </form>
@@ -28,5 +41,5 @@
 {% block script %}
     {{ super() }}
     <!--  Page Customize Javascript  -->
-    <script src="{{ url_for('static', filename='src/js/utilities/loading.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/submit/register.js') }}"></script>
 {% endblock %}

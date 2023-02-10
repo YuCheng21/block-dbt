@@ -84,7 +84,17 @@ const markup = `
     </div>
 </div>
 `;
-const loading = $(markup);
+const loading_element = $(markup);
+
+window.onpageshow = function () {
+    if (loading_element){
+        loading_element.remove();
+    }
+}
+
+function loading(){
+    $('body').prepend(loading_element);
+}
 
 /**
  * Activate Current Page NavigationBar Text

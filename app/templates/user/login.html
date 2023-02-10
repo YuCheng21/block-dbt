@@ -17,7 +17,7 @@
                    class="form-control form-control-lg"
                    placeholder="請輸入密碼">
         </div>
-        <button type="submit" class="btn btn-primary w-100 mb-3" id="loadingSend">
+        <button type="button" class="btn btn-primary w-100 mb-3" id="send">
             <span class="iconify-inline" data-icon="fe:login"></span>
             <span>登入</span>
         </button>
@@ -31,5 +31,5 @@
 {% block script %}
     {{ super() }}
     <!--  Page Customize Javascript  -->
-    <script src="{{ url_for('static', filename='src/js/utilities/loading.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/js/submit/login.js') }}"></script>
 {% endblock %}
