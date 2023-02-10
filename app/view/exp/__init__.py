@@ -6,7 +6,7 @@ app = Blueprint('exp', __name__)
 @app.route('/exp/user', methods=['GET'])
 def user():
     if request.method == 'GET':
-        title = '我的實驗'
+        title = '實驗管理'
         return render_template('./exp/user.html', **locals())
     abort(404)
 
