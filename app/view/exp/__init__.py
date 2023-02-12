@@ -19,6 +19,14 @@ def join():
     abort(404)
 
 
+@app.route('/exp/participate/<id>', methods=['GET'])
+def participate(id):
+    if request.method == 'GET':
+        title = id
+        return render_template('./exp/participate.html', **locals())
+    abort(404)
+
+
 @app.route('/exp/join/<id>', methods=['GET'])
 def content(id):
     if request.method == 'GET':
