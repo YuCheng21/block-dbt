@@ -99,7 +99,7 @@ function loading(){
 /**
  * Activate Current Page NavigationBar Text
  */
-$('#navbarToggler > ul a > span').each(function (index, value) {
+$('#navbarToggler > ul > li > a > span').each(function (index, value) {
     if (value.innerHTML === pageTitle) {
         $(this).addClass('text-active')
     }

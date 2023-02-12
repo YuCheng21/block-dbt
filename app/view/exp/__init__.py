@@ -15,7 +15,15 @@ def user():
 def join():
     if request.method == 'GET':
         title = '我的實驗'
-        return render_template('./exp/join.html', **locals())
+        return render_template('./exp/join/exp.html', **locals())
+    abort(404)
+
+
+@app.route('/exp/join/<id>', methods=['GET'])
+def content(id):
+    if request.method == 'GET':
+        title = id
+        return render_template('./exp/join/content.html', **locals())
     abort(404)
 
 

@@ -78,6 +78,12 @@
                                 </button>
                                 <ul class="dropdown-menu fade">
                                     <li>
+                                        <a href="{{ url_for('user.profile') }}" class="dropdown-item hv-color-bg">
+                                            <span class="iconify" data-icon="tabler:info-square-rounded-filled"></span>
+                                            <span>個人資料</span>
+                                        </a>
+                                    </li>
+                                    <li>
                                         <button type="button" class="dropdown-item hv-color-bg" data-bs-toggle="modal"
                                            data-bs-target="#modalUserUpdate">
                                             <span class="iconify-inline" data-icon="fa-solid:tools"></span>

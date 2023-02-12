@@ -34,20 +34,35 @@ def login():
 
 @app.route('/user/update', methods=['POST'])
 def update():
-    if request.method != 'POST':
-        abort(404)
-    # TODO: Do user update action
-    # TODO: if update failed
-    flash('更新失敗', category='error')
-    # TODO: if update success
-    flash('更新成功', category='success')
-    return redirect(request.referrer)
+    if request.method == 'POST':
+        # TODO: Do user update action
+        # TODO: if update failed
+        flash('更新失敗', category='error')
+        # TODO: if update success
+        flash('更新成功', category='success')
+        return redirect(request.referrer)
+    abort(404)
 
 
 @app.route('/user/logout', methods=['POST'])
 def logout():
-    if request.method != 'POST':
-        abort(404)
-    # TODO: Do user logout action
-    flash('登出成功！', category='success-toast')
-    return redirect(url_for('user.login'))
+    if request.method == 'POST':
+        # TODO: Do user logout action
+        flash('登出成功！', category='success-toast')
+        return redirect(url_for('user.login'))
+    abort(404)
+
+
+@app.route('/user/profile', methods=['GET', 'POST'])
+def profile():
+    if request.method == 'GET':
+        title = '個人資料'
+        return render_template('./user/profile.html', **locals())
+    elif request.method == 'POST':
+        # TODO: update profile action
+        # TODO: if update failed
+        flash('更新失敗', category='error')
+        # TODO: if update success
+        flash('更新成功', category='success')
+        return redirect(request.referrer)
+    abort(404)

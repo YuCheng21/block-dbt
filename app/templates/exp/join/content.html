@@ -1,0 +1,55 @@
+{% extends "base/all.html" %}
+
+{% block main %}
+    <div class="container-fluid py-4">
+        <div class="card border hv-shadow mb-4">
+            <div class="card-header justify-content-between d-inline-flex align-items-center ">
+                <h2 class="my-2">
+                    <span class="iconify" data-icon="mdi:stopwatch-start"></span>
+                    <span>尚未開始</span>
+                </h2>
+            </div>
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
+                <div class="row justify-content-center text-center">
+                    <pre>資訊：開始時間</pre>
+                </div>
+            </div>
+        </div>
+        <div class="card border hv-shadow mb-4">
+            <div class="card-header justify-content-between d-inline-flex align-items-center ">
+                <h2 class="my-2">
+                    <span class="iconify" data-icon="material-symbols:timer"></span>
+                    <span>進行中</span>
+                </h2>
+            </div>
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
+                <div class="row justify-content-center text-center">
+                    <pre>該身分的任務資訊
+研究人員：
+實驗人員：地點、對應的受測人員、對應的物品ID
+填寫實驗結果表單
+受測人員：地點、對應的受測人員、對應的物品ID
+物流人員：地點、對應的收貨人員、對應的物品ID</pre>
+                </div>
+            </div>
+        </div>
+        <div class="card border hv-shadow mb-4">
+            <div class="card-header justify-content-between d-inline-flex align-items-center ">
+                <h2 class="my-2">
+                    <span class="iconify" data-icon="mdi:timer-stop"></span>
+                    <span>已結束</span>
+                </h2>
+            </div>
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
+                <div class="row justify-content-center text-center">
+                    <pre>實驗結果：完成、失敗</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    {{ super() }}
+    <!--  Page Customize Javascript  -->
+{% endblock %}

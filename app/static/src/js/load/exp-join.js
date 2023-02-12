@@ -9,8 +9,8 @@ function fetch_data() {
             content: '實驗內容' + i,
             state: state[Math.floor(Math.random() * state.length)],
             action: `
-            <a href="#"
-               class="btn btn-primary text-white">暫無</a>
+            <a href="/exp/join/N00${i}"
+               class="btn btn-primary text-white">查看</a>
             `
         })
     }
