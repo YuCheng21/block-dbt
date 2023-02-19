@@ -28,7 +28,7 @@ class UserModel:
             'Account': self.account,
             'password': self.password
         }
-        result = req.post(url=url.sign_up, params=payload, timeout=20)
+        result = req.post(url=url.sign_up, params=payload, timeout=30)
 
         if result.json()['status'] is not True:
             raise Exception(elist.fail)
