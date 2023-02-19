@@ -11,15 +11,15 @@ class MyRequest:
         self.session = requests.Session()
         # self.session.auth = ('user', 'pass')
 
-    def get(self, *args, **kwargs):
+    def get(self, url, params, timeout=5, *args, **kwargs):
         try:
-            return self.session.get(*args, **kwargs, timeout=5)
+            return self.session.get(url=url, params=params, timeout=timeout, *args, **kwargs)
         except requests.ReadTimeout:
             raise Exception(elist.timeout)
 
-    def post(self, *args, **kwargs):
+    def post(self, url, params, timeout=5, *args, **kwargs):
         try:
-            return self.session.post(*args, **kwargs, timeout=5)
+            return self.session.post(url=url, params=params, timeout=timeout, *args, **kwargs)
         except requests.ReadTimeout:
             raise Exception(elist.timeout)
 

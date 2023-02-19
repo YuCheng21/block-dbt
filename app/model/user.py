@@ -15,7 +15,7 @@ class UserModel:
             'Account': user_data['account'],
             'password': user_data['password']
         }
-        result = req.get(url.login, params=payload)
+        result = req.get(url=url.login, params=payload)
 
         if result.json()['status'] is not True:
             raise Exception(elist.fail)
@@ -28,7 +28,7 @@ class UserModel:
             'Account': self.account,
             'password': self.password
         }
-        result = req.post(url.sign_up, params=payload)
+        result = req.post(url=url.sign_up, params=payload, timeout=20)
 
         if result.json()['status'] is not True:
             raise Exception(elist.fail)
