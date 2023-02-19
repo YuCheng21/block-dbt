@@ -10,8 +10,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - node_modules:/code/app/static/node_modules
     working_dir: "/code"
-    env_file:
-      - ./docker/config.env
     entrypoint: ["/bin/sh", "-c"]
     command:
       - |
