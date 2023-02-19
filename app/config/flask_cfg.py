@@ -1,11 +1,11 @@
-import os
+from .base import settings
 import datetime
 
 
 class BaseConfig:
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = settings.secret_key
     JSON_AS_ASCII = False
-    SESSION_COOKIE_NAME = 'block-dbt-session'
+    SESSION_COOKIE_NAME = settings.session_cookie_name
     SESSION_REFRESH_EACH_REQUEST = True
     PERMANENT_SESSION_LIFETIME = datetime.timedelta(minutes=30)
 

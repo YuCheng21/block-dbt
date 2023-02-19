@@ -1,4 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g
+from ...model.user import UserModel
+from ..auth import auth
+from ...config.exception import elist
 
 app = Blueprint('user', __name__)
 
@@ -24,15 +27,23 @@ def login():
         title = '登入'
         return render_template('./user/login.html', **locals())
     elif request.method == 'POST':
-        # TODO: if login success condition == True, then do login action
-        flash('登入成功', category='success-toast')
-        return redirect(url_for('root.index'))
-        # TODO: if login success condition == False
-        flash('登入失敗', category='error')
-        return redirect(url_for('user.login'))
+        try:
+            form_data = request.values.to_dict()
+            user_info = UserModel.get_user(form_data)
+        except Exception as e:
+            if e.args[0] in elist.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for('user.login'))
+            print(e)
+            abort(404)
+        else:
+            user_info.save_session(user_info)
+            flash('登入成功', category='success-toast')
+            return redirect(url_for('root.index'))
 
 
 @app.route('/user/update', methods=['POST'])
+@auth
 def update():
     if request.method == 'POST':
         # TODO: Do user update action
@@ -45,15 +56,17 @@ def update():
 
 
 @app.route('/user/logout', methods=['POST'])
+@auth
 def logout():
     if request.method == 'POST':
-        # TODO: Do user logout action
+        UserModel.remove_session()
         flash('登出成功！', category='success-toast')
         return redirect(url_for('user.login'))
     abort(404)
 
 
 @app.route('/user/profile', methods=['GET', 'POST'])
+@auth
 def profile():
     if request.method == 'GET':
         title = '個人資料'

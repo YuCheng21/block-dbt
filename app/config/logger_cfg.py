@@ -4,7 +4,7 @@ from pathlib import Path
 from logging.handlers import RotatingFileHandler
 from flask import request
 
-from .base import project_path
+from .base import settings
 
 
 class RequestFormatter(logging.Formatter):
@@ -26,7 +26,7 @@ def console_logger():
 
 
 def file_logger():
-    log_path = Path(project_path).joinpath('app/logs/flask.log')
+    log_path = settings.project_path.joinpath('app/logs/flask.log')
     log_path.parent.mkdir(parents=True, exist_ok=True)
     file_handler = RotatingFileHandler(log_path, maxBytes=1 * 10 ** 6, backupCount=10, encoding='UTF-8', delay=False)
     file_format = RequestFormatter(

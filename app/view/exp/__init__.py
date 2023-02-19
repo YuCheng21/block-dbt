@@ -1,6 +1,13 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g
+from ..auth import auth
 
 app = Blueprint('exp', __name__)
+
+
+@app.before_request
+@auth
+def before_request():
+    pass
 
 
 @app.route('/exp/user', methods=['GET'])
