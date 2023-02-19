@@ -23,12 +23,12 @@ class UserModel:
         cls.password = user_data['password']
         return cls
 
-    def sign_up(self, user_data):
+    def sign_up(self):
         payload = {
-            'Account': user_data['account'],
-            'password': user_data['password']
+            'Account': self.account,
+            'password': self.password
         }
-        result = req.get(url.login, params=payload)
+        result = req.post(url.sign_up, params=payload)
 
         if result.json()['status'] is not True:
             raise Exception(elist.fail)

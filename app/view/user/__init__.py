@@ -14,7 +14,8 @@ def register():
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()
-            user_info = UserModel.sign_up(form_data)
+            new_user = UserModel(form_data)
+            new_user.sign_up()
         except Exception as e:
             if e.args[0] in elist.dict().values():
                 flash(e.args[0], category='error')
