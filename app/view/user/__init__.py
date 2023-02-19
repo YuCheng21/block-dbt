@@ -69,19 +69,3 @@ def logout():
         flash('登出成功！', category='success-toast')
         return redirect(url_for('user.login'))
     abort(404)
-
-
-@app.route('/user/profile', methods=['GET', 'POST'])
-@auth
-def profile():
-    if request.method == 'GET':
-        title = '個人資料'
-        return render_template('./user/profile.html', **locals())
-    elif request.method == 'POST':
-        # TODO: update profile action
-        # TODO: if update failed
-        flash('更新失敗', category='error')
-        # TODO: if update success
-        flash('更新成功', category='success')
-        return redirect(request.referrer)
-    abort(404)
