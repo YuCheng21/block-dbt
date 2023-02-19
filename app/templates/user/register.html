@@ -17,12 +17,12 @@
                    class="form-control form-control-lg"
                    placeholder="請輸入密碼">
         </div>
-        <div class="input-group mb-3">
-            <label for="wallet" class="input-group-text fs-5">錢包</label>
-            <input name="wallet" type="wallet" id="wallet"
-                   class="form-control form-control-lg"
-                   placeholder="請輸入錢包地址">
-        </div>
+{#        <div class="input-group mb-3">#}
+{#            <label for="wallet" class="input-group-text fs-5">錢包</label>#}
+{#            <input name="wallet" type="wallet" id="wallet"#}
+{#                   class="form-control form-control-lg"#}
+{#                   placeholder="請輸入錢包地址">#}
+{#        </div>#}
         <div class="text-danger fs-5 fw-bold">
             <span>前往</span>
             <a href="https://metamask.io/" target="_blank">
@@ -30,10 +30,14 @@
             </a>
             <span>註冊錢包後，將地址複製到錢包欄位。</span>
         </div>
-        <button type="button" class="btn btn-primary w-100" id="send">
+        <button type="button" class="btn btn-primary w-100 mb-3" id="send">
             <span class="iconify-inline" data-icon="subway:tick"></span>
             <span>確認註冊</span>
         </button>
+        <a href="{{ url_for('user.login') }}" class="btn btn-secondary text-white w-100">
+            <span class="iconify-inline" data-icon="subway:tick"></span>
+            <span>返回</span>
+        </a>
     </form>
 {% endblock %}
 

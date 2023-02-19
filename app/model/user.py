@@ -23,6 +23,16 @@ class UserModel:
         cls.password = user_data['password']
         return cls
 
+    def sign_up(self, user_data):
+        payload = {
+            'Account': user_data['account'],
+            'password': user_data['password']
+        }
+        result = req.get(url.login, params=payload)
+
+        if result.json()['status'] is not True:
+            raise Exception(elist.fail)
+
     def save_session(self):
         session['account'] = self.account
         session['password'] = self.password

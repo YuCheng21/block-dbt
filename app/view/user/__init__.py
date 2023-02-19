@@ -12,13 +12,18 @@ def register():
         title = '註冊'
         return render_template('./user/register.html', **locals())
     elif request.method == 'POST':
-        # TODO: Do register action
-        # TODO: if sign-up success
-        flash('註冊成功', category='success-toast')
-        return redirect(url_for('user.login'))
-        # TODO: if sign-up failed
-        flash('註冊失敗', category='error')
-        return redirect(url_for('user.register'))
+        try:
+            form_data = request.values.to_dict()
+            user_info = UserModel.sign_up(form_data)
+        except Exception as e:
+            if e.args[0] in elist.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for('user.register'))
+            print(e)
+            abort(404)
+        else:
+            flash('註冊成功', category='success-toast')
+            return redirect(url_for('user.login'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
