@@ -5,16 +5,16 @@ from .config.flask_cfg import config as flask_config
 from .config.logger_cfg import console_logger, file_logger
 from .config.base import settings
 
-from .view.root import app as root
-from .view.user import app as user
-from .view.exp import app as exp
+from .controller.root import app as root
+from .controller.user import app as user
+from .controller.exp import app as exp
 
 
 def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(flask_config[config_name])
     app.static_folder = settings.project_path.joinpath('app', 'static').absolute()
-    app.template_folder = settings.project_path.joinpath('app', 'templates').absolute()
+    app.template_folder = settings.project_path.joinpath('app', 'views').absolute()
 
     app.register_blueprint(root)
     app.register_blueprint(user)
