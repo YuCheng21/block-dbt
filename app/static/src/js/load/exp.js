@@ -44,7 +44,7 @@ function load_table(data) {
             id: `${item._serial}`,
             name: `${item._name}`,
             member: component_member(item._Researchers_name),
-            content: `${item._name}`,
+            content: `${item._content}`,
             state: component_state(item._status),
             action: component_action(item._serial)
         })
