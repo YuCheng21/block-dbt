@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g
-from ...model.user import UserModel
-from ...config.exception import elist
+from app.model.user import UserModel
+from app.config.exception import elist
 
 app = Blueprint('user', __name__)
 
@@ -13,8 +13,7 @@ def register():
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()
-            new_user = UserModel(form_data)
-            account = new_user.sign_up()
+            user = UserModel.sign_up(form_data)
         except Exception as e:
             if e.args[0] in elist.dict().values():
                 flash(e.args[0], category='error')
@@ -23,7 +22,7 @@ def register():
             abort(404)
         else:
             flash('註冊成功', category='success-toast')
-            return redirect(url_for('user.login', account=account))
+            return redirect(url_for('user.login', account=user.account))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -34,7 +33,8 @@ def login():
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()
-            user_info = UserModel.get_user(form_data)
+            user = UserModel(form_data)
+            user.login()
         except Exception as e:
             if e.args[0] in elist.dict().values():
                 flash(e.args[0], category='error')
@@ -42,9 +42,19 @@ def login():
             print(e)
             abort(404)
         else:
-            user_info.save_session(user_info)
+            user.save_session()
             flash('登入成功', category='success-toast')
             return redirect(url_for('root.index'))
+
+
+@app.route('/user/logout', methods=['POST'])
+@UserModel.auth
+def logout():
+    if request.method == 'POST':
+        UserModel.remove_session()
+        flash('登出成功！', category='success-toast')
+        return redirect(url_for('user.login'))
+    abort(404)
 
 
 @app.route('/user/update', methods=['POST'])
@@ -57,14 +67,4 @@ def update():
         # TODO: if update success
         flash('更新成功', category='success')
         return redirect(request.referrer)
-    abort(404)
-
-
-@app.route('/user/logout', methods=['POST'])
-@UserModel.auth
-def logout():
-    if request.method == 'POST':
-        UserModel.remove_session()
-        flash('登出成功！', category='success-toast')
-        return redirect(url_for('user.login'))
     abort(404)

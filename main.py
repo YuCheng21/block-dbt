@@ -1,4 +1,4 @@
-from app import create_app
+from app.controller import create_app
 
 mode = 'development'
 # mode = 'production'

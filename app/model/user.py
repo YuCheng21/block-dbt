@@ -1,36 +1,34 @@
 from flask import session, redirect, url_for
-from ..model.request import req
+from ..model.request import MyRequest as req
 from ..config.url import url, status_code
 from ..config.exception import elist
 
 
 class UserModel:
     def __init__(self, user_data):
+        self.account = user_data['account']
         self.password = user_data['password']
 
     @classmethod
-    def get_user(cls, user_data):
+    def sign_up(cls, userdata):
         payload = {
-            'account': user_data['account'],
-            'password': user_data['password']
+            'password': userdata['password']
         }
-        result = req.post(url=url.login, data=payload)
+        result = req().post(url=url.sign_up, data=payload, timeout=30)
 
         if result.status_code is not status_code.ok:
             raise Exception(elist.fail)
-        cls.account = user_data['account']
-        cls.password = user_data['password']
-        return cls
+        return cls({'account': result.json()['account'], 'password': payload['password']})
 
-    def sign_up(self):
+    def login(self):
         payload = {
+            'account': self.account,
             'password': self.password
         }
-        result = req.post(url=url.sign_up, data=payload, timeout=30)
+        result = req().post(url=url.login, data=payload)
 
         if result.status_code is not status_code.ok:
             raise Exception(elist.fail)
-        return result.json()['account']
 
     def save_session(self):
         session['account'] = self.account

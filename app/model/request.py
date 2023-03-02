@@ -1,4 +1,5 @@
 import requests
+from flask import session
 from ..config.exception import elist
 
 """
@@ -9,7 +10,10 @@ https://requests.readthedocs.io/en/latest/user/advanced/
 class MyRequest:
     def __init__(self):
         self.session = requests.Session()
-        # self.session.auth = ('user', 'pass')
+
+    def basic_auth(self):
+        self.session.auth = (session.get('account'), session.get('password'))
+        return self
 
     def get(self, url, timeout=5, *args, **kwargs):
         try:
@@ -25,5 +29,3 @@ class MyRequest:
         except requests.ReadTimeout:
             raise Exception(elist.timeout)
 
-
-req = MyRequest()

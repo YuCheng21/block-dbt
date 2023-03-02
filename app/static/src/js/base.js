@@ -87,12 +87,12 @@ const markup = `
 const loading_element = $(markup);
 
 window.onpageshow = function () {
-    if (loading_element){
+    if (loading_element) {
         loading_element.remove();
     }
 }
 
-function loading(){
+function loading() {
     $('body').prepend(loading_element);
 }
 
@@ -104,3 +104,13 @@ $('#navbarToggler > ul > li > a > span').each(function (index, value) {
         $(this).addClass('text-active')
     }
 })
+
+/**
+ * Bootstrap-Table checkbox add class (Style).
+ */
+$('table').on('post-body.bs.table', function () {
+    $(':checkbox').each(function () {
+        $(this).addClass('form-check-input')
+    });
+})
+

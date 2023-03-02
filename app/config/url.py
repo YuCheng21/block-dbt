@@ -6,6 +6,8 @@ class Url(BaseSettings):
     base_url = settings.base_url
     login: HttpUrl = f'{base_url}/login'
     sign_up: HttpUrl = f'{base_url}/register'
+    all_exp: HttpUrl = f'{base_url}/explist'
+    new_exp: HttpUrl = f'{base_url}/newexp'
 
 
 class StatusCode(BaseSettings):

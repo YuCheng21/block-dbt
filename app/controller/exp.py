@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g
-from ...model.user import UserModel
+from app.model.user import UserModel
 
 app = Blueprint('exp', __name__)
 

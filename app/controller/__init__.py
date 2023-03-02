@@ -1,13 +1,13 @@
 from flask import Flask, render_template, g
 import logging
 
-from .config.flask_cfg import config as flask_config
-from .config.logger_cfg import console_logger, file_logger
-from .config.base import settings
+from ..config.flask_cfg import config as flask_config
+from ..config.logger_cfg import console_logger, file_logger
+from ..config.base import settings
 
-from .controller.root import app as root
-from .controller.user import app as user
-from .controller.exp import app as exp
+from app.controller.root import app as root
+from app.controller.user import app as user
+from app.controller.exp import app as exp
 
 
 def create_app(config_name):
