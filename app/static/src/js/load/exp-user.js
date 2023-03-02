@@ -13,7 +13,7 @@ function fetch_data() {
                class="btn btn-primary text-white">編輯</a>
             <a href="/exp/show/N00${i}"
                class="btn btn-secondary text-white">查看</a>
-            <a href="/exp/delete/N00${i}"
+            <a href="/exp/destroy/N00${i}"
                class="btn btn-danger text-white">刪除</a>
             `
         })

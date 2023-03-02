@@ -18,7 +18,11 @@ class UserModel:
 
         if result.status_code is not status_code.ok:
             raise Exception(elist.fail)
-        return cls({'account': result.json()['account'], 'password': payload['password']})
+        json = result.json()
+        return cls({
+            'account': json['account'],
+            'password': payload['password']
+        })
 
     def login(self):
         payload = {

@@ -24,4 +24,5 @@ $(document).on('click', '#expSend', function () {
 
     $(document.body).append(form);
     form.submit();
+    loading()
 });

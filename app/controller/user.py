@@ -18,7 +18,7 @@ def register():
             if e.args[0] in elist.dict().values():
                 flash(e.args[0], category='error')
                 return redirect(url_for('user.register'))
-            print(e)
+            current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             flash('註冊成功', category='success-toast')
@@ -39,7 +39,7 @@ def login():
             if e.args[0] in elist.dict().values():
                 flash(e.args[0], category='error')
                 return redirect(url_for('user.login'))
-            print(e)
+            current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             user.save_session()

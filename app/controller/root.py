@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
     make_response
 from app.model.user import UserModel
 from app.model.exp import Exp
+from app.config.url import url
 
 app = Blueprint('root', __name__)
 
@@ -13,9 +14,15 @@ app = Blueprint('root', __name__)
 def index():
     if request.method == 'GET':
         title = '所有實驗'
-        # exp_list = Exp.all_exp()
+        target = url.all_exp
         return render_template('./root/index.html', **locals())
     abort(404)
+
+
+# TODO: Delete This
+@app.route('/temp', methods=['GET'])
+def temp():
+    return Exp.all_exp()
 
 
 @app.route('/file/plain-text/<file_name>')
