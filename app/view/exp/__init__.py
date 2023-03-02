@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g
-from ..auth import auth
+from ...model.user import UserModel
 
 app = Blueprint('exp', __name__)
 
 
 @app.before_request
-@auth
+@UserModel.auth
 def before_request():
     pass
 

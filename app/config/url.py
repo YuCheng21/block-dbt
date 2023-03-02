@@ -8,4 +8,10 @@ class Url(BaseSettings):
     sign_up: HttpUrl = f'{base_url}/register'
 
 
+class StatusCode(BaseSettings):
+    ok = 200
+    non_authoritative = 203
+
+
 url = Url()
+status_code = StatusCode()

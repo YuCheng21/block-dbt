@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g, \
     make_response
-from ..auth import auth
+from ...model.user import UserModel
 
 app = Blueprint('root', __name__)
 
@@ -8,7 +8,7 @@ app = Blueprint('root', __name__)
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
 @app.route('/exp', methods=['GET'])
-@auth
+@UserModel.auth
 def index():
     if request.method == 'GET':
         title = '所有實驗'
@@ -17,8 +17,9 @@ def index():
 
 
 @app.route('/file/plain-text/<file_name>')
-def plain_text(file_name, file_content='lorem'):
-    response = make_response(file_content)
+def plain_text(file_name):
+    content = request.args.get('file_content') if request.args.get('file_content') is not None else 'empty'
+    response = make_response(content)
     # response.headers['Content-Disposition'] = f"attachment; filename={file_name}"  # directly download
     response.mimetype = 'text/plain'
     return response

@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g
 from ...model.user import UserModel
-from ..auth import auth
 from ...config.exception import elist
 
 app = Blueprint('user', __name__)
@@ -15,7 +14,7 @@ def register():
         try:
             form_data = request.values.to_dict()
             new_user = UserModel(form_data)
-            new_user.sign_up()
+            account = new_user.sign_up()
         except Exception as e:
             if e.args[0] in elist.dict().values():
                 flash(e.args[0], category='error')
@@ -24,7 +23,7 @@ def register():
             abort(404)
         else:
             flash('註冊成功', category='success-toast')
-            return redirect(url_for('user.login'))
+            return redirect(url_for('user.login', account=account))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -49,7 +48,7 @@ def login():
 
 
 @app.route('/user/update', methods=['POST'])
-@auth
+@UserModel.auth
 def update():
     if request.method == 'POST':
         # TODO: Do user update action
@@ -62,7 +61,7 @@ def update():
 
 
 @app.route('/user/logout', methods=['POST'])
-@auth
+@UserModel.auth
 def logout():
     if request.method == 'POST':
         UserModel.remove_session()
