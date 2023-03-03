@@ -13,8 +13,8 @@ function component_action(id) {
 }
 
 function component_content(content) {
-    return `
-        ${content}
+    return `<span class="truncate overflow-hidden">${content}</span>
+        
     `
 }
 

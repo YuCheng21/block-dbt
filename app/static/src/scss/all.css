@@ -11348,6 +11348,12 @@ main {
   white-space: normal !important;
 }
 
+.truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 .required:after {
   content: " *";
   color: #DC3545;
