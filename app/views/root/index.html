@@ -12,21 +12,22 @@
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
                 <div class="row justify-content-center text-center">
                     <div class="table-responsive">
-                        <table id="expTable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                        <table id="expTable" class="table table-striped text-center align-middle fs-5" style="table-layout: fixed"
                                data-toggle="table"
                                data-search="true"
                                data-sort-name="id"
                                data-sort-order="desc"
                                data-pagination="true"
                                data-page-size="10"
-                               data-page-list="[ 10, 20, 30, 50, All]"
+                               data-page-list="[10, 20, 30, 50, All]"
                                data-locale="zh-TW">
                             <thead>
                             <tr>
-                                <th data-width="5" data-width-unit="%" data-sortable="true" data-field="id">實驗編號</th>
+                                <th data-width="10" data-width-unit="%" data-sortable="true" data-field="id">實驗編號</th>
                                 <th data-width="15" data-width-unit="%" data-sortable="true" data-field="name">實驗名稱</th>
                                 <th data-width="10" data-width-unit="%" data-sortable="true" data-field="member">研究人員</th>
-                                <th data-width="50" data-width-unit="%" data-sortable="true" data-field="content">實驗內容</th>
+                                <th data-width="45" data-width-unit="%" data-sortable="true" data-field="content"
+                                data-halign="center" data-align="left" class="text-truncate">實驗內容</th>
                                 <th data-width="10" data-width-unit="%" data-sortable="true" data-field="state">狀態</th>
                                 <th data-width="10" data-width-unit="%" data-field="action">操作選項</th>
                             </tr>
