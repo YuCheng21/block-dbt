@@ -1,21 +1,13 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g
-from app.model.user import UserModel
+from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
 from app.config.exception import exception_code
 from app.model.exp import Exp
 
 app = Blueprint('exp', __name__)
 
 
-@app.before_request
-@UserModel.auth
-def before_request():
-    pass
-
-
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
 @app.route('/exp', methods=['GET'])
-@UserModel.auth
 def index():
     if request.method == 'GET':
         title = '所有實驗'

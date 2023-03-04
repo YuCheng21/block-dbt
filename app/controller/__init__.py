@@ -1,4 +1,4 @@
-from flask import Flask, render_template, g, request, make_response
+from flask import Flask, render_template, g, request, make_response, Blueprint
 import logging
 
 from app.config.flask_cfg import config as flask_config
@@ -9,12 +9,16 @@ from app.config.api import url
 from app.controller.user import app as user
 from app.controller.exp import app as exp
 
+from app.middleware.authenticate import Authenticate
+
 
 def create_app(config_name):
-    app = Flask(__name__)
+    app = MyFlask(__name__)
     app.config.from_object(flask_config[config_name])
     app.static_folder = settings.project_path.joinpath('app', 'static').absolute()
     app.template_folder = settings.project_path.joinpath('app', 'views').absolute()
+
+    app.register_middleware(exp, Authenticate.user())
 
     app.register_blueprint(user)
     app.register_blueprint(exp)
@@ -42,3 +46,12 @@ def create_app(config_name):
         return response
 
     return app
+
+
+class MyFlask(Flask):
+    @staticmethod
+    def register_middleware(app: Blueprint, middleware_func):
+        @app.before_request
+        @middleware_func
+        def before_request():
+            pass

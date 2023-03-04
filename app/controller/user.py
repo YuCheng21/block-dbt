@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g
+from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
 from app.model.user import UserModel
 from app.config.exception import exception_code
+from app.middleware.authenticate import Authenticate
 
 app = Blueprint('user', __name__)
 
@@ -48,7 +49,7 @@ def login():
 
 
 @app.route('/user/logout', methods=['POST'])
-@UserModel.auth
+@Authenticate.user()
 def logout():
     if request.method == 'POST':
         UserModel.remove_session()
@@ -58,7 +59,7 @@ def logout():
 
 
 @app.route('/user/update', methods=['POST'])
-@UserModel.auth
+@Authenticate.user()
 def update():
     if request.method == 'POST':
         # TODO: Do user update action

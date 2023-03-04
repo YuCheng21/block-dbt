@@ -1,4 +1,4 @@
-from flask import session, redirect, url_for
+from flask import session
 from app.model.request import MyRequest as req
 from app.config.api import url, status_code
 from app.config.exception import exception_code
@@ -9,6 +9,7 @@ class UserModel:
     def __init__(self, user_data):
         self.account = user_data['account']
         self.password = user_data['password']
+        self.basic_auth = self.basic_authenticate(self.account, self.password)
 
     @classmethod
     def sign_up(cls, userdata):
@@ -38,7 +39,7 @@ class UserModel:
     def save_session(self):
         session['account'] = self.account
         session['password'] = self.password
-        session['basic_auth'] = self.basic_auth(self.account, self.password)
+        session['basic_auth'] = self.basic_auth
         session.permanent = True
 
     @staticmethod
@@ -48,21 +49,6 @@ class UserModel:
         session.pop('basic_auth', None)
 
     @staticmethod
-    def auth(func):
-        def wrapper(*args, **kwargs):
-            account = session.get('account')
-            if account is None:
-                return redirect(url_for('user.login'))
-            password = session.get('password')
-            if password is None:
-                return redirect(url_for('user.login'))
-
-            return func(*args, **kwargs)
-
-        wrapper.__name__ = func.__name__
-        return wrapper
-
-    @staticmethod
-    def basic_auth(account, password):
+    def basic_authenticate(account, password):
         token = b64encode(f"{account}:{password}".encode('utf-8')).decode("ascii")
         return f'Basic {token}'
