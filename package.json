@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "cross-env NODE_ENV=development webpack --watch"
   },
   "author": "Yu-Cheng",
   "license": "ISC",
@@ -13,5 +13,11 @@
     "bootstrap-table": "^1.18.3",
     "jquery": "^3.6.0",
     "sweetalert2": "^11.1.5"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "cross-env": "^7.0.3",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }

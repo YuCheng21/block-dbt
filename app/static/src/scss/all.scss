@@ -1,11 +1,11 @@
 // Required
-@import "../../node_modules/bootstrap/scss/functions";
+@import "../../dist/node_modules/bootstrap/scss/functions";
 @import "./helpers/variables";
-@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../dist/node_modules/bootstrap/scss/mixins";
 // Bootstrap
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../dist/node_modules/bootstrap/scss/bootstrap";
 // Bootstrap-Table
-@import "../../node_modules/bootstrap-table/dist/bootstrap-table";
+@import "../../dist/node_modules/bootstrap-table/dist/bootstrap-table";
 // Base
 @import "./base/global";
 // Components
