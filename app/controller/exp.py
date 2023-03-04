@@ -56,7 +56,7 @@ def store():
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for('user.register'))
+                return redirect(url_for('exp.store'))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
