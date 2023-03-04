@@ -1,5 +1,6 @@
 const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 
 module.exports = {
@@ -13,6 +14,11 @@ module.exports = {
         filename: "js/[name].[hash].js",
     },
     plugins: [
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [
+                '**/*',
+            ],
+        }),
         new CopyPlugin({
             patterns: [
                 { from: "node_modules/jquery", to: "node_modules/jquery"},
