@@ -4,6 +4,7 @@ import logging
 from app.config.flask_cfg import config as flask_config
 from app.config.logger_cfg import console_logger, file_logger
 from app.config.base import settings
+from app.config.api import url
 
 from app.controller.root import app as root
 from app.controller.user import app as user
@@ -27,6 +28,7 @@ def create_app(config_name):
     @app.before_request
     def before_request():
         g.website_name = settings.website_name
+        g.url = url
 
     @app.errorhandler(404)
     def page_not_found(e):

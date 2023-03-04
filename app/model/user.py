@@ -2,6 +2,7 @@ from flask import session, redirect, url_for
 from app.model.request import MyRequest as req
 from app.config.api import url, status_code
 from app.config.exception import exception_code
+from base64 import b64encode
 
 
 class UserModel:
@@ -37,12 +38,14 @@ class UserModel:
     def save_session(self):
         session['account'] = self.account
         session['password'] = self.password
+        session['basic_auth'] = self.basic_auth(self.account, self.password)
         session.permanent = True
 
     @staticmethod
     def remove_session():
         session.pop('account', None)
         session.pop('password', None)
+        session.pop('basic_auth', None)
 
     @staticmethod
     def auth(func):
@@ -58,3 +61,8 @@ class UserModel:
 
         wrapper.__name__ = func.__name__
         return wrapper
+
+    @staticmethod
+    def basic_auth(account, password):
+        token = b64encode(f"{account}:{password}".encode('utf-8')).decode("ascii")
+        return f'Basic {token}'

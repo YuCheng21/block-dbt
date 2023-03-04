@@ -13,7 +13,7 @@ class User(BaseModel):
 
 
 class Url(BaseModel):
-    base = settings.base_url
+    base: HttpUrl = f'{settings.base_url}'
     exp = Exp()
     user = User()
 

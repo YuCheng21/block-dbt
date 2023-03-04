@@ -27,18 +27,7 @@ function component_state(code) {
     return state[code]
 }
 
-async function fetch_data() {
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", 'Basic ' + btoa(`${account}:${password}`));
-    const requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
-    return await fetch(url, requestOptions)
-        .then(response => response.json())
-        .catch(error => console.log('error', error));
-}
+
 
 function load_table(data) {
     const rows = [];
@@ -59,7 +48,7 @@ $(document).ready(function () {
     /**
      * Load Data
      */
-    fetch_data().then(data => {
+    fetch_data(server.url.exp.index, server.basic_auth).then(data => {
         load_table(data)
         /**
          * Initialize Tooltip

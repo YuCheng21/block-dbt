@@ -114,3 +114,20 @@ $('table').on('post-body.bs.table', function () {
     });
 })
 
+/**
+ * Asynchronous fetch data
+ */
+async function fetch_data(url, basic_auth=null) {
+    const headers = new Headers();
+    if (basic_auth != null){
+        headers.append("Authorization", basic_auth);
+    }
+    const requestOptions = {
+        method: 'GET',
+        headers: headers,
+        redirect: 'follow'
+    };
+    return await fetch(url, requestOptions)
+        .then(response => response.json())
+        .catch(error => console.log('error', error));
+}

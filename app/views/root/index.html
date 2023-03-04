@@ -44,9 +44,4 @@
     {{ super() }}
     <!--  Page Customize Javascript  -->
     <script src="{{ url_for('static', filename='src/js/load/exp.js') }}"></script>
-    <script>
-        account = "{{ session.get('account') }}"
-        password = "{{ session.get('password') }}"
-        url = "{{ target }}"
-    </script>
 {% endblock %}

@@ -134,7 +134,13 @@
             {% endif %}
         {% endwith %}
     </script>
-
+    <!--  Parameters  -->
+    <script>
+        const server = {
+            'basic_auth': "{{ session.get('basic_auth') }}",
+            'url': {{ g.url.dict() | tojson }},
+        }
+    </script>
 {% endblock %}
 
 </body>

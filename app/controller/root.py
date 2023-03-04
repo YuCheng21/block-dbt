@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g, \
     make_response
 from app.model.user import UserModel
-from app.config.api import url
 
 app = Blueprint('root', __name__)
 
@@ -13,7 +12,6 @@ app = Blueprint('root', __name__)
 def index():
     if request.method == 'GET':
         title = '所有實驗'
-        target = url.exp.index
         return render_template('./root/index.html', **locals())
     abort(404)
 
