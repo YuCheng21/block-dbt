@@ -1,4 +1,4 @@
-from .base import settings
+from app.config.base import settings
 import datetime
 
 

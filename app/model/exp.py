@@ -1,6 +1,6 @@
-from ..model.request import MyRequest as req
-from ..config.url import url, status_code
-from ..config.exception import elist
+from app.model.request import MyRequest as req
+from app.config.url import url, status_code
+from app.config.exception import elist
 
 
 class Exp:
@@ -22,7 +22,7 @@ class Exp:
 
     @staticmethod
     def all_exp():
-        result = req().basic_auth().get(url=url.all_exp)
+        result = req().basic_auth().get(url=url.exp.index)
 
         if result.status_code is not status_code.ok:
             raise Exception(elist.fail)
@@ -35,7 +35,7 @@ class Exp:
             'name': data['expName'],
             'information': data['expContent']
         }
-        result = req().basic_auth().post(url=url.new_exp, data=payload, timeout=30)
+        result = req().basic_auth().post(url=url.exp.store, data=payload, timeout=30)
 
         if result.status_code is not status_code.ok:
             raise Exception(elist.fail)

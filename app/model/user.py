@@ -1,7 +1,7 @@
 from flask import session, redirect, url_for
-from ..model.request import MyRequest as req
-from ..config.url import url, status_code
-from ..config.exception import elist
+from app.model.request import MyRequest as req
+from app.config.url import url, status_code
+from app.config.exception import elist
 
 
 class UserModel:
@@ -14,7 +14,7 @@ class UserModel:
         payload = {
             'password': userdata['password']
         }
-        result = req().post(url=url.sign_up, data=payload, timeout=30)
+        result = req().post(url=url.user.sign_up, data=payload, timeout=30)
 
         if result.status_code is not status_code.ok:
             raise Exception(elist.fail)
@@ -29,7 +29,7 @@ class UserModel:
             'account': self.account,
             'password': self.password
         }
-        result = req().post(url=url.login, data=payload)
+        result = req().post(url=url.user.login, data=payload)
 
         if result.status_code is not status_code.ok:
             raise Exception(elist.fail)

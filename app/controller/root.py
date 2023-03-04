@@ -13,7 +13,7 @@ app = Blueprint('root', __name__)
 def index():
     if request.method == 'GET':
         title = '所有實驗'
-        target = url.all_exp
+        target = url.exp.index
         return render_template('./root/index.html', **locals())
     abort(404)
 

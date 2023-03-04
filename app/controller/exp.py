@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g
 from app.model.user import UserModel
 from app.config.exception import elist
-from ..model.exp import Exp
+from app.model.exp import Exp
 
 app = Blueprint('exp', __name__)
 

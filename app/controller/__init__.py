@@ -1,9 +1,9 @@
 from flask import Flask, render_template, g
 import logging
 
-from ..config.flask_cfg import config as flask_config
-from ..config.logger_cfg import console_logger, file_logger
-from ..config.base import settings
+from app.config.flask_cfg import config as flask_config
+from app.config.logger_cfg import console_logger, file_logger
+from app.config.base import settings
 
 from app.controller.root import app as root
 from app.controller.user import app as user

@@ -1,6 +1,6 @@
 import requests
 from flask import session
-from ..config.exception import elist
+from app.config.exception import elist
 
 """
 https://requests.readthedocs.io/en/latest/user/advanced/

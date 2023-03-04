@@ -4,7 +4,7 @@ from pathlib import Path
 from logging.handlers import RotatingFileHandler
 from flask import request
 
-from .base import settings
+from app.config.base import settings
 
 
 class RequestFormatter(logging.Formatter):
