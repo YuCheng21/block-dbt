@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g
 from app.model.user import UserModel
-from app.config.exception import elist
+from app.config.exception import exception_code
 
 app = Blueprint('user', __name__)
 
@@ -15,7 +15,7 @@ def register():
             form_data = request.values.to_dict()
             user = UserModel.sign_up(form_data)
         except Exception as e:
-            if e.args[0] in elist.dict().values():
+            if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
                 return redirect(url_for('user.register'))
             current_app.logger.error(f'error msg: {e}')
@@ -36,7 +36,7 @@ def login():
             user = UserModel(form_data)
             user.login()
         except Exception as e:
-            if e.args[0] in elist.dict().values():
+            if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
                 return redirect(url_for('user.login'))
             current_app.logger.error(f'error msg: {e}')

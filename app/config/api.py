@@ -1,4 +1,4 @@
-from pydantic import BaseSettings, BaseModel, HttpUrl
+from pydantic import BaseModel, HttpUrl
 from app.config.base import settings
 
 
@@ -12,16 +12,16 @@ class User(BaseModel):
     sign_up: HttpUrl = f'{settings.base_url}/register'
 
 
-class UrlModel(BaseSettings):
+class Url(BaseModel):
     base = settings.base_url
     exp = Exp()
     user = User()
 
 
-url = UrlModel()
+url = Url()
 
 
-class StatusCode(BaseSettings):
+class StatusCode(BaseModel):
     ok = 200
     non_authoritative = 203
 

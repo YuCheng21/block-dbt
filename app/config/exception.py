@@ -1,9 +1,9 @@
-from pydantic import BaseSettings
+from pydantic import BaseModel
 
 
-class ExceptionList(BaseSettings):
+class ExceptionCode(BaseModel):
     timeout = '執行超時'
     fail = '執行失敗'
 
 
-elist = ExceptionList()
+exception_code = ExceptionCode()

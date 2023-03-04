@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session, abort, current_app, g, \
     make_response
 from app.model.user import UserModel
-from app.config.url import url
+from app.config.api import url
 
 app = Blueprint('root', __name__)
 

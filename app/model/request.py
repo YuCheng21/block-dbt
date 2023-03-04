@@ -1,6 +1,6 @@
 import requests
 from flask import session
-from app.config.exception import elist
+from app.config.exception import exception_code
 
 """
 https://requests.readthedocs.io/en/latest/user/advanced/
@@ -19,7 +19,7 @@ class MyRequest:
         try:
             return self.session.get(url=url, timeout=timeout, *args, **kwargs)
         except requests.ReadTimeout:
-            raise Exception(elist.timeout)
+            raise Exception(exception_code.timeout)
 
     def post(self, url, content='urlencoded', timeout=5, *args, **kwargs):
         try:
@@ -27,5 +27,5 @@ class MyRequest:
                 headers = {'Content-Type': 'application/x-www-form-urlencoded'}
                 return self.session.post(url=url, headers=headers, timeout=timeout, *args, **kwargs)
         except requests.ReadTimeout:
-            raise Exception(elist.timeout)
+            raise Exception(exception_code.timeout)
 

@@ -1,7 +1,7 @@
 from flask import session, redirect, url_for
 from app.model.request import MyRequest as req
-from app.config.url import url, status_code
-from app.config.exception import elist
+from app.config.api import url, status_code
+from app.config.exception import exception_code
 
 
 class UserModel:
@@ -17,7 +17,7 @@ class UserModel:
         result = req().post(url=url.user.sign_up, data=payload, timeout=30)
 
         if result.status_code is not status_code.ok:
-            raise Exception(elist.fail)
+            raise Exception(exception_code.fail)
         json = result.json()
         return cls({
             'account': json['account'],
@@ -32,7 +32,7 @@ class UserModel:
         result = req().post(url=url.user.login, data=payload)
 
         if result.status_code is not status_code.ok:
-            raise Exception(elist.fail)
+            raise Exception(exception_code.fail)
 
     def save_session(self):
         session['account'] = self.account

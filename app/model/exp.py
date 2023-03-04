@@ -1,6 +1,6 @@
 from app.model.request import MyRequest as req
-from app.config.url import url, status_code
-from app.config.exception import elist
+from app.config.api import url, status_code
+from app.config.exception import exception_code
 
 
 class Exp:
@@ -25,7 +25,7 @@ class Exp:
         result = req().basic_auth().get(url=url.exp.index)
 
         if result.status_code is not status_code.ok:
-            raise Exception(elist.fail)
+            raise Exception(exception_code.fail)
 
         return result.json()
 
@@ -38,7 +38,7 @@ class Exp:
         result = req().basic_auth().post(url=url.exp.store, data=payload, timeout=30)
 
         if result.status_code is not status_code.ok:
-            raise Exception(elist.fail)
+            raise Exception(exception_code.fail)
 
         json = result.json()
         return cls(address=json['expaddress'], name=payload['name'], content=payload['information'])
