@@ -37,7 +37,7 @@
     {% block header %}
         <nav class="navbar navbar-dark navbar-expand-lg bg-primary px-3 fixed-top">
             <div class="container-fluid">
-                <a href="{{ url_for('root.index') }}"
+                <a href="{{ url_for('exp.index') }}"
                    class="navbar-brand fs-1 fw-bold py-0 ds-100 hv-scale hv-color-text">
                     <span class="iconify-inline" data-icon="game-icons:blindfold"></span>
                     <span>{{ g.website_name }}</span>
@@ -49,7 +49,7 @@
                     {% block navbar_item %}
                         <ul class="navbar-nav fs-4 fw-bold ds-100">
                             <li class="nav-item hv-scale">
-                                <a href="{{ url_for('root.index') }}" class="nav-link text-white hv-color-text">
+                                <a href="{{ url_for('exp.index') }}" class="nav-link text-white hv-color-text">
                                     <span>所有實驗</span>
                                 </a>
                             </li>

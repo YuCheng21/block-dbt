@@ -12,6 +12,17 @@ def before_request():
     pass
 
 
+@app.route('/', methods=['GET'])
+@app.route('/index', methods=['GET'])
+@app.route('/exp', methods=['GET'])
+@UserModel.auth
+def index():
+    if request.method == 'GET':
+        title = '所有實驗'
+        return render_template('./exp/index.html', **locals())
+    abort(404)
+
+
 @app.route('/exp/user', methods=['GET'])
 def user():
     if request.method == 'GET':
@@ -84,7 +95,7 @@ def update(id):
         flash('更新失敗', category='error')
         # TODO: if update exp success
         flash('更新成功', category='success-toast')
-        return redirect(url_for('root.index'))
+        return redirect(url_for('exp.index'))
     abort(404)
 
 

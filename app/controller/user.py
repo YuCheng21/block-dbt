@@ -44,7 +44,7 @@ def login():
         else:
             user.save_session()
             flash('登入成功', category='success-toast')
-            return redirect(url_for('root.index'))
+            return redirect(url_for('exp.index'))
 
 
 @app.route('/user/logout', methods=['POST'])

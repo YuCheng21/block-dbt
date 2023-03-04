@@ -1,4 +1,4 @@
-from flask import Flask, render_template, g
+from flask import Flask, render_template, g, request, make_response
 import logging
 
 from app.config.flask_cfg import config as flask_config
@@ -6,7 +6,6 @@ from app.config.logger_cfg import console_logger, file_logger
 from app.config.base import settings
 from app.config.api import url
 
-from app.controller.root import app as root
 from app.controller.user import app as user
 from app.controller.exp import app as exp
 
@@ -17,7 +16,6 @@ def create_app(config_name):
     app.static_folder = settings.project_path.joinpath('app', 'static').absolute()
     app.template_folder = settings.project_path.joinpath('app', 'views').absolute()
 
-    app.register_blueprint(root)
     app.register_blueprint(user)
     app.register_blueprint(exp)
 
@@ -34,5 +32,13 @@ def create_app(config_name):
     def page_not_found(e):
         title = '訪問頁面失敗'
         return render_template('./404.html', **locals())
+
+    @app.route('/file/plain-text/<file_name>')
+    def plain_text(file_name):
+        content = request.args.get('file_content') if request.args.get('file_content') is not None else 'empty'
+        response = make_response(content)
+        # response.headers['Content-Disposition'] = f"attachment; filename={file_name}"  # directly download
+        response.mimetype = 'text/plain'
+        return response
 
     return app
