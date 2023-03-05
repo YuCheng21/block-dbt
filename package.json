@@ -10,12 +10,18 @@
   "author": "Yu-Cheng",
   "license": "ISC",
   "dependencies": {
+    "@babel/runtime": "^7.21.0",
+    "@babel/runtime-corejs3": "^7.21.0",
     "bootstrap": "^5.1.1",
     "bootstrap-table": "^1.18.3",
     "jquery": "^3.6.0",
     "sweetalert2": "^11.1.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/plugin-transform-runtime": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",

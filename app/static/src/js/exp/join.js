@@ -1,3 +1,6 @@
+import * as utils from "../utilities";
+
+
 function component_member(researchers_name) {
     return `
         <span data-bs-toggle="tooltip" data-bs-placement="top" title="${researchers_name}">
@@ -8,13 +11,13 @@ function component_member(researchers_name) {
 
 function component_action(id) {
     return `
-        <a href="/exp/show/${id}" class="btn btn-secondary text-white">查看</a>
+        <a href="/exp/join/N00${id}" class="btn btn-primary text-white">查看</a>
     `
 }
 
 function component_content(content) {
-    return `<span class="truncate overflow-hidden">${content}</span>
-        
+    return `
+        <span class="truncate overflow-hidden">${content}</span>
     `
 }
 
@@ -26,7 +29,6 @@ function component_state(code) {
     }
     return state[code]
 }
-
 
 
 function load_table(data) {
@@ -44,19 +46,16 @@ function load_table(data) {
     $('#expTable').bootstrapTable('load', rows)
 }
 
-$(document).ready(function () {
-    /**
-     * Load Data
-     */
-    fetch_data(server.url.exp.index, server.basic_auth).then(data => {
+function load_data() {
+    utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
         load_table(data)
-        /**
-         * Initialize Tooltip
-         */
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
+        utils.init_tooltip()
     })
+}
 
-})
+let expTable = document.querySelector('#expTable')
+if (expTable && server.endpoint === 'exp.join') {
+    document.addEventListener("DOMContentLoaded", function () {
+        load_data()
+    })
+}

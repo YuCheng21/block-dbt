@@ -76,13 +76,6 @@
                                 </button>
                                 <ul class="dropdown-menu fade">
                                     <li>
-                                        <button type="button" class="dropdown-item hv-color-bg" data-bs-toggle="modal"
-                                           data-bs-target="#modalUserUpdate">
-                                            <span class="iconify-inline" data-icon="fa-solid:tools"></span>
-                                            <span>修改密碼</span>
-                                        </button>
-                                    </li>
-                                    <li>
                                         <form method="POST" action="{{ url_for('user.logout') }}">
                                             <a href="{{ url_for('user.logout') }}" class="dropdown-item hv-color-bg"
                                                onclick="event.preventDefault();this.closest('form').submit();">
@@ -115,32 +108,23 @@
                 <span>Copyright © 2022, HPDS-Lab. All Rights Reserved.</span>
             </span>
         </div>
-        {% include 'includes/modal/user/update.html' %}
     {% endblock %}
 
 </footer>
 {% block script %}
-    <!--  Active Current Page  -->
-    <script>const pageTitle = '{{title}}';</script>
-    <!--  Customize Javascript  -->
-    <script src="{{ url_for('static', filename='src/js/base.js') }}"></script>
-    <!--  Alert  -->
-    <script>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    dialog('{{ category }}', '{{ message }}');
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </script>
     <!--  Parameters  -->
     <script>
         const server = {
+            'page_title': '{{title}}',
+            'endpoint': '{{ request.endpoint }}',
+            'endpoint_list': {{ g.endpoint_list | tojson}},
             'basic_auth': "{{ session.get('basic_auth') }}",
             'url': {{ g.url.dict() | tojson }},
+            'flash': {{ get_flashed_messages(with_categories=true) | tojson }}
         }
     </script>
+    <!--  Customize Javascript  -->
+    <script src="{{ url_for('static', filename='dist/js/main.js') }}"></script>
 {% endblock %}
 
 </body>

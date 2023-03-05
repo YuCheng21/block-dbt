@@ -1,7 +1,7 @@
 $(document).on('click', '#multipleChoiceSend', function () {
     // check required item
-    if($('#multipleChoice').val() == '') return false;
-    if($('#maxScore').val() == '') return false;
+    if ($('#multipleChoice').val() == '') return false;
+    if ($('#maxScore').val() == '') return false;
     // dialog data
     const topic = $('#multipleChoice').val()
     const maxScore = $('#maxScore').val()
@@ -15,21 +15,15 @@ $(document).on('click', '#multipleChoiceSend', function () {
     if (index == null) {
         // Insert items to table
         $('#MCTable').bootstrapTable('insertRow', {
-            index: 0,
-            row: {
-                multipleChoice: topic,
-                maxScore: maxScore,
-                MCAction: action,
+            index: 0, row: {
+                multipleChoice: topic, maxScore: maxScore, MCAction: action,
             }
         });
     } else {
         // update items to table
         $('#MCTable').bootstrapTable('updateRow', {
-            index: index,
-            row: {
-                multipleChoice: topic,
-                maxScore: maxScore,
-                MCAction: action,
+            index: index, row: {
+                multipleChoice: topic, maxScore: maxScore, MCAction: action,
             }
         });
     }

@@ -11,7 +11,6 @@ $(document).on('click', '.MCDelete, .SADelete', function (e) {
         throw 'class name error'
     }
     target.bootstrapTable('remove', {
-        field: '$index',
-        values: [index]
+        field: '$index', values: [index]
     });
 })

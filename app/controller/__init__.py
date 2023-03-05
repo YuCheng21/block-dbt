@@ -31,6 +31,8 @@ def create_app(config_name):
     def before_request():
         g.website_name = settings.website_name
         g.url = url
+        endpoint_list = list(app.url_map.__dict__['_rules_by_endpoint'].keys())
+        g.endpoint_list = dict(zip(list(map(lambda x: x.replace('.', '_'), endpoint_list)), endpoint_list))
 
     @app.errorhandler(404)
     def page_not_found(e):

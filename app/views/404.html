@@ -19,6 +19,6 @@
 {% block footer %}
     {{ super() }}
     <script>
-        $('header').addClass('mb-auto')
+        document.querySelector('header').classList.add('mb-auto')
     </script>
 {% endblock %}

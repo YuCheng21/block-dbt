@@ -13,19 +13,15 @@ $(document).on('click', '#shortAnswerSend', function () {
     if (index == null) {
         // Insert items to table
         $('#SATable').bootstrapTable('insertRow', {
-            index: 0,
-            row: {
-                shortAnswer: topic,
-                SAAction: action,
+            index: 0, row: {
+                shortAnswer: topic, SAAction: action,
             }
         });
     } else {
         // update items to table
         $('#SATable').bootstrapTable('updateRow', {
-            index: index,
-            row: {
-                shortAnswer: topic,
-                SAAction: action,
+            index: index, row: {
+                shortAnswer: topic, SAAction: action,
             }
         });
     }

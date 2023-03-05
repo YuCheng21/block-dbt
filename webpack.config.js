@@ -11,7 +11,18 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'app/static/dist'),
-        filename: "js/[name].[hash].js",
+        filename: "js/[name].js",
+    },
+    module: {
+        rules: [
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                }
+            }
+        ]
     },
     plugins: [
         new CleanWebpackPlugin({

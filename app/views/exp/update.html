@@ -104,14 +104,7 @@
     {% include 'includes/modal/topic/short-answer.html' %}
 {% endblock %}
 
-
 {% block script %}
     {{ super() }}
     <!--  Page Customize Javascript  -->
-    <script src="{{ url_for('static', filename='src/js/topic/multiple-choice.js') }}"></script>
-    <script src="{{ url_for('static', filename='src/js/topic/short-answer.js') }}"></script>
-    <script src="{{ url_for('static', filename='src/js/topic/delete.js') }}"></script>
-    <script src="{{ url_for('static', filename='src/js/topic/update.js') }}"></script>
-    <script src="{{ url_for('static', filename='src/js/submit/exp.js') }}"></script>
-    <script src="{{ url_for('static', filename='src/js/load/exp-update.js') }}"></script>
 {% endblock %}
