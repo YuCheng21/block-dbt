@@ -7,7 +7,7 @@ module.exports = {
     devtool: 'source-map',
     mode: process.env.NODE_ENV,
     entry: {
-        main: './app/static/src/js/app.js',
+        main: './app/static/src/js/main.js',
     },
     output: {
         path: path.resolve(__dirname, 'app/static/dist'),
