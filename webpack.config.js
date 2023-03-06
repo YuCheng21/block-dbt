@@ -1,6 +1,7 @@
 const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
 module.exports = {
@@ -8,6 +9,11 @@ module.exports = {
     mode: process.env.NODE_ENV,
     entry: {
         main: './app/static/src/js/main.js',
+    },
+    resolve: {
+        alias: {
+            '@static': path.resolve(__dirname, 'app/static/')
+        }
     },
     output: {
         path: path.resolve(__dirname, 'app/static/dist'),
@@ -21,10 +27,32 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                 }
-            }
+            },
+            {
+                test: /\.(scss)$/i,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                        }
+                    },
+                    {loader: 'postcss-loader'},
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                        }
+                    },
+                ],
+            },
         ]
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'css/main.css',
+        }),
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [
                 '**/*',
@@ -32,10 +60,10 @@ module.exports = {
         }),
         new CopyPlugin({
             patterns: [
-                { from: "node_modules/jquery", to: "node_modules/jquery"},
-                { from: "node_modules/bootstrap", to: "node_modules/bootstrap"},
-                { from: "node_modules/sweetalert2", to: "node_modules/sweetalert2"},
-                { from: "node_modules/bootstrap-table", to: "node_modules/bootstrap-table"},
+                {from: "node_modules/jquery", to: "node_modules/jquery"},
+                {from: "node_modules/bootstrap", to: "node_modules/bootstrap"},
+                {from: "node_modules/sweetalert2", to: "node_modules/sweetalert2"},
+                {from: "node_modules/bootstrap-table", to: "node_modules/bootstrap-table"},
             ]
         })
     ]

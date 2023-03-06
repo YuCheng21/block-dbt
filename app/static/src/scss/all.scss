@@ -1,11 +1,11 @@
 // Required
-@import "../../dist/node_modules/bootstrap/scss/functions";
+@import "~bootstrap/scss/functions";
 @import "./helpers/variables";
-@import "../../dist/node_modules/bootstrap/scss/mixins";
+@import "~bootstrap/scss/mixins";
 // Bootstrap
-@import "../../dist/node_modules/bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
 // Bootstrap-Table
-@import "../../dist/node_modules/bootstrap-table/dist/bootstrap-table";
+@import "~bootstrap-table/dist/bootstrap-table";
 // Base
 @import "./base/global";
 // Components
@@ -23,6 +23,6 @@
 //@import "./pages/index";
 
 .required:after {
-    content:" *";
+    content:" ";
     color: $danger;
 }
