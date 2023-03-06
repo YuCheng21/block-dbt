@@ -13,7 +13,7 @@ services:
     command:
       - |
         python -m pip install -r requirements.txt
-        python main.py
+        python application.py
   nodejs:
     image: node:16.13.2
     volumes:

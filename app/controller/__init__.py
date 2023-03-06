@@ -12,9 +12,9 @@ from app.controller.exp import app as exp
 from app.middleware.authenticate import Authenticate
 
 
-def create_app(config_name):
+def create_app():
     app = MyFlask(__name__)
-    app.config.from_object(flask_config[config_name])
+    app.config.from_object(flask_config[settings.mode])
     app.static_folder = settings.project_path.joinpath('app', 'static').absolute()
     app.template_folder = settings.project_path.joinpath('app', 'views').absolute()
 
@@ -47,7 +47,7 @@ def create_app(config_name):
         response.mimetype = 'text/plain'
         return response
 
-    return app
+    return app, settings
 
 
 class MyFlask(Flask):
