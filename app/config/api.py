@@ -3,17 +3,17 @@ from app.config.base import settings
 
 
 class Exp(BaseModel):
-    index: HttpUrl = f'{settings.base_url}/explist'
-    store: HttpUrl = f'{settings.base_url}/newexp'
+    index: HttpUrl = f'{settings.api_url}/explist'
+    store: HttpUrl = f'{settings.api_url}/newexp'
 
 
 class User(BaseModel):
-    login: HttpUrl = f'{settings.base_url}/login'
-    sign_up: HttpUrl = f'{settings.base_url}/register'
+    login: HttpUrl = f'{settings.api_url}/login'
+    sign_up: HttpUrl = f'{settings.api_url}/register'
 
 
 class Url(BaseModel):
-    base: HttpUrl = f'{settings.base_url}'
+    base: HttpUrl = f'{settings.api_url}'
     exp = Exp()
     user = User()
 

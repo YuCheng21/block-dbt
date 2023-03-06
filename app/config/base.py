@@ -7,7 +7,10 @@ class Settings(BaseSettings):
     website_name: str = '基於區塊鏈的雙盲測驗平台'
     project_name: str = 'block-dbt'
     project_path: Path = Path('./')
-    base_url: HttpUrl = 'http://127.0.0.1:15000'
+    api_url: HttpUrl = 'http://127.0.0.1:15000'
+    app_host = '0.0.0.0'
+    app_http_port = 80
+    app_https_port = 443
     secret_key: str = 'YOUR SECRET_KEY'
     session_cookie_name: str = f'{project_name}-session'
 

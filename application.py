@@ -6,6 +6,7 @@ app, settings = create_app()
 if __name__ == '__main__':
     if settings.mode == 'development':
         print(app.url_map)
-        app.run(host='0.0.0.0', port=80)
+        app.run(host=settings.app_host, port=settings.app_http_port)
     elif settings.mode == 'production':
-        app.run(host='0.0.0.0', port=80)
+        from waitress import serve
+        serve(app, host=settings.app_host, port=settings.app_https_port, url_scheme='https')
