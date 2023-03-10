@@ -11,6 +11,26 @@ class UserModel:
         self.password = user_data['password']
 
     @property
+    def account(self):
+        return self.__account
+
+    @account.setter
+    def account(self, account):
+        assert type(account) == str
+        self.__account = account
+
+    @property
+    def password(self):
+        return self.__password
+
+    @password.setter
+    def password(self, password):
+        self.__password = password
+
+    def __repr__(self):
+        return f'User({self.account}, {self.password})'
+
+    @property
     def basic_auth(self):
         token = b64encode(f"{self.account}:{self.password}".encode('utf-8')).decode("ascii")
         return f'Basic {token}'
