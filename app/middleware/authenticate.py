@@ -1,3 +1,5 @@
+import functools
+
 from flask import session, redirect, url_for
 
 
@@ -5,6 +7,7 @@ class Authenticate:
     @staticmethod
     def user(*arg, **kw):
         def decorator(func):
+            @functools.wraps(func)
             def wrapper(*args, **kwargs):
                 if kw.get('basic_auth') is not None:
                     basic_auth = kw.get('basic_auth')
@@ -19,8 +22,7 @@ class Authenticate:
                     return redirect(url)
 
                 return func(*args, **kwargs)
-
-            wrapper.__name__ = func.__name__
+            # wrapper.__name__ = func.__name__
+            # wrapper.__doc__ = func.__doc__
             return wrapper
-
         return decorator
