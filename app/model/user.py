@@ -9,7 +9,11 @@ class UserModel:
     def __init__(self, user_data):
         self.account = user_data['account']
         self.password = user_data['password']
-        self.basic_auth = self.basic_authenticate(self.account, self.password)
+
+    @property
+    def basic_auth(self):
+        token = b64encode(f"{self.account}:{self.password}".encode('utf-8')).decode("ascii")
+        return f'Basic {token}'
 
     @classmethod
     def sign_up(cls, userdata):
@@ -47,8 +51,3 @@ class UserModel:
         session.pop('account', None)
         session.pop('password', None)
         session.pop('basic_auth', None)
-
-    @staticmethod
-    def basic_authenticate(account, password):
-        token = b64encode(f"{account}:{password}".encode('utf-8')).decode("ascii")
-        return f'Basic {token}'
