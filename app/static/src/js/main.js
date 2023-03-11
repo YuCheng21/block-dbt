@@ -1,5 +1,7 @@
 import "@static/src/scss/all.scss";
 
+import "@iconify/iconify"
+
 import * as utils from "./utilities";
 import './user/login'
 import './user/register'

@@ -1,3 +1,46 @@
+import Swal from 'sweetalert2'
+
+/**
+ * sweetAlert
+ */
+export class dialog {
+    constructor(category, message) {
+        this.category = category
+        this.message = message
+    }
+
+    error() {
+        Swal.fire('錯誤', this.message, 'error')
+    }
+
+    success() {
+        Swal.fire('成功', this.message, 'success')
+    }
+
+    toast() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: 'success',
+            title: this.message
+        })
+    }
+    show(){
+        if(this.category === 'error') this.error()
+        if(this.category === 'success') this.success()
+        if(this.category === 'success-toast') this.toast()
+    }
+}
+
 /**
  * Asynchronous fetch data
  */
@@ -55,46 +98,5 @@ export class loading {
         let body;
         body = document.querySelector('body')
         body.insertAdjacentHTML('afterbegin', this.markup)
-    }
-}
-
-/**
- * sweetAlert
- */
-export class dialog {
-    constructor(category, message) {
-        this.category = category
-        this.message = message
-    }
-
-    error() {
-        Swal.fire('錯誤', this.message, 'error')
-    }
-
-    success() {
-        Swal.fire('成功', this.message, 'success')
-    }
-
-    toast() {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'bottom-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-        Toast.fire({
-            icon: 'success',
-            title: this.message
-        })
-    }
-    show(){
-        if(this.category === 'error') this.error()
-        if(this.category === 'success') this.success()
-        if(this.category === 'success-toast') this.toast()
     }
 }
