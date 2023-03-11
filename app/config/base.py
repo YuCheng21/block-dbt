@@ -15,8 +15,7 @@ class Settings(BaseSettings):
     project_path: Path = Path('./')
     api_url: HttpUrl = 'http://127.0.0.1:15000'
     app_host: str = '0.0.0.0'
-    app_http_port: int = 80
-    app_https_port: int = 443
+    app_port: int = 80
     secret_key: str = 'YOUR SECRET_KEY'
     session_cookie_name: str = f'{project_name}-session'
 

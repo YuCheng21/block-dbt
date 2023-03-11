@@ -4,7 +4,7 @@ services:
     image: python:3.9.13
     restart: always
     expose:
-      - '${app_http_port}'
+      - '${app_port}'
     volumes:
       - .:/code
       - /etc/localtime:/etc/localtime:ro
@@ -28,7 +28,7 @@ services:
     image: 'nginx'
     restart: always
     ports:
-      - '${NGINX_PORT}:${app_http_port}'
+      - '${NGINX_PORT}:${app_port}'
     links:
       - 'flask'
     volumes:
