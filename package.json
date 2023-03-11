@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/runtime": "^7.21.0",
     "@babel/runtime-corejs3": "^7.21.0",
+    "@iconify/iconify": "^3.1.0",
     "bootstrap": "^5.1.1",
     "bootstrap-table": "^1.18.3",
     "jquery": "^3.6.0",

@@ -71,6 +71,7 @@ module.exports = {
                 {from: "node_modules/bootstrap", to: "node_modules/bootstrap"},
                 {from: "node_modules/sweetalert2", to: "node_modules/sweetalert2"},
                 {from: "node_modules/bootstrap-table", to: "node_modules/bootstrap-table"},
+                {from: "node_modules/@iconify", to: "node_modules/@iconify"},
             ]
         })
     ]
