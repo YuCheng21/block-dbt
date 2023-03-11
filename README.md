@@ -4,17 +4,29 @@
 
 [基於區塊鏈的雙盲試驗平台](https://www.grb.gov.tw/search/planDetail?id=14508043)
 
-## Docker (Production)
+## Docker
 
 ### Configuration
 
-- 配置環境變數，編輯檔案 `./docker/config.env`。
+- 配置環境變數，編輯檔案 `.env`。
 
     ```text
-    SECRET_KEY=<secret-key>
+    NGINX_PORT=80
+    api_url=http://127.0.0.1:15000
+    secret_key="YOUR SECRET_KEY"
+    mode=development
+    app_host=0.0.0.0
+    app_http_port=80
+    app_https_port=443
     ```
   
-  - secret-key : flask session 的金鑰
+  - NGINX_PORT : 平台網址連接埠
+  - api_url : 後端 API IP 網址
+  - secret_key : flask session 的金鑰
+  - mode : 模式 (development / production)
+  - app_host : flask 主機地址
+  - app_http_port : flask development mode 連接埠
+  - app_http_port : flask production mode 連接埠
 
 ### Startup
 
@@ -26,7 +38,7 @@ docker-compose up -d
 
 預設將啟動以下連接埠 :
 
-- `20080` : HTTP
+- `80` : HTTP
 
 ## Notes
 
