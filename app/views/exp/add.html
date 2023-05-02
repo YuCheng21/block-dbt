@@ -20,59 +20,12 @@
                     <textarea name="expContent" id="expContent"
                               class="form-control" placeholder="請輸入實驗內容" rows="8"></textarea>
                 </div>
-            </div>
-        </div>
-        <div class="card border hv-shadow mb-4">
-            <div class="card-header">
-                <h2 class="my-2">
-                    <span class="iconify" data-icon="fluent-mdl2:questionnaire"></span>
-                    <span>實驗問卷</span>
-                </h2>
-            </div>
-            <div class="card-body px-5 py-4">
-                <div class="row py-4">
-                    <div class="col-12">
-                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
-                                data-bs-target="#modalTopicMC">
-                            <span class="iconify" data-icon="material-symbols:add-circle"></span>
-                            <span>新增選擇題</span>
-                        </button>
-                    </div>
+                <div class="input-group mb-2">
+                    <label for="expTime" class="input-group-text">實驗時間</label>
+                    <input name="expTime" id="expTime" type="date"
+                           class="form-control" placeholder="請輸入實驗時間">
                 </div>
-                <div class="table-responsive">
-                    <table id="MCTable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
-                           data-toggle="table"
-                           data-locale="zh-TW">
-                        <thead>
-                        <tr>
-                            <th data-width="80" data-width-unit="%" data-field="multipleChoice">題目</th>
-                            <th data-width="10" data-width-unit="%" data-field="maxScore">最大分數</th>
-                            <th data-width="10" data-width-unit="%" data-field="MCAction">操作</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="row py-4">
-                    <div class="col-12">
-                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
-                                data-bs-target="#modalTopicSA">
-                            <span class="iconify" data-icon="material-symbols:add-circle"></span>
-                            <span>新增簡答題</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="table-responsive">
-                    <table id="SATable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
-                           data-toggle="table"
-                           data-locale="zh-TW">
-                        <thead>
-                        <tr>
-                            <th data-width="90" data-width-unit="%" data-field="shortAnswer">題目</th>
-                            <th data-width="10" data-width-unit="%" data-field="SAAction">操作</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
+
                 <div class="row py-4">
                     <div class="col-6">
                         <button type="button" class="btn btn-danger w-100"
@@ -95,8 +48,8 @@
 
 {% block footer %}
     {{ super() }}
-    {% include 'includes/modal/topic/multiple-choice.html' %}
-    {% include 'includes/modal/topic/short-answer.html' %}
+{#    {% include 'includes/modal/topic/multiple-choice.html' %}#}
+{#    {% include 'includes/modal/topic/short-answer.html' %}#}
 {% endblock %}
 
 {% block script %}

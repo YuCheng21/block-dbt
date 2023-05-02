@@ -5,31 +5,6 @@
         <div class="card border hv-shadow mb-4">
             <div class="card-header">
                 <h2 class="my-2">
-                    <span class="iconify" data-icon="material-symbols:add-circle"></span>
-                    <span>實驗資訊</span>
-                </h2>
-            </div>
-            <div class="card-body px-5 py-4">
-                <div class="input-group mb-2">
-                    <label for="expId" class="input-group-text">實驗編號</label>
-                    <input name="expId" id="expId" type="text"
-                           class="form-control" value="{{ id }}" disabled>
-                </div>
-                <div class="input-group mb-2">
-                    <label for="expName" class="input-group-text">實驗名稱</label>
-                    <input name="expName" id="expName" type="text"
-                           class="form-control" placeholder="請輸入實驗名稱">
-                </div>
-                <div class="input-group mb-2">
-                    <label for="expContent" class="input-group-text">實驗內容</label>
-                    <textarea name="expContent" id="expContent"
-                              class="form-control" placeholder="請輸入實驗內容" rows="8"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="card border hv-shadow mb-4">
-            <div class="card-header">
-                <h2 class="my-2">
                     <span class="iconify" data-icon="fluent-mdl2:questionnaire"></span>
                     <span>實驗問卷</span>
                 </h2>
@@ -87,7 +62,7 @@
                         </button>
                     </div>
                     <div class="col-6">
-                        <button type="button" class="btn btn-primary w-100" id="expSend">
+                        <button type="button" class="btn btn-primary w-100" id="expUpdateSend">
                             <span class="iconify-inline" data-icon="subway:tick"></span>
                             <span>確認</span>
                         </button>
@@ -106,5 +81,11 @@
 
 {% block script %}
     {{ super() }}
+    <!--  Parameters  -->
+    <script>
+        const page = {
+            'id': '{{id}}'
+        }
+    </script>
     <!--  Page Customize Javascript  -->
 {% endblock %}
