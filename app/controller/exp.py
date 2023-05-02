@@ -1,6 +1,9 @@
+from json import loads as json_loads
+
 from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
 from app.config.exception import exception_code
 from app.model.exp import Exp
+from app.model.topic import Topic
 
 app = Blueprint('exp', __name__)
 
@@ -81,14 +84,25 @@ def update(id):
         title = '編輯實驗'
         return render_template('./exp/update.html', **locals())
     elif request.method == 'POST':
-        form_data = request.values.to_dict()
-        # TODO: update exp action
-        # TODO: if update exp failed
-        flash('更新失敗', category='error')
-        # TODO: if update exp success
-        flash('更新成功', category='success-toast')
-        return redirect(url_for('exp.index'))
-    abort(404)
+        try:
+            form_data = request.values.to_dict()
+            multiple_choice = json_loads(form_data['MCTable'])
+            short_answer = json_loads(form_data['SATable'])
+            for _, value in enumerate(multiple_choice):
+                data = dict(address=id, content=value['multipleChoice'], value=value['maxScore'])
+                Topic.store_mc(data)
+            for _, value in enumerate(short_answer):
+                data = dict(address=id, content=value['shortAnswer'])
+                Topic.store_sa(data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for('exp.update'))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash('新增成功', category='success-toast')
+            return redirect(url_for('exp.index'))
 
 
 @app.route('/exp/destroy/<id>', methods=['GET'])
@@ -98,3 +112,38 @@ def destroy(id):
         flash('刪除成功', category='success')
         return redirect(request.referrer)
     abort(404)
+
+
+# ============================================================
+
+@app.route('/exp/topic/<id>', methods=['GET'])
+def submit(id):
+    if request.method == 'GET':
+        data = dict(address=id)
+        try:
+            Topic.submit(data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for('exp.user'))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash('成功', category='success')
+            return redirect(url_for('exp.user'))
+
+@app.route('/exp/start/<id>', methods=['GET'])
+def start(id):
+    if request.method == 'GET':
+        data = dict(address=id)
+        try:
+            Exp.start(data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for('exp.user'))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash('成功', category='success')
+            return redirect(url_for('exp.user'))
