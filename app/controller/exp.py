@@ -70,9 +70,10 @@ def store():
             return redirect(url_for('exp.user'))
 
 
-@app.route('/exp/show/<id>/<state>', methods=['GET'])
+@app.route('/exp/show/<state>/<id>', methods=['GET'])
 def show(id, state):
     if request.method == 'GET':
+        title = '檢視實驗'
         if state == 'waiting':
             return render_template('./exp/waiting.html', **locals())
         elif state == 'running':
@@ -118,6 +119,22 @@ def destroy(id):
         return redirect(request.referrer)
     abort(404)
 
+
+@app.route('/exp/register/<address>/<type>', methods=['GET'])
+def register(address, type):
+    if request.method == 'GET':
+        data = dict(address=address, type=type)
+        try:
+            Exp.register(data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for('exp.index'))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash('成功', category='success')
+            return redirect(url_for('exp.index'))
 
 # ============================================================
 

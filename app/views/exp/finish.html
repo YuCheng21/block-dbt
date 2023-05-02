@@ -10,18 +10,104 @@
                 </h2>
             </div>
             <div class="card-body px-5 py-4">
-                <pre>已完成的實驗
-
-區塊鏈上已完成的實驗
-未解盲
-已解盲
-實驗結果相關資訊欄位
-可公開的志願者資訊
-性別、身高、體重等去識別化資料
-是否有效、是否有噁心反應、是否有過敏反應...
-下載 raw data</pre>
+                <div class="input-group mb-2">
+                    <label for="expId" class="input-group-text">實驗編號</label>
+                    <input name="expId" id="expId" type="text"
+                           class="form-control" placeholder="-" disabled>
+                </div>
+                <div class="input-group mb-2">
+                    <label for="expName" class="input-group-text">實驗名稱</label>
+                    <input name="expName" id="expName" type="text"
+                           class="form-control" placeholder="-" disabled>
+                </div>
+                <div class="input-group mb-2">
+                    <label for="expContent" class="input-group-text">實驗內容</label>
+                    <textarea name="expContent" id="expContent"
+                              class="form-control" rows="8" placeholder="-" disabled></textarea>
+                </div>
+                <div class="input-group mb-2">
+                    <label for="expTime" class="input-group-text">實驗時間</label>
+                    <input name="expTime" id="expTime" type="text"
+                           class="form-control" placeholder="-" disabled>
+                </div>
+                <div class="input-group mb-2">
+                    <label class="input-group-text">實驗人員</label>
+                    <input id="expNum" type="text" class="form-control" placeholder="-" disabled>
+                    <label class="input-group-text">受測人員</label>
+                    <input id="subNum" type="text" class="form-control" placeholder="-" disabled>
+                    <label class="input-group-text">物流人員</label>
+                    <input id="logNum" type="text" class="form-control" placeholder="-" disabled>
+                </div>
             </div>
         </div>
+        <div class="card border hv-shadow mb-4">
+            <div class="card-header">
+                <h2 class="my-2">
+                    <span class="iconify" data-icon="fluent-mdl2:questionnaire"></span>
+                    <span>實驗問卷</span>
+                </h2>
+            </div>
+            <div class="card-body px-5 py-4">
+                <div class="table-responsive">
+                    <table id="MCTable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                           data-toggle="table"
+                           data-locale="zh-TW">
+                        <thead>
+                        <tr>
+                            <th data-width="80" data-width-unit="%" data-field="multipleChoice">題目</th>
+                            <th data-width="10" data-width-unit="%" data-field="maxScore">最大分數</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="table-responsive">
+                    <table id="SATable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                           data-toggle="table"
+                           data-locale="zh-TW">
+                        <thead>
+                        <tr>
+                            <th data-width="90" data-width-unit="%" data-field="shortAnswer">題目</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card border hv-shadow mb-4">
+            <div class="card-header">
+                <h2 class="my-2">
+                    <span class="iconify" data-icon="fluent-mdl2:questionnaire"></span>
+                    <span>解盲資料</span>
+                </h2>
+            </div>
+            <div class="card-body px-5 py-4">
+                <div class="row py-4">
 
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row py-4">
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary w-100"
+                            onclick="location.href='{{ url_for('exp.index') }}'">
+                        <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                        <span>返回</span>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
+{% endblock %}
+
+{% block script %}
+    <!--  Parameters  -->
+    <script>
+        const page = {
+            'id': '{{id}}',
+            'state': '{{ state }}'
+        }
+    </script>
+    {{ super() }}
+    <!--  Page Customize Javascript  -->
 {% endblock %}

@@ -60,3 +60,16 @@ class Exp:
             raise Exception(exception_code.fail)
 
         return status_code.ok
+
+    @staticmethod
+    def register(data):
+        payload = {
+            'scaddress': data['address'],
+            'id': data['type']
+        }
+        result = req().basic_auth().post(url=url.exp.sign_up, data=payload, timeout=30)
+
+        if result.status_code is not status_code.ok:
+            raise Exception(exception_code.fail)
+
+        return status_code.ok
