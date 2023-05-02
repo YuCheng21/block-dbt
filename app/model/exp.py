@@ -33,7 +33,9 @@ class Exp:
     def store(cls, data):
         payload = {
             'name': data['expName'],
-            'information': data['expContent']
+            'information': data['expContent'],
+            # 'time': data['expTime']  # '2023-05-16'
+            'time': 60000
         }
         result = req().basic_auth().post(url=url.exp.store, data=payload, timeout=30)
 
@@ -41,7 +43,20 @@ class Exp:
             raise Exception(exception_code.fail)
 
         json = result.json()
-        return cls(address=json['expaddress'], name=payload['name'], content=payload['information'])
+        return cls(address=json['expaddress'], name=json['_name'],
+                   content=json['_content'], researchers=json['_Researchers_name'])
 
     def show(self):
         pass
+
+    @classmethod
+    def start(cls, data):
+        payload = {
+            'scaddress': data['address'],
+        }
+        result = req().basic_auth().post(url=url.exp.start, data=payload, timeout=30)
+
+        if result.status_code is not status_code.ok:
+            raise Exception(exception_code.fail)
+
+        return status_code.ok
