@@ -23,7 +23,7 @@ function component_action(id, code) {
         '2': 'finish'
     }
     return `
-        <a href="/exp/show/${id}/${state[code]}" class="btn btn-secondary text-white">查看</a>
+        <a href="/exp/show/${state[code]}/${id}" class="btn btn-secondary text-white">查看</a>
     `
 }
 
@@ -54,7 +54,7 @@ function load_table(data) {
             member: component_member(item._Researchers_name),
             content: component_content(item._content),
             state: component_state(item._status),
-            action: component_action(item._serial, item._status)
+            action: component_action(item._address, item._status)
         })
     });
     $('#expTable').bootstrapTable('load', rows)
