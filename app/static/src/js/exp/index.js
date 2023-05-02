@@ -1,5 +1,12 @@
 import * as utils from "../utilities";
 
+function component_name(name, address) {
+    return `
+        <span data-bs-toggle="tooltip" data-bs-placement="top" title="${address}">
+            ${name}
+        </span>
+    `
+}
 
 function component_member(researchers_name) {
     return `
@@ -9,9 +16,14 @@ function component_member(researchers_name) {
     `
 }
 
-function component_action(id) {
+function component_action(id, code) {
+     const state = {
+        '0': 'waiting',
+        '1': 'running',
+        '2': 'finish'
+    }
     return `
-        <a href="/exp/show/${id}" class="btn btn-secondary text-white">查看</a>
+        <a href="/exp/show/${id}/${state[code]}" class="btn btn-secondary text-white">查看</a>
     `
 }
 
@@ -23,11 +35,13 @@ function component_content(content) {
 
 function component_state(code) {
     const state = {
-        '0': '等待中',
-        '1': '進行中',
-        '2': '已完成'
+        '0': ['等待中', 'text-secondary'],
+        '1': ['進行中', 'text-danger'],
+        '2': ['已完成', 'text-success']
     }
-    return state[code]
+    return `
+        <span class="${state[code][1]} fw-bold">${state[code][0]}</span>
+    `
 }
 
 
@@ -36,11 +50,11 @@ function load_table(data) {
     Object.values(data).forEach((item) => {
         rows.push({
             id: `${item._serial}`,
-            name: `${item._name}`,
+            name: component_name(item._name, item._address),
             member: component_member(item._Researchers_name),
             content: component_content(item._content),
             state: component_state(item._status),
-            action: component_action(item._serial)
+            action: component_action(item._serial, item._status)
         })
     });
     $('#expTable').bootstrapTable('load', rows)

@@ -70,11 +70,16 @@ def store():
             return redirect(url_for('exp.user'))
 
 
-@app.route('/exp/show/<id>', methods=['GET'])
-def show(id):
+@app.route('/exp/show/<id>/<state>', methods=['GET'])
+def show(id, state):
     if request.method == 'GET':
-        title = '檢視實驗'
-        return render_template('./exp/show.html', **locals())
+        if state == 'waiting':
+            return render_template('./exp/waiting.html', **locals())
+        elif state == 'running':
+            return render_template('./exp/running.html', **locals())
+        elif state == 'finish':
+            return render_template('./exp/finish.html', **locals())
+        abort(404)
     abort(404)
 
 
