@@ -44,13 +44,23 @@ export class dialog {
 /**
  * Asynchronous fetch data
  */
-export async function fetch_data(url, basic_auth = null) {
+export async function fetch_data(url, basic_auth = null, method='GET', body=null) {
     const headers = new Headers();
     if (basic_auth != null) {
         headers.append("Authorization", basic_auth);
     }
+    if (method === 'POST'){
+        headers.append("Content-Type", "application/x-www-form-urlencoded");
+    }
+    let urlencoded = null;
+    if (body != null) {
+        urlencoded = new URLSearchParams();
+        Object.keys(body).forEach((key) => {
+            urlencoded.append(key, body[key]);
+        });
+    }
     const requestOptions = {
-        method: 'GET', headers: headers, redirect: 'follow'
+        method: method, headers: headers, body: urlencoded, redirect: 'follow'
     };
     return await fetch(url, requestOptions)
         .then(response => response.json())
