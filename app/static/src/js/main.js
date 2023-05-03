@@ -14,6 +14,7 @@ import './exp/submit'
 import './exp/waiting'
 import './exp/running'
 import './exp/finish'
+import './exp/form'
 
 import './topic/delete'
 import './topic/update'

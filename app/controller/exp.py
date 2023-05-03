@@ -143,7 +143,7 @@ def submit(id):
     if request.method == 'GET':
         data = dict(address=id)
         try:
-            Topic.submit(data)
+            Topic.confirm(data)
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
@@ -169,3 +169,22 @@ def start(id):
         else:
             flash('成功', category='success')
             return redirect(url_for('exp.user'))
+
+@app.route('/exp/form/<id>', methods=['GET', 'POST'])
+def form(id):
+    if request.method == 'GET':
+        title = '填寫問卷'
+        return render_template('./exp/form.html', **locals())
+    elif request.method == 'POST':
+        try:
+            form_data = request.values.to_dict()
+            Topic.submit(form_data, id)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for('exp.index'))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash('成功', category='success-toast')
+            return redirect(url_for('exp.index'))

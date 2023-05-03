@@ -48,11 +48,26 @@ class Topic:
         return cls(dtype='SA', content=payload['question'])
 
     @staticmethod
-    def submit(data):
+    def confirm(data):
         payload = {
             'scaddress': data['address'],
         }
         result = req().basic_auth().post(url=url.topic.submit, data=payload, timeout=30)
+
+        if result.status_code is not status_code.ok:
+            raise Exception(exception_code.fail)
+
+        return status_code.ok
+
+    @staticmethod
+    def submit(data, id):
+        payload = {
+            'scaddress': id,
+            'q1': data['MCTable'],
+            'q2': data['SATable'],
+        }
+
+        result = req().basic_auth().post(url=url.exp.submit, data=payload, timeout=30)
 
         if result.status_code is not status_code.ok:
             raise Exception(exception_code.fail)
