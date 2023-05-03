@@ -41,14 +41,18 @@ if (MCTable && SATable && server.endpoint === 'exp.show' && typeof page != 'unde
             load_info(data)
 
         })
-        utils.fetch_data(server.url.exp.number, server.basic_auth, 'GET', body).then(data => {
-            document.querySelector("#expNum").value = '-_'
-            document.querySelector("#subNum").value = '-_'
-            document.querySelector("#logNum").value = '-_'
+        utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
+            document.querySelector("#expNum").value = data[0]['experimenter']
+            document.querySelector("#subNum").value = data[0]['subject']
+            document.querySelector("#logNum").value = data[0]['logister']
 
         })
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
             load_topic(data)
+        })
+        utils.fetch_data(server.url.exp.data, server.basic_auth, 'POST', body).then(data => {
+            console.log(data)
+            document.querySelector("body > main > div > div:nth-child(3) > div.card-body.px-5.py-4 > div").innerHTML = `<pre>${JSON.stringify(data, null, 4)}</pre>`
         })
     })
 }
