@@ -1,0 +1,42 @@
+{% extends "base/all.html" %}
+
+{% block main %}
+    <div class="container-fluid py-4">
+        <div class="card border hv-shadow mb-4">
+            <div class="card-header">
+                <h2 class="my-2">
+                    <span class="iconify" data-icon="material-symbols:add-circle"></span>
+                    <span>新增權威機構</span>
+                </h2>
+            </div>
+            <div class="card-body px-5 py-4">
+                <div class="input-group mb-2">
+                    <label for="account" class="input-group-text">帳號</label>
+                    <input name="account" id="account" type="text" class="form-control" placeholder="請輸入帳號">
+                </div>
+
+                <div class="row py-4">
+                    <div class="col-6">
+                        <button type="button" class="btn btn-danger w-100"
+                                onclick="location.href='{{ url_for('oauth.index') }}'">
+                            <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                            <span>取消</span>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-primary w-100" id="oauthSend">
+                            <span class="iconify-inline" data-icon="subway:tick"></span>
+                            <span>確認</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    {{ super() }}
+    <!--  Page Customize Javascript  -->
+{% endblock %}

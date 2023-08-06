@@ -21,6 +21,9 @@ import './topic/update'
 import './topic/multiple-choice'
 import './topic/short-answer'
 
+import './oauth/submit'
+import './oauth/authenticate'
+
 window.addEventListener('pageshow', function (event) {
     utils.loading.remove()
 })

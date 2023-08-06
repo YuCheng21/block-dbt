@@ -4,6 +4,7 @@ from app.config.base import settings
 
 class Exp(BaseModel):
     index: HttpUrl = f'{settings.api_url}/explist'
+    self: HttpUrl = f'{settings.api_url}/getmyExp'
     store: HttpUrl = f'{settings.api_url}/newexp'
     start: HttpUrl = f'{settings.api_url}/startExp'
     sign_up: HttpUrl = f'{settings.api_url}/expRegister'
@@ -25,11 +26,17 @@ class Topic(BaseModel):
     submit: HttpUrl = f'{settings.api_url}/checkQuestionaire'
 
 
+class OAuth(BaseModel):
+    store: HttpUrl = f'{settings.api_url}/newauth'
+    authenticate: HttpUrl = f'{settings.api_url}/auth'
+
+
 class Url(BaseModel):
     base: HttpUrl = f'{settings.api_url}'
     exp = Exp()
     user = User()
     topic = Topic()
+    oauth = OAuth()
 
 
 url = Url()

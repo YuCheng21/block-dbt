@@ -8,6 +8,7 @@ from app.config.api import url
 
 from app.controller.user import app as user
 from app.controller.exp import app as exp
+from app.controller.oauth import app as oauth
 
 from app.middleware.authenticate import Authenticate
 
@@ -22,6 +23,7 @@ def create_app():
 
     app.register_blueprint(user)
     app.register_blueprint(exp)
+    app.register_blueprint(oauth)
 
     app.logger.setLevel(logging.DEBUG)
     app.logger.addHandler(console_logger())
