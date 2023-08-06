@@ -7,6 +7,7 @@ if (expSend) {
             expName: $('#expName').val(),
             expContent: $('#expContent').val(),
             expTime: $('#expTime').val(),
+            expSub: $('#expSub').val(),
         }
 
         let form = $('<form></form>');

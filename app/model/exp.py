@@ -34,8 +34,8 @@ class Exp:
         payload = {
             'name': data['expName'],
             'information': data['expContent'],
-            # 'time': data['expTime']  # '2023-05-16'
-            'time': 60000
+            'date': data['expTime'],
+            'subcount': data['expSub'],
         }
         result = req().basic_auth().post(url=url.exp.store, data=payload, timeout=30)
 

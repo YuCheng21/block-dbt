@@ -21,9 +21,14 @@
                               class="form-control" placeholder="請輸入實驗內容" rows="8"></textarea>
                 </div>
                 <div class="input-group mb-2">
-                    <label for="expTime" class="input-group-text">實驗時間</label>
-                    <input name="expTime" id="expTime" type="date"
+                    <label for="expTime" class="input-group-text">實驗結束日期</label>
+                    <input name="expTime" id="expTime" type="datetime-local"
                            class="form-control" placeholder="請輸入實驗時間">
+                </div>
+                <div class="input-group mb-2">
+                    <label for="expSub" class="input-group-text">受測人員數量</label>
+                    <input name="expSub" id="expSub" type="number" min="1" max="45"
+                           class="form-control" placeholder="請輸入受測人員數量">
                 </div>
 
                 <div class="row py-4">
