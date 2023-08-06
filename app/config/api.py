@@ -38,6 +38,9 @@ url = Url()
 class StatusCode(BaseModel):
     ok = 200
     non_authoritative = 203
+    flow_error = 400
+    account_error = 401
+    account_duplicate = 600
 
 
 status_code = StatusCode()
