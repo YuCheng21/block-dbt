@@ -30,9 +30,12 @@ function component_content(content) {
 
 function component_state(code) {
     const state = {
-        '0': ['等待中', 'text-secondary'],
-        '1': ['進行中', 'text-danger'],
-        '2': ['已完成', 'text-success']
+        '0': ['未確認問卷', 'text-secondary'],
+        '1': ['權威機構審核中', 'text-secondary'],
+        '2': ['招募實驗人員中', 'text-secondary'],
+        '3': ['招募受測人員中', 'text-secondary'],
+        '4': ['實驗中', 'text-danger'],
+        '5': ['已解盲', 'text-success'],
     }
     return `
         <span class="${state[code][1]} fw-bold">${state[code][0]}</span>
@@ -56,7 +59,7 @@ function load_table(data) {
 }
 
 function load_data() {
-    utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
+    utils.fetch_data(server.url.exp.self, server.basic_auth).then(data => {
         load_table(data)
         utils.init_tooltip()
     })
