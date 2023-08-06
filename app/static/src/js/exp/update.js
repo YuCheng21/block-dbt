@@ -47,8 +47,8 @@ function load_table(data) {
             sa.push({
                 shortAnswer: `${item._topic}`,
                 SAAction: `
-                <button class="btn btn-primary w-50 MCUpdate">編輯</button>
-                <button class="btn btn-danger w-50 MCDelete">刪除</button>
+                <button class="btn btn-primary w-50 SAUpdate">編輯</button>
+                <button class="btn btn-danger w-50 SADelete">刪除</button>
                 `
             })
         }
