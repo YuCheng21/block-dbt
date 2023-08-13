@@ -4,9 +4,18 @@ from app.config.base import settings
 
 class Exp(BaseModel):
     index: HttpUrl = f'{settings.api_url}/explist'
+    sign_exp: HttpUrl = f'{settings.api_url}/explist'
+    sign_sub: HttpUrl = f'{settings.api_url}/recruitsubject'
+    upload: HttpUrl = f'{settings.api_url}/sendConsent'
+    download: HttpUrl = f'{settings.api_url}/downloadConsent'
+    location: HttpUrl = f'{settings.api_url}/getHospital'
+    add_object: HttpUrl = f'{settings.api_url}/newitem'
     self: HttpUrl = f'{settings.api_url}/getmyExp'
     store: HttpUrl = f'{settings.api_url}/newexp'
     start: HttpUrl = f'{settings.api_url}/startExp'
+    object_list: HttpUrl = f'{settings.api_url}/getItemlist'
+    scan_object: HttpUrl = f'{settings.api_url}/scanitem'
+    in_exp: HttpUrl = f'{settings.api_url}/getGroupResult'
     sign_up: HttpUrl = f'{settings.api_url}/expRegister'
     number: HttpUrl = f'{settings.api_url}/getMember'
     submit: HttpUrl = f'{settings.api_url}/fillQuestion'
