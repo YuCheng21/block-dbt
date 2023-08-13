@@ -10,7 +10,7 @@ class Mode(str, Enum):
 
 class Settings(BaseSettings):
     mode: Mode = 'development'
-    website_name: str = '基於區塊鏈的雙盲測驗平台'
+    website_name: str = '區塊鏈雙盲測驗平台'
     project_name: str = 'block-dbt'
     project_path: Path = Path('./')
     api_url: HttpUrl = 'http://127.0.0.1:15000'
