@@ -30,10 +30,10 @@ function component_content(content) {
 
 function component_state(code) {
     const state = {
-        '0': ['未確認問卷', 'text-secondary'],
-        '1': ['權威機構審核中', 'text-secondary'],
-        '2': ['招募實驗人員中', 'text-secondary'],
-        '3': ['招募受測人員中', 'text-secondary'],
+        '0': ['未確認問卷', 'text-primary'],
+        '1': ['權威機構審核中', 'text-info'],
+        '2': ['招募實驗人員中', 'text-info'],
+        '3': ['招募受測人員中', 'text-danger'],
         '4': ['實驗中', 'text-danger'],
         '5': ['已解盲', 'text-success'],
     }
