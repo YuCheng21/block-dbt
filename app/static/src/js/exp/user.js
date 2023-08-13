@@ -18,11 +18,14 @@ function component_member(researchers_name) {
 
 function component_action(id) {
     return `
-        <a href="/exp/update/${id}" class="btn btn-primary text-white">問卷</a>
-        <a href="/exp/topic/${id}" class="btn btn-secondary text-white">確認</a>
-        <a href="/exp/start/${id}" class="btn btn-danger text-white">開始</a>
-<!--        <a href="/exp/show/${id}" class="btn btn-secondary text-white">查看</a>-->
-<!--        <a href="/exp/destroy/${id}" class="btn btn-danger text-white">刪除</a>-->
+        <div class="row g-2">
+            <a href="/exp/update/${id}" class="btn btn-primary text-white col-6">編輯問卷</a>
+            <a href="/exp/topic/${id}" class="btn btn-secondary text-white col-6">確認問卷</a>
+            <a href="/exp/subject/${id}" class="btn btn-warning text-white col-12">招募受測人員</a>
+            <a href="/exp/start/${id}" class="btn btn-danger text-white col-12">開始實驗</a>
+    <!--        <a href="/exp/show/${id}" class="btn btn-secondary text-white">查看</a>-->
+    <!--        <a href="/exp/destroy/${id}" class="btn btn-danger text-white">刪除</a>-->
+        </div>
     `
 }
 
@@ -34,10 +37,10 @@ function component_content(content) {
 
 function component_state(code) {
     const state = {
-        '0': ['未確認問卷', 'text-secondary'],
-        '1': ['權威機構審核中', 'text-secondary'],
-        '2': ['招募實驗人員中', 'text-secondary'],
-        '3': ['招募受測人員中', 'text-secondary'],
+        '0': ['未確認問卷', 'text-primary'],
+        '1': ['權威機構審核中', 'text-info'],
+        '2': ['招募實驗人員中', 'text-info'],
+        '3': ['招募受測人員中', 'text-danger'],
         '4': ['實驗中', 'text-danger'],
         '5': ['已解盲', 'text-success'],
     }
