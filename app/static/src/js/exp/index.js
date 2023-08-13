@@ -12,7 +12,7 @@ function component_name(name, address) {
 
 function component_member(researchers_name) {
     return `
-        <span data-bs-toggle="tooltip" data-bs-placement="top" title="${researchers_name}">
+        <span class="researchers" data-bs-toggle="tooltip" data-bs-placement="top" title="${researchers_name}">
             ${researchers_name.slice(-6)}
         </span>
     `
@@ -78,6 +78,14 @@ function load_data() {
                 let address = element.target.dataset.bsOriginalTitle
                 copy(address)
                 new utils.dialog('success-toast', `已複製地址:<br>${address}`).show()
+            });
+        }
+        let allResearchers = document.querySelectorAll(".researchers");
+        for (let i = 0; i < allResearchers.length; i++) {
+            allResearchers[i].addEventListener("click", function (element) {
+                let researchers = element.target.dataset.bsOriginalTitle
+                copy(researchers)
+                new utils.dialog('success-toast', `已複製地址:<br>${researchers}`).show()
             });
         }
 
