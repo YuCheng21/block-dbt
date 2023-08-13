@@ -1,4 +1,4 @@
-import * as utils from "../utilities";
+import * as utils from "../../utilities";
 
 function load_info(data){
     let exp = null;
@@ -10,7 +10,7 @@ function load_info(data){
     document.querySelector("#expId").value = exp._serial
     document.querySelector("#expName").value = exp._name
     document.querySelector("#expContent").value = exp._content
-    document.querySelector("#expTime").value = 60000
+    document.querySelector("#expTime").value = '2023/08/30 22:00:00'
 }
 function load_topic(data) {
     const mc = [];
@@ -34,7 +34,7 @@ function load_topic(data) {
 
 let MCTable = document.querySelector('#MCTable')
 let SATable = document.querySelector('#SATable')
-if (MCTable && SATable && server.endpoint === 'exp.show' && typeof page != 'undefined' && page.state === 'running') {
+if (MCTable && SATable && server.endpoint === 'exp.show' && typeof page != 'undefined' && ['s-form', 's-auth'].includes(page.state)) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
         utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
@@ -44,7 +44,6 @@ if (MCTable && SATable && server.endpoint === 'exp.show' && typeof page != 'unde
         utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
             document.querySelector("#expNum").value = data[0]['experimenter']
             document.querySelector("#subNum").value = data[0]['subject']
-            document.querySelector("#logNum").value = data[0]['logister']
 
         })
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {

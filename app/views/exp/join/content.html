@@ -5,50 +5,30 @@
         <div class="card border hv-shadow mb-4">
             <div class="card-header justify-content-between d-inline-flex align-items-center ">
                 <h2 class="my-2">
-                    <span class="iconify" data-icon="mdi:stopwatch-start"></span>
-                    <span>尚未開始</span>
+                    <span class="iconify" data-icon="mdi:register"></span>
+                    <span>實驗地點註冊實驗人員</span>
                 </h2>
             </div>
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
-                <div class="row justify-content-center text-center">
-                    <pre>資訊：開始時間</pre>
+                <div class="input-group mb-2">
+                    <label for="expList" class="input-group-text">實驗人員列表</label>
+                    <textarea name="expList" id="expList"
+                              class="form-control" rows="8" placeholder="請輸入實驗人員列表"></textarea>
                 </div>
-            </div>
-        </div>
-        <div class="card border hv-shadow mb-4">
-            <div class="card-header justify-content-between d-inline-flex align-items-center ">
-                <h2 class="my-2">
-                    <span class="iconify" data-icon="material-symbols:timer"></span>
-                    <span>進行中</span>
-                </h2>
-            </div>
-            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
-                <div class="row justify-content-center text-center">
-                    <pre>該身分的任務資訊
-研究人員：
-實驗人員：地點、對應的受測人員、對應的物品ID
-填寫實驗結果表單
-受測人員：地點、對應的受測人員、對應的物品ID
-物流人員：地點、對應的收貨人員、對應的物品ID</pre>
-                    <hr>
-                    <pre>實驗結果表單頁面（實驗人員身分限定）
-實驗結果相關資訊欄位
-實驗名稱（ID）
-是否有效、是否有噁心反應、是否有過敏反應...
-查看提交結果頁面（只能查看自己這組提交的資訊）</pre>
-                </div>
-            </div>
-        </div>
-        <div class="card border hv-shadow mb-4">
-            <div class="card-header justify-content-between d-inline-flex align-items-center ">
-                <h2 class="my-2">
-                    <span class="iconify" data-icon="mdi:timer-stop"></span>
-                    <span>已結束</span>
-                </h2>
-            </div>
-            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
-                <div class="row justify-content-center text-center">
-                    <pre>實驗結果：完成、失敗</pre>
+                <div class="row py-4">
+                    <div class="col-6">
+                        <button type="button" class="btn btn-danger w-100"
+                                onclick="location.href='{{ url_for('exp.index') }}'">
+                            <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                            <span>取消</span>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-primary w-100" id="contentSend">
+                            <span class="iconify-inline" data-icon="subway:tick"></span>
+                            <span>確認</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,6 +36,13 @@
 {% endblock %}
 
 {% block script %}
+    <!--  Parameters  -->
+    <script>
+        const page = {
+            'id': '{{id}}',
+            'state': '{{ state }}'
+        }
+    </script>
     {{ super() }}
     <!--  Page Customize Javascript  -->
 {% endblock %}

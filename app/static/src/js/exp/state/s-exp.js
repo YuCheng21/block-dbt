@@ -1,4 +1,4 @@
-import * as utils from "../utilities";
+import * as utils from "../../utilities";
 
 function load_info(data){
     let exp = null;
@@ -10,8 +10,9 @@ function load_info(data){
     document.querySelector("#expId").value = exp._serial
     document.querySelector("#expName").value = exp._name
     document.querySelector("#expContent").value = exp._content
-    document.querySelector("#expTime").value = 60000
+    document.querySelector("#expTime").value = '2023/08/30 22:00:00'
 }
+
 function load_topic(data) {
     const mc = [];
     const sa = [];
@@ -34,7 +35,7 @@ function load_topic(data) {
 
 let MCTable = document.querySelector('#MCTable')
 let SATable = document.querySelector('#SATable')
-if (MCTable && SATable && server.endpoint === 'exp.show' && typeof page != 'undefined' && page.state === 'waiting') {
+if (MCTable && SATable && server.endpoint === 'exp.show' && typeof page != 'undefined' && ['s-exp'].includes(page.state)) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
         utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
@@ -44,11 +45,22 @@ if (MCTable && SATable && server.endpoint === 'exp.show' && typeof page != 'unde
         utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
             document.querySelector("#expNum").value = data[0]['experimenter']
             document.querySelector("#subNum").value = data[0]['subject']
-            document.querySelector("#logNum").value = data[0]['logister']
 
         })
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
             load_topic(data)
+        })
+        document.querySelector('#stateExpSend').addEventListener('click', function (element){
+            let location = document.querySelector('#expLocation').value
+            let path = element.target.dataset.url
+            console.log(path)
+            path = path.split('/')
+            path[path.length-1] = location
+            path = path.join('/')
+            let button = document.querySelector('#stateExpSend')
+            button.setAttribute('onclick', `location.href='${path}'`)
+            console.log(`location.href='${path}'`)
+            button.click()
         })
     })
 }

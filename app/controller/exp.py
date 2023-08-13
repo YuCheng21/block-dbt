@@ -87,8 +87,12 @@ def store():
 def show(id, state):
     if request.method == 'GET':
         title = '檢視實驗'
-        if state in ['s-form', 's-auth', 's-exp', 's-sub']:
+        if state in ['s-form', 's-auth']:
             return render_template('./exp/state/s-form.html', **locals())
+        elif state in ['s-exp']:
+            return render_template('./exp/state/s-exp.html', **locals())
+        elif state in ['s-sub']:
+            return render_template('./exp/state/s-sub.html', **locals())
         elif state in ['s-run']:
             return render_template('./exp/state/s-run.html', **locals())
         elif state in ['s-over']:
@@ -150,10 +154,10 @@ def destroy(id):
     abort(404)
 
 
-@app.route('/exp/register/<address>/<type>', methods=['GET'])
-def register(address, type):
+@app.route('/exp/register/<address>/<type>/<location>', methods=['GET'])
+def register(address, type, location):
     if request.method == 'GET':
-        data = dict(address=address, type=type)
+        data = dict(address=address, type=type, location=location)
         try:
             Exp.register(data)
         except Exception as e:

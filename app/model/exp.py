@@ -65,7 +65,8 @@ class Exp:
     def register(data):
         payload = {
             'scaddress': data['address'],
-            'id': data['type']
+            'id': data['type'],
+            'hospital': data['location']
         }
         result = req().basic_auth().post(url=url.exp.sign_up, data=payload, timeout=30)
 

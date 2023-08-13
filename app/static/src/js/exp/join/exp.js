@@ -1,4 +1,4 @@
-import * as utils from "../utilities";
+import * as utils from "../../utilities";
 
 function component_name(name, address) {
     return `
