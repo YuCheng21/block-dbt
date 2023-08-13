@@ -42,11 +42,24 @@ def participate(id):
     abort(404)
 
 
-@app.route('/exp/join/<id>', methods=['GET'])
+@app.route('/exp/join/<id>', methods=['GET', 'POST'])
 def content(id):
     if request.method == 'GET':
         title = id
         return render_template('./exp/join/content.html', **locals())
+    elif request.method == 'POST':
+        try:
+            form_data = request.values.to_dict()
+            exp = Exp.sign_exp(form_data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for('exp.store'))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash('新增成功', category='success-toast')
+            return redirect(url_for('exp.index'))
     abort(404)
 
 
@@ -109,6 +122,23 @@ def update(id):
         else:
             flash('新增成功', category='success-toast')
             return redirect(url_for('exp.index'))
+
+
+@app.route('/exp/subject/<id>', methods=['GET'])
+def subject(id):
+    if request.method == 'GET':
+        data = dict(address=id)
+        try:
+            Exp.sign_sub(data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for('exp.user'))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash('成功', category='success')
+            return redirect(url_for('exp.user'))
 
 
 @app.route('/exp/destroy/<id>', methods=['GET'])
