@@ -1,6 +1,7 @@
 import "@static/src/scss/all.scss";
 
 import "@iconify/iconify"
+import copy from 'copy-to-clipboard';
 
 import * as utils from "./utilities";
 import './user/login'
@@ -45,3 +46,8 @@ document.querySelectorAll('#navbarToggler > ul > li > a > span').forEach(functio
         value.classList.add('text-active')
     }
 })
+
+document.querySelector('#c-account').addEventListener('click', function (element){
+    copy(server.account)
+    new utils.dialog('success-toast', `已複製帳號:<br>${server.account}`).show()
+});

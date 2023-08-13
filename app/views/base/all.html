@@ -77,6 +77,12 @@
                                 </button>
                                 <ul class="dropdown-menu fade">
                                     <li>
+                                        <button class="dropdown-item hv-color-bg" id="c-account">
+                                            <span class="iconify" data-icon="uil:copy"></span>
+                                            <span>複製帳號</span>
+                                        </button>
+                                    </li>
+                                    <li>
                                         <form method="POST" action="{{ url_for('user.logout') }}">
                                             <a href="{{ url_for('user.logout') }}" class="dropdown-item hv-color-bg"
                                                onclick="event.preventDefault();this.closest('form').submit();">
@@ -120,6 +126,7 @@
             'endpoint': '{{ request.endpoint }}',
             'endpoint_list': {{ g.endpoint_list | tojson}},
             'basic_auth': "{{ session.get('basic_auth') }}",
+            'account': "{{ session.get('account') }}",
             'url': {{ g.url.dict() | tojson }},
             'flash': {{ get_flashed_messages(with_categories=true) | tojson }}
         }
