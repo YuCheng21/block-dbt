@@ -20,9 +20,12 @@ function component_member(researchers_name) {
 
 function component_action(id, code) {
     const state = {
-        '0': 'waiting',
-        '1': 'running',
-        '2': 'finish'
+        '0': 's-form',
+        '1': 's-auth',
+        '2': 's-exp',
+        '3': 's-sub',
+        '4': 's-run',
+        '5': 's-over'
     }
     return `
         <a href="/exp/show/${state[code]}/${id}" class="btn btn-secondary text-white">查看</a>

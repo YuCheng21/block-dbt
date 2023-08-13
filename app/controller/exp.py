@@ -74,12 +74,12 @@ def store():
 def show(id, state):
     if request.method == 'GET':
         title = '檢視實驗'
-        if state == 'waiting':
-            return render_template('./exp/waiting.html', **locals())
-        elif state == 'running':
-            return render_template('./exp/running.html', **locals())
-        elif state == 'finish':
-            return render_template('./exp/finish.html', **locals())
+        if state in ['s-form', 's-auth', 's-exp', 's-sub']:
+            return render_template('./exp/state/s-form.html', **locals())
+        elif state in ['s-run']:
+            return render_template('./exp/state/s-run.html', **locals())
+        elif state in ['s-over']:
+            return render_template('./exp/state/s-over.html', **locals())
         abort(404)
     abort(404)
 
