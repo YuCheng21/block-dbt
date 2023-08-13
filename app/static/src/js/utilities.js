@@ -31,7 +31,8 @@ export class dialog {
         })
         Toast.fire({
             icon: 'success',
-            title: this.message
+            title: this.message,
+            width: 'auto'
         })
     }
     show(){

@@ -1,8 +1,10 @@
+import copy from 'copy-to-clipboard';
+
 import * as utils from "../utilities";
 
 function component_name(name, address) {
     return `
-        <span data-bs-toggle="tooltip" data-bs-placement="top" title="${address}">
+        <span class="address" data-bs-toggle="tooltip" data-bs-placement="top" title="${address}">
             ${name}
         </span>
     `
@@ -17,7 +19,7 @@ function component_member(researchers_name) {
 }
 
 function component_action(id, code) {
-     const state = {
+    const state = {
         '0': 'waiting',
         '1': 'running',
         '2': 'finish'
@@ -67,6 +69,15 @@ function load_data() {
     utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
         load_table(data)
         utils.init_tooltip()
+        let allAddress = document.querySelectorAll(".address");
+        for (let i = 0; i < allAddress.length; i++) {
+            allAddress[i].addEventListener("click", function (element) {
+                let address = element.target.dataset.bsOriginalTitle
+                copy(address)
+                new utils.dialog('success-toast', `已複製地址:<br>${address}`).show()
+            });
+        }
+
     })
 }
 
