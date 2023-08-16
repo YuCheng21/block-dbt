@@ -1,5 +1,3 @@
-import copy from 'copy-to-clipboard';
-
 import * as utils from "../utilities";
 
 
