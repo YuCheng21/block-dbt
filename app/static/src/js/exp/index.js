@@ -13,7 +13,7 @@ function component_name(name, address) {
 function component_member(researchers_name) {
     return `
         <span class="researchers" data-bs-toggle="tooltip" data-bs-placement="top" title="${researchers_name}">
-            ${researchers_name.slice(-6)}
+            ${researchers_name.slice(2, 8)}
         </span>
     `
 }
