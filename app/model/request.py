@@ -27,4 +27,5 @@ class MyRequest:
         if not content_type == 'urlencoded':
             raise Exception(exception_code.unknown_type)
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-        return self.request(method='POST', url=url, headers=headers, timeout=timeout, *args, **kwargs)
+        kw = {**{'method': 'POST', 'url': url, 'headers': headers, 'timeout': timeout}, **kwargs}
+        return self.request(*args, **kw)

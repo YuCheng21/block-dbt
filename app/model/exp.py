@@ -104,9 +104,12 @@ class Exp:
     def upload_file(data, file):
         payload = {
             'scaddress': data['address'],
-            'file': file
         }
-        result = req().basic_auth().post(url=url.exp.upload, data=payload, timeout=30)
+        files = [
+            ('file', (file[0].filename, file[0].stream, file[0].content_type))
+        ]
+        headers = {}
+        result = req().basic_auth().post(url=url.exp.upload, data=payload, files=files, headers=headers, timeout=30)
 
         if result.status_code is not status_code.ok:
             raise Exception(exception_code.fail)
