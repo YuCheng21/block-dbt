@@ -183,6 +183,14 @@ export function copy_researchers() {
  * Form Submit
  */
 
+export function appendInput(key, value, form) {
+    let field = document.createElement('input')
+    field.setAttribute('type', 'hidden')
+    field.setAttribute('name', key)
+    field.setAttribute('value', value)
+    form.appendChild(field)
+}
+
 export function submitForm(data) {
     let form = document.createElement('form')
 
@@ -191,13 +199,9 @@ export function submitForm(data) {
     form.setAttribute('enctype', 'multipart/form-data')
 
     Object.entries(data).forEach((item) => {
-        let field = document.createElement('input')
         let key = item[0]
         let value = item[1]
-        field.setAttribute('type', 'hidden')
-        field.setAttribute('name', key)
-        field.setAttribute('value', value)
-        form.appendChild(field)
+        appendInput(key, value, form);
     })
 
     document.body.appendChild(form)
