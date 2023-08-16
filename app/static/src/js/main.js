@@ -44,11 +44,16 @@ document.addEventListener("DOMContentLoaded", function () {
 /**
  * Activate Current Page NavigationBar Text
  */
+
 document.querySelectorAll('#navbarToggler > ul > li > a > span').forEach(function (value, index) {
     if (value.innerHTML === server.page_title) {
         value.classList.add('text-active')
     }
 })
+
+/**
+ * Copy Address
+ */
 
 document.querySelector('#c-account').addEventListener('click', function (element){
     copy(server.account)

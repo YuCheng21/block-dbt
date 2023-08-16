@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import copy from "copy-to-clipboard";
 
 /**
  * sweetAlert
@@ -109,5 +110,71 @@ export class loading {
         let body;
         body = document.querySelector('body')
         body.insertAdjacentHTML('afterbegin', this.markup)
+    }
+}
+
+/**
+ * Load Component
+ */
+
+export function component_name(name, address) {
+    return `
+        <span class="address" data-bs-toggle="tooltip" data-bs-placement="top" title="${address}">
+            ${name}
+        </span>
+    `
+}
+
+export function component_member(researchers_name) {
+    return `
+        <span class="researchers" data-bs-toggle="tooltip" data-bs-placement="top" title="${researchers_name}">
+            ${researchers_name.slice(2, 8)}
+        </span>
+    `
+}
+
+export function component_content(content) {
+    return `
+        <span class="truncate overflow-hidden">${content}</span>
+    `
+}
+
+export function component_state(code) {
+    const state = {
+        '0': ['未確認問卷', 'text-primary'],
+        '1': ['權威機構審核中', 'text-info'],
+        '2': ['招募實驗人員中', 'text-info'],
+        '3': ['招募受測人員中', 'text-danger'],
+        '4': ['實驗中', 'text-danger'],
+        '5': ['已解盲', 'text-success'],
+    }
+    return `
+        <span class="${state[code][1]} fw-bold">${state[code][0]}</span>
+    `
+}
+
+/**
+ * Copy Address
+ */
+
+export function copy_address() {
+    let allAddress = document.querySelectorAll(".address");
+    for (let i = 0; i < allAddress.length; i++) {
+        allAddress[i].addEventListener("click", function (element) {
+            let address = element.target.dataset.bsOriginalTitle
+            copy(address)
+            new dialog('success-toast', `已複製地址:<br>${address}`).show()
+        });
+    }
+}
+
+export function copy_researchers() {
+    let allResearchers = document.querySelectorAll(".researchers");
+    for (let i = 0; i < allResearchers.length; i++) {
+        allResearchers[i].addEventListener("click", function (element) {
+            let researchers = element.target.dataset.bsOriginalTitle
+            copy(researchers)
+            new dialog('success-toast', `已複製帳號:<br>${researchers}`).show()
+        });
     }
 }
