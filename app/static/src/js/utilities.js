@@ -178,3 +178,29 @@ export function copy_researchers() {
         });
     }
 }
+
+/**
+ * Form Submit
+ */
+
+export function submitForm(data) {
+    let form = document.createElement('form')
+
+    form.setAttribute('method', 'POST')
+    form.setAttribute('action', window.location.href)
+    form.setAttribute('enctype', 'multipart/form-data')
+
+    Object.entries(data).forEach((item) => {
+        let field = document.createElement('input')
+        let key = item[0]
+        let value = item[1]
+        field.setAttribute('type', 'hidden')
+        field.setAttribute('name', key)
+        field.setAttribute('value', value)
+        form.appendChild(field)
+    })
+
+    document.body.appendChild(form)
+    form.submit()
+    loading.show()
+}
