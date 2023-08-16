@@ -12,9 +12,15 @@ function component_action(id, code) {
         '4': 's-run',
         '5': 's-over'
     }
-    return `
-        <a href="/exp/show/${state[code]}/${id}" class="btn btn-secondary text-white">查看</a>
+    const href = `/exp/show/${state[code]}/${id}`
+    const active = `
+        <a href="${href}" class="btn btn-secondary text-white">查看</a>
     `
+    const disabled = `
+        <a href="${href}" class="btn btn-close text-white disabled"></a>
+    `
+    const action = (['0', '1'].includes(code) ? disabled: active)
+    return action
 }
 
 function load_table(data) {
