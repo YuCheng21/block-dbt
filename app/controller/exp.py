@@ -120,7 +120,7 @@ def update(id):
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for('exp.update'))
+                return redirect(url_for('exp.index'))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
