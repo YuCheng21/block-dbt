@@ -83,7 +83,7 @@ def store():
             return redirect(url_for('exp.user'))
 
 
-@app.route('/exp/show/<state>/<id>', methods=['GET'])
+@app.route('/exp/show/<state>/<id>', methods=['GET', 'POST'])
 def show(id, state):
     if request.method == 'GET':
         title = '檢視實驗'
@@ -98,6 +98,24 @@ def show(id, state):
         elif state in ['s-over']:
             return render_template('./exp/state/s-over.html', **locals())
         abort(404)
+    elif request.method == 'POST':
+        if state in ['s-exp']:
+            print('TODO')
+        elif state in ['s-sub']:
+            file_consent = request.files.getlist('consentData')
+            args = request.values.to_dict()
+            try:
+                Exp.register(args)
+                Exp.upload_file(args, file_consent)
+            except Exception as e:
+                if e.args[0] in exception_code.dict().values():
+                    flash(e.args[0], category='error')
+                    return redirect(url_for('exp.index'))
+                current_app.logger.error(f'error msg: {e}')
+                abort(404)
+            else:
+                flash('成功', category='success')
+                return redirect(url_for('exp.index'))
     abort(404)
 
 

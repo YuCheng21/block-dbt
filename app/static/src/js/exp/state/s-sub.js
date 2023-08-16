@@ -33,37 +33,28 @@ function load_topic(data) {
 }
 
 function load_location(data) {
-    let buffer = document.querySelector(".location")
-    buffer.innerHTML = ''
-    for (let i = 0; i < data.length; i++) {
-        buffer.innerHTML += `
-        <button class="btn btn-secondary col-3 i-location">${data[i]}</button>
-        `
-
-    }
-    let allLocation = document.querySelectorAll(".i-location");
-    for (let i = 0; i < allLocation.length; i++) {
-        allLocation[i].addEventListener("click", function (element) {
-            let location = element.target.innerHTML
-            document.querySelector('#expLocation').value = location
-            let button = document.querySelector('#stateSubSend')
-            let path = button.getAttribute('onclick')
-            path = path.split('/')
-            path[path.length-1] = location + "'"
-            path = path.join('/')
-            button.setAttribute('onclick', path)
-        });
+    let input_location = document.querySelector('#expLocation')
+    input_location.replaceChildren();
+    let firstOptions = document.createElement('option');
+    firstOptions.value = 0;
+    firstOptions.innerHTML = '請選擇實驗地點';
+    input_location.appendChild(firstOptions)
+    for (let i = 0; i < data.length; i++){
+        let newOptions = document.createElement('option');
+        newOptions.value = data[i];
+        newOptions.innerHTML = data[i];
+        input_location.appendChild(newOptions)
     }
 }
 
 let MCTable = document.querySelector('#MCTable')
 let SATable = document.querySelector('#SATable')
+let stateSubSend = document.querySelector('#stateSubSend')
 if (MCTable && SATable && server.endpoint === 'exp.show' && typeof page != 'undefined' && ['s-sub'].includes(page.state)) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
         utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
             load_info(data)
-
         })
         utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
             document.querySelector("#expNum").value = data[0]['experimenter']
@@ -76,5 +67,21 @@ if (MCTable && SATable && server.endpoint === 'exp.show' && typeof page != 'unde
         utils.fetch_data(server.url.exp.location, server.basic_auth, 'POST', body).then(data => {
             load_location(data)
         })
+    })
+
+    stateSubSend.addEventListener('click', function (){
+        let type = stateSubSend.getAttribute('data-type')
+        let location = document.querySelector('#expLocation')
+        location = location.value
+        // let url = stateSubSend.getAttribute('data-url')
+        // url = url.split('/')
+        // url[url.length-1] = location
+        // url = url.join('/')
+
+        let consentForm = document.querySelector('#consentForm')
+        utils.appendInput('location', location, consentForm)
+        utils.appendInput('address', page.id, consentForm)
+        utils.appendInput('type', type, consentForm)
+        consentForm.submit()
     })
 }

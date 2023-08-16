@@ -79,19 +79,24 @@
                 </h2>
             </div>
             <div class="card-body px-5 py-4">
-                <div class="fs-3 d-flex justify-content-center">點選實驗地點</div>
-                <div class="fs-6 d-flex justify-content-center">將自動複製填入到下方欄位</div>
-                <hr>
-                <div class="row g-3 py-3 d-flex justify-content-center location">載入中...</div>
-                <hr>
                 <div class="input-group mb-2">
                     <label class="input-group-text">實驗地點</label>
-                    <input id="expLocation" type="text" class="form-control" placeholder="-" disabled>
+                    <select class="form-select" id="expLocation">
+                        <option selected>正在載入實驗地點，請稍後...</option>
+                    </select>
                 </div>
+                <form action="" id="consentForm" method="POST" enctype="multipart/form-data">
+                    <div class="input-group mb-2">
+                        <label class="input-group-text">同意書</label>
+                        <input type="file" name="consentData" class="form-control">
+                    </div>
+                </form>
+
                 <div class="row py-4">
                     <div class="col-12">
                         <button type="button" class="btn btn-danger w-100" id="stateSubSend"
-                                onclick="location.href='{{ url_for('exp.register', address=id, type=2, location='hospital') }}'">
+{#                                data-url="{{ url_for('exp.register', address=id, type=2, location='loading') }}"#}
+                                data-address="{{ id }}" data-type="2">
                             <span class="iconify-inline" data-icon="mdi:patient"></span>
                             <span>註冊受測人員</span>
                         </button>

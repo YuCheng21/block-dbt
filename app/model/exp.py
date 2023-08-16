@@ -99,3 +99,16 @@ class Exp:
             raise Exception(exception_code.fail)
 
         return status_code.ok
+
+    @staticmethod
+    def upload_file(data, file):
+        payload = {
+            'scaddress': data['address'],
+            'file': file
+        }
+        result = req().basic_auth().post(url=url.exp.upload, data=payload, timeout=30)
+
+        if result.status_code is not status_code.ok:
+            raise Exception(exception_code.fail)
+
+        return status_code.ok
