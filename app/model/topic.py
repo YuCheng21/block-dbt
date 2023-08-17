@@ -1,4 +1,4 @@
-from app.model.request import MyRequest as req
+from app.helpers.request import MyRequest as req
 from app.config.api import url, status_code
 from app.config.exception import exception_code
 

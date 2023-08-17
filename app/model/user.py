@@ -1,5 +1,5 @@
 from flask import session
-from app.model.request import MyRequest as req
+from app.helpers.request import MyRequest as req
 from app.config.api import url, status_code
 from app.config.exception import exception_code
 from base64 import b64encode
