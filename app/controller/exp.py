@@ -131,12 +131,13 @@ def update(id):
             form_data = request.values.to_dict()
             multiple_choice = json_loads(form_data['MCTable'])
             short_answer = json_loads(form_data['SATable'])
-            for _, value in enumerate(multiple_choice):
-                data = dict(address=id, content=value['multipleChoice'], value=value['maxScore'])
-                Topic.store_mc(data)
-            for _, value in enumerate(short_answer):
-                data = dict(address=id, content=value['shortAnswer'])
-                Topic.store_sa(data)
+            # for _, value in enumerate(multiple_choice):
+            #     data = dict(address=id, content=value['multipleChoice'], value=value['maxScore'])
+            #     Topic.store_mc(data)
+            # for _, value in enumerate(short_answer):
+            #     data = dict(address=id, content=value['shortAnswer'])
+            #     Topic.store_sa(data)
+            results = asyncio.run(Topic.store_mc_and_sa(id, multiple_choice, short_answer))
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
