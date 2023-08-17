@@ -1,4 +1,5 @@
 from json import loads as json_loads
+import asyncio
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
 from app.config.exception import exception_code
@@ -105,8 +106,9 @@ def show(id, state):
             file_consent = request.files.getlist('consentData')
             args = request.values.to_dict()
             try:
-                Exp.register(args)
-                Exp.upload_file(args, file_consent)
+                # Exp.register(args)
+                # Exp.upload_file(args, file_consent)
+                results = asyncio.run(Exp.register_and_upload_file(args, file_consent))
             except Exception as e:
                 if e.args[0] in exception_code.dict().values():
                     flash(e.args[0], category='error')

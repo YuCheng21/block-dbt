@@ -7,8 +7,10 @@ class MyRequest:
     def __init__(self):
         self.session = requests.Session()
 
-    def basic_auth(self):
-        self.session.auth = (session.get('account'), session.get('password'))
+    def basic_auth(self, account=None, password=None):
+        account = session.get('account') if account is None else account
+        password = session.get('password') if password is None else password
+        self.session.auth = (account, password)
         return self
 
     def request(self, *args, **kwargs):
