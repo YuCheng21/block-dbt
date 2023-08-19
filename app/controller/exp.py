@@ -230,10 +230,14 @@ def submit(id):
             flash('成功', category='success')
             return redirect(url_for('exp.user'))
 
-@app.route('/exp/start/<id>', methods=['GET'])
+@app.route('/exp/start/<id>', methods=['GET', 'POST'])
 def start(id):
     if request.method == 'GET':
-        data = dict(address=id)
+        title = '開始實驗'
+        return render_template('./exp/start.html', **locals())
+    elif request.method == 'POST':
+        form_data = request.values.to_dict()
+        data = dict(address=id, date=form_data['date'])
         try:
             Exp.start(data)
         except Exception as e:
