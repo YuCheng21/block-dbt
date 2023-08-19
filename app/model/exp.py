@@ -108,6 +108,19 @@ class Exp:
         return status_code.ok
 
     @staticmethod
+    def add_obj(data):
+        payload = {
+            'scaddress': data['address'],
+            'group': data['group'],
+        }
+        result = req().basic_auth().post(url=url.exp.add_object, data=payload, timeout=30)
+
+        if result.status_code is not status_code.ok:
+            raise Exception(exception_code.fail)
+
+        return status_code.ok
+
+    @staticmethod
     def upload_file(data, file, account=None, password=None):
         payload = {
             'scaddress': data['address'],

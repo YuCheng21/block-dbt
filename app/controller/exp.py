@@ -166,6 +166,27 @@ def subject(id):
             return redirect(url_for('exp.user'))
 
 
+@app.route('/exp/object/<id>', methods=['GET', 'POST'])
+def add_object(id):
+    if request.method == 'GET':
+        title = '新增實驗物'
+        return render_template('./exp/object.html', **locals())
+    elif request.method == 'POST':
+        try:
+            form_data = request.values.to_dict()
+            data = dict(address=id, group=form_data['group'])
+            Exp.add_obj(data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for('exp.user'))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash('成功', category='success')
+            return redirect(url_for('exp.add_object', id=id))
+    abort(404)
+
 @app.route('/exp/destroy/<id>', methods=['GET'])
 def destroy(id):
     if request.method == 'GET':

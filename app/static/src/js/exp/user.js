@@ -6,7 +6,8 @@ function component_action(id) {
         <div class="row g-2">
             <a href="/exp/update/${id}" class="btn btn-primary text-white col-6">編輯問卷</a>
             <a href="/exp/topic/${id}" class="btn btn-secondary text-white col-6">確認問卷</a>
-            <a href="/exp/subject/${id}" class="btn btn-warning text-white col-12">招募受測人員</a>
+            <a href="/exp/subject/${id}" class="btn btn-warning text-white col-6">招募受測員</a>
+            <a href="/exp/object/${id}" class="btn btn-success text-white col-6">新增實驗物</a>
             <a href="/exp/start/${id}" class="btn btn-danger text-white col-12">開始實驗</a>
         </div>
     `
