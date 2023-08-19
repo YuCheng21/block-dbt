@@ -214,6 +214,7 @@ def register(address, type, location):
 
 # ============================================================
 
+
 @app.route('/exp/topic/<id>', methods=['GET'])
 def submit(id):
     if request.method == 'GET':
@@ -229,6 +230,7 @@ def submit(id):
         else:
             flash('成功', category='success')
             return redirect(url_for('exp.user'))
+
 
 @app.route('/exp/start/<id>', methods=['GET', 'POST'])
 def start(id):
@@ -249,6 +251,28 @@ def start(id):
         else:
             flash('成功', category='success')
             return redirect(url_for('exp.user'))
+
+
+@app.route('/exp/object/<id>/list', methods=['GET', 'POST'])
+def obj_list(id):
+    if request.method == 'GET':
+        title = '實驗物清單'
+        return render_template('./exp/object-list.html', **locals())
+    elif request.method == 'POST':
+        form_data = request.values.to_dict()
+        data = dict(address=id, date=form_data['date'])
+        try:
+            Exp.start(data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for('exp.user'))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash('成功', category='success')
+            return redirect(url_for('exp.user'))
+
 
 @app.route('/exp/form/<id>', methods=['GET', 'POST'])
 def form(id):

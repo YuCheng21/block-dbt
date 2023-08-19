@@ -19,6 +19,7 @@ import './exp/state/s-sub'
 import './exp/state/s-run'
 import './exp/state/s-over'
 import './exp/form'
+import './exp/object-list'
 
 import './topic/delete'
 import './topic/update'

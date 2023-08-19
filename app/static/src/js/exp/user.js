@@ -8,7 +8,8 @@ function component_action(id) {
             <a href="/exp/topic/${id}" class="btn btn-secondary text-white col-6">確認問卷</a>
             <a href="/exp/subject/${id}" class="btn btn-warning text-white col-6">招募受測員</a>
             <a href="/exp/object/${id}" class="btn btn-success text-white col-6">新增實驗物</a>
-            <a href="/exp/start/${id}" class="btn btn-danger text-white col-12">開始實驗</a>
+            <a href="/exp/start/${id}" class="btn btn-danger text-white col-6">開始實驗</a>
+            <a href="/exp/object/${id}/list" class="btn btn-info text-white col-6">實驗物清單</a>
         </div>
     `
 }
