@@ -25,9 +25,7 @@ function load_table(data) {
 function load_data() {
     utils.fetch_data(server.url.exp.index, server.basic_auth, 'GET', null).then(data => {
         load_table(data)
-        utils.copy_address();
-        utils.copy_researchers();
-        utils.init_tooltip()
+        // utils.init_tooltip()
     })
 }
 

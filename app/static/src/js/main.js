@@ -73,4 +73,14 @@ document.addEventListener('click', function (event){
     if (event.target.classList.contains('setLoading')){
         utils.loading.show()
     }
+    else if (event.target.classList.contains('address')){
+        let address = event.target.getAttribute('title')
+        copy(address)
+        new utils.dialog('success-toast', `已複製地址:<br>${address}`).show()
+    }
+    else if (event.target.classList.contains('researchers')){
+        let researchers = event.target.getAttribute('title')
+        copy(researchers)
+        new utils.dialog('success-toast', `已複製帳號:<br>${researchers}`).show()
+    }
 })

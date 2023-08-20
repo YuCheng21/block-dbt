@@ -154,32 +154,6 @@ export function component_state(code) {
 }
 
 /**
- * Copy Address
- */
-
-export function copy_address() {
-    let allAddress = document.querySelectorAll(".address");
-    for (let i = 0; i < allAddress.length; i++) {
-        allAddress[i].addEventListener("click", function (element) {
-            let address = element.target.dataset.bsOriginalTitle
-            copy(address)
-            new dialog('success-toast', `已複製地址:<br>${address}`).show()
-        });
-    }
-}
-
-export function copy_researchers() {
-    let allResearchers = document.querySelectorAll(".researchers");
-    for (let i = 0; i < allResearchers.length; i++) {
-        allResearchers[i].addEventListener("click", function (element) {
-            let researchers = element.target.dataset.bsOriginalTitle
-            copy(researchers)
-            new dialog('success-toast', `已複製帳號:<br>${researchers}`).show()
-        });
-    }
-}
-
-/**
  * Form Submit
  */
 
