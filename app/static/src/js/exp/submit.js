@@ -38,6 +38,7 @@ function getRadioValue(theRadioGroup){
 let expFormSend = document.querySelector('#expFormSend')
 if (expFormSend) {
     expFormSend.addEventListener('click', function () {
+        let subId = document.querySelector("#subId").value;
         let mc = []
         var temp = $('#MCTable tr>td:nth-child(2)')
         Object.values(temp).forEach((item, key) => {
@@ -53,6 +54,7 @@ if (expFormSend) {
             }
         })
         let data = {
+            subId: subId,
             MCTable: mc,
             SATable: sa,
         }

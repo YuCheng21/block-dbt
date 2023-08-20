@@ -74,6 +74,7 @@ class Topic:
             'scaddress': id,
             'q1': data['MCTable'],
             'q2': data['SATable'],
+            'subaddress': data['subId']
         }
 
         result = req().basic_auth().post(url=url.exp.submit, data=payload, timeout=30)
