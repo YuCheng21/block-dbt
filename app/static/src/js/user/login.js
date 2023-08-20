@@ -9,7 +9,6 @@ if (send && server.endpoint === 'user.login') {
         if ($('#password').val() == '') return false;
 
         $('form').submit();
-        utils.loading.show()
     })
 }
 

@@ -27,7 +27,6 @@ if (contentSend) {
 
             $(document.body).append(form);
             form.submit();
-            utils.loading.show()
         })
     })
 }

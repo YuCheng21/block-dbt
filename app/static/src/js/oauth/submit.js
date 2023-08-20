@@ -1,5 +1,3 @@
-import * as utils from "../utilities";
-
 let oauthSend = document.querySelector('#oauthSend')
 if (oauthSend) {
     oauthSend.addEventListener('click', function () {
@@ -25,6 +23,5 @@ if (oauthSend) {
 
         $(document.body).append(form);
         form.submit();
-        utils.loading.show()
     })
 }

@@ -3,7 +3,7 @@ import * as utils from "../utilities";
 
 function component_action(id) {
     return `
-        <a href="/oauth/authenticate/${id}" class="btn btn-primary text-white">驗證</a>
+        <a href="/oauth/authenticate/${id}" class="btn btn-primary text-white setLoading">驗證</a>
     `
 }
 

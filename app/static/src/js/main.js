@@ -57,7 +57,20 @@ document.querySelectorAll('#navbarToggler > ul > li > a > span').forEach(functio
  * Copy Address
  */
 
-document.querySelector('#c-account').addEventListener('click', function (element){
-    copy(server.account)
-    new utils.dialog('success-toast', `已複製帳號:<br>${server.account}`).show()
-});
+let copyAccount = document.querySelector('#c-account')
+if (copyAccount){
+    copyAccount.addEventListener('click', function (element){
+        copy(server.account)
+        new utils.dialog('success-toast', `已複製帳號:<br>${server.account}`).show()
+    });
+}
+
+/**
+ * Click Listener
+ */
+
+document.addEventListener('click', function (event){
+    if (event.target.classList.contains('setLoading')){
+        utils.loading.show()
+    }
+})

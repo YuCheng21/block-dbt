@@ -9,6 +9,5 @@ if (send && server.endpoint === 'user.register') {
         if ($('#password').val() == '') return false;
 
         $('form').submit();
-        utils.loading.show()
     })
 }
