@@ -1,11 +1,12 @@
 import asyncio
+from functools import partial
 
 from flask import session
 
+from app.helpers.request import make_func_async
 from app.helpers.request import MyRequest as req
 from app.config.api import url, status_code
 from app.config.exception import exception_code
-from app.helpers.asynchronous import func_with_args, make_func_async
 
 
 class Topic:
@@ -86,19 +87,19 @@ class Topic:
 
     @staticmethod
     async def store_mc_and_sa(id, mc_data, sa_data):
-        auth = {'account': session.get('account'), 'password': session.get('password')}
+        auth = [session.get('account'), session.get('password')]
         mc = []
         for _, value in enumerate(mc_data):
             data = dict(address=id, content=value['multipleChoice'], value=value['maxScore'])
-            mc += [func_with_args(func=Topic.store_mc, kwargs={**{'data': data}, **auth})]
+            mc += [partial(Topic.store_mc, data, *auth)]
         sa = []
         for _, value in enumerate(sa_data):
             data = dict(address=id, content=value['shortAnswer'])
-            sa += [func_with_args(func=Topic.store_sa, kwargs={**{'data': data}, **auth})]
+            sa += [partial(Topic.store_sa, data, *auth)]
 
         loop = asyncio.get_event_loop()
         tasks = []
-        for i_func, i_kwargs in mc + sa:
-            tasks += [loop.create_task(make_func_async(func=i_func, kwargs=i_kwargs, loop=loop))]
+        for i_func in mc + sa:
+            tasks += [loop.create_task(make_func_async(func=i_func, loop=loop))]
         results = await asyncio.gather(*tasks)
         return results

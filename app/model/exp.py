@@ -1,11 +1,12 @@
 import asyncio
+from functools import partial
 
 from flask import session
 
+from app.helpers.request import make_func_async
 from app.helpers.request import MyRequest as req
 from app.config.api import url, status_code
 from app.config.exception import exception_code
-from app.helpers.asynchronous import func_with_args, make_func_async
 
 
 class Exp:
@@ -153,13 +154,13 @@ class Exp:
 
     @staticmethod
     async def register_and_upload_file(data, file):
-        auth = {'account': session.get('account'), 'password': session.get('password')}
-        register = func_with_args(func=Exp.register, kwargs={**{'data': data}, **auth})
-        upload_file = func_with_args(func=Exp.upload_file, kwargs={**{'data': data, 'file': file}, **auth})
+        auth = [session.get('account'), session.get('password')]
+        register = partial(Exp.register, data, *auth)
+        upload_file = partial(Exp.upload_file, data, file, *auth)
 
         loop = asyncio.get_event_loop()
         tasks = []
-        for i_func, i_kwargs in [register, upload_file]:
-            tasks += [loop.create_task(make_func_async(func=i_func, kwargs=i_kwargs, loop=loop))]
+        for i_func in [register, upload_file]:
+            tasks += [loop.create_task(make_func_async(func=i_func, loop=loop))]
         results = await asyncio.gather(*tasks)
         return results

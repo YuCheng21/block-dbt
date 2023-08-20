@@ -31,3 +31,8 @@ class MyRequest:
         headers = {'Content-Type': 'application/x-www-form-urlencoded'}
         kw = {**{'method': 'POST', 'url': url, 'headers': headers, 'timeout': timeout}, **kwargs}
         return self.request(*args, **kw)
+
+
+async def make_func_async(func, loop):
+    result = await loop.run_in_executor(None, func)
+    return result
