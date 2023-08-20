@@ -1,9 +1,18 @@
 import * as utils from "../../utilities";
 
 
-function component_action(id) {
+function component_action(id, code) {
+    const state = {
+        '0': 's-form',
+        '1': 's-auth',
+        '2': 's-exp',
+        '3': 's-sub',
+        '4': 's-run',
+        '5': 's-over'
+    }
+    const href = `/exp/join/${state[code]}/${id}`
     return `
-        <a href="/exp/join/${id}" class="btn btn-primary text-white">查看</a>
+        <a href="${href}" class="btn btn-secondary text-white">查看</a>
     `
 }
 
@@ -16,7 +25,7 @@ function load_table(data) {
             member: utils.component_member(item._Researchers_name),
             content: utils.component_content(item._content),
             state: utils.component_state(item._status),
-            action: component_action(item._address)
+            action: component_action(item._address, item._status)
         })
     });
     $('#expTable').bootstrapTable('load', rows)

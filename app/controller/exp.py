@@ -43,24 +43,40 @@ def participate(id):
     abort(404)
 
 
-@app.route('/exp/join/<id>', methods=['GET', 'POST'])
-def content(id):
+@app.route('/exp/join/<state>/<id>', methods=['GET', 'POST'])
+def content(id, state):
     if request.method == 'GET':
         title = id
-        return render_template('./exp/join/content.html', **locals())
+        if state in ['s-exp']:
+            return render_template('./exp/join/s-exp.html', **locals())
+        elif state in ['s-run']:
+            return render_template('./exp/join/s-run.html', **locals())
     elif request.method == 'POST':
-        try:
-            form_data = request.values.to_dict()
-            exp = Exp.sign_exp(form_data)
-        except Exception as e:
-            if e.args[0] in exception_code.dict().values():
-                flash(e.args[0], category='error')
-                return redirect(url_for('exp.content', id=id))
-            current_app.logger.error(f'error msg: {e}')
-            abort(404)
-        else:
-            flash('新增成功', category='success-toast')
-            return redirect(url_for('exp.index'))
+        if state in ['s-exp']:
+            try:
+                form_data = request.values.to_dict()
+                exp = Exp.sign_exp(form_data)
+            except Exception as e:
+                if e.args[0] in exception_code.dict().values():
+                    flash(e.args[0], category='error')
+                    return redirect(url_for('exp.content', id=id))
+                current_app.logger.error(f'error msg: {e}')
+                abort(404)
+            else:
+                flash('新增成功', category='success-toast')
+                return redirect(url_for('exp.index'))
+        elif state in ['s-run']:
+            try:
+                exp = Exp.scan_obj(data=dict(address=id))
+            except Exception as e:
+                if e.args[0] in exception_code.dict().values():
+                    flash(e.args[0], category='error')
+                    return redirect(url_for('exp.content', id=id, state=state))
+                current_app.logger.error(f'error msg: {e}')
+                abort(404)
+            else:
+                flash('新增成功', category='success-toast')
+                return redirect(url_for('exp.join'))
     abort(404)
 
 
