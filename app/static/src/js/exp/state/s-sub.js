@@ -1,5 +1,6 @@
 import * as utils from "@static/src/js/utilities"
 import {endpoint} from "@static/src/js/endpoint";
+import {loading} from "@static/src/js/utilities";
 
 
 function load_info(data){
@@ -85,5 +86,6 @@ if (MCTable && SATable && server.endpoint === endpoint.exp.public.show && typeof
         utils.appendInput('address', page.id, consentForm)
         utils.appendInput('type', type, consentForm)
         consentForm.submit()
+        loading.show()
     })
 }
