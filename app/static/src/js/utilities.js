@@ -182,3 +182,13 @@ export function submitForm(data) {
     form.submit()
     loading.show()
 }
+
+export function route2url(endpoint, ...params){
+    let rule = endpoint.rule
+    let args = endpoint.args
+    if (args.length !== params.length) return false
+    Object.entries(args).forEach(([key, value]) => {
+        rule = rule.replace(/<.*?>/, params[key])
+    })
+    return rule
+}
