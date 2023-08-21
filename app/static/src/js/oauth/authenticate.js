@@ -1,4 +1,5 @@
-import * as utils from "../utilities";
+import * as utils from "@static/src/js/utilities"
+import {endpoint} from "@static/src/js/endpoint";
 
 
 function component_action(id) {
@@ -30,7 +31,7 @@ function load_data() {
 }
 
 let expTable = document.querySelector('#expTable')
-if (expTable && server.endpoint === 'oauth.authenticate') {
+if (expTable && server.endpoint === endpoint.oauth.authenticate) {
     document.addEventListener("DOMContentLoaded", function () {
         load_data()
     })

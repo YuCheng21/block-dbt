@@ -33,7 +33,7 @@
     {% block header %}
         <nav class="navbar navbar-dark navbar-expand-lg bg-primary px-3 fixed-top">
             <div class="container-fluid">
-                <a href="{{ url_for('exp.index') }}"
+                <a href="{{ url_for(g.endpoint.exp.public.index) }}"
                    class="navbar-brand fs-1 fw-bold py-0 ds-100 hv-scale hv-color-text">
                     <span class="iconify-inline" data-icon="game-icons:blindfold"></span>
                     <span>{{ g.website_name }}</span>
@@ -45,22 +45,22 @@
                     {% block navbar_item %}
                         <ul class="navbar-nav fs-4 fw-bold ds-100">
                             <li class="nav-item hv-scale">
-                                <a href="{{ url_for('exp.index') }}" class="nav-link text-white hv-color-text">
+                                <a href="{{ url_for(g.endpoint.exp.public.index) }}" class="nav-link text-white hv-color-text">
                                     <span>所有實驗</span>
                                 </a>
                             </li>
                             <li class="nav-item hv-scale">
-                                <a href="{{ url_for('exp.user') }}" class="nav-link text-white hv-color-text">
+                                <a href="{{ url_for(g.endpoint.exp.parent.user) }}" class="nav-link text-white hv-color-text">
                                     <span>實驗管理</span>
                                 </a>
                             </li>
                             <li class="nav-item hv-scale">
-                                <a href="{{ url_for('exp.join') }}" class="nav-link text-white hv-color-text">
+                                <a href="{{ url_for(g.endpoint.exp.private.join) }}" class="nav-link text-white hv-color-text">
                                     <span>我的實驗</span>
                                 </a>
                             </li>
                             <li class="nav-item hv-scale">
-                                <a href="{{ url_for('oauth.index') }}" class="nav-link text-white hv-color-text">
+                                <a href="{{ url_for(g.endpoint.oauth.index) }}" class="nav-link text-white hv-color-text">
                                     <span>權威機構</span>
                                 </a>
                             </li>
@@ -78,8 +78,8 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <form method="POST" action="{{ url_for('user.logout') }}">
-                                            <a href="{{ url_for('user.logout') }}" class="dropdown-item hv-color-bg"
+                                        <form method="POST" action="{{ url_for(g.endpoint.user.logout) }}">
+                                            <a href="{{ url_for(g.endpoint.user.logout) }}" class="dropdown-item hv-color-bg"
                                                onclick="event.preventDefault();this.closest('form').submit();">
                                                 <span class="iconify-inline" data-icon="ls:login"></span>
                                                 <span>登出</span>
@@ -117,13 +117,14 @@
     <!--  Parameters  -->
     <script>
         const server = {
-            'page_title': '{{title}}',
+            'page_title': '{{ title }}',
             'endpoint': '{{ request.endpoint }}',
-            'endpoint_list': {{ g.endpoint_list | tojson}},
+            'route': JSON.parse('{{ g.route | tojson }}'),
+            {#'endpoint_list': {{ g.endpoint_list | tojson}},#}
             'basic_auth': "{{ session.get('basic_auth') }}",
             'account': "{{ session.get('account') }}",
-            'url': {{ g.url.dict() | tojson }},
-            'flash': {{ get_flashed_messages(with_categories=true) | tojson }}
+            'url': JSON.parse('{{ g.url.dict() | tojson }}'),
+            'flash': JSON.parse('{{ get_flashed_messages(with_categories=true) | tojson }}')
         }
     </script>
     <!--  Customize Javascript  -->

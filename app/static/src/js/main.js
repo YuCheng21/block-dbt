@@ -3,7 +3,8 @@ import "@static/src/scss/all.scss";
 import "@iconify/iconify"
 import copy from 'copy-to-clipboard';
 
-import * as utils from "./utilities";
+import * as utils from "@static/src/js/utilities"
+
 import './user/login'
 import './user/register'
 

@@ -95,7 +95,6 @@
                 <div class="row py-4">
                     <div class="col-12">
                         <button type="button" class="btn btn-danger w-100" id="stateSubSend"
-{#                                data-url="{{ url_for('exp.register', address=id, type=2, location='loading') }}"#}
                                 data-address="{{ id }}" data-type="2">
                             <span class="iconify-inline" data-icon="mdi:patient"></span>
                             <span>註冊受測人員</span>
@@ -108,7 +107,7 @@
             <div class="row py-4">
                 <div class="col-12">
                     <button type="button" class="btn btn-primary w-100"
-                            onclick="location.href='{{ url_for('exp.index') }}'">
+                            onclick="location.href='{{ url_for(g.endpoint.exp.public.index) }}'">
                         <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                         <span>返回</span>
                     </button>

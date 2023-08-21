@@ -1,4 +1,5 @@
-import * as utils from "../utilities";
+import * as utils from "@static/src/js/utilities"
+import {endpoint} from "@static/src/js/endpoint";
 
 
 function fetch_data_MC() {
@@ -59,7 +60,7 @@ function load_table(data) {
 
 let MCTable = document.querySelector('#MCTable')
 let SATable = document.querySelector('#SATable')
-if (MCTable && SATable && server.endpoint === 'exp.update') {
+if (MCTable && SATable && server.endpoint === endpoint.exp.parent.update) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {

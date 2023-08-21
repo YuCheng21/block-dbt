@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
 from app.model.user import UserModel
 from app.config.exception import exception_code
+from app.config.endpoint import endpoint
 from app.middleware.authenticate import Authenticate
 
 app = Blueprint('user', __name__)
@@ -18,12 +19,12 @@ def register():
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for('user.register'))
+                return redirect(url_for(endpoint.user.sign_up))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             flash('註冊成功', category='success-toast')
-            return redirect(url_for('user.login', account=user.account))
+            return redirect(url_for(endpoint.user.login, account=user.account))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -39,13 +40,13 @@ def login():
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for('user.login'))
+                return redirect(url_for(endpoint.user.login))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             user.save_session()
             flash('登入成功', category='success-toast')
-            return redirect(url_for('exp.index'))
+            return redirect(url_for(endpoint.exp.public.index))
 
 
 @app.route('/user/logout', methods=['POST'])
@@ -54,7 +55,7 @@ def logout():
     if request.method == 'POST':
         UserModel.remove_session()
         flash('登出成功！', category='success-toast')
-        return redirect(url_for('user.login'))
+        return redirect(url_for(endpoint.user.login))
     abort(404)
 
 

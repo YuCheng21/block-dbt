@@ -2,7 +2,7 @@
 
 
 {% block content %}
-    <form action="{{ url_for('user.login') }}" method="POST"
+    <form action="{{ url_for(g.endpoint.user.login) }}" method="POST"
           enctype="multipart/form-data"
           class="w-100 mb-3">
         <div class="input-group mb-3">
@@ -18,7 +18,7 @@
                    placeholder="請輸入密碼">
         </div>
         {% if request.args.get('account') is not none %}
-            <a href="{{ url_for('plain_text', file_name='account.txt', file_content=request.args.get('account')) }}"
+            <a href="{{ url_for(g.endpoint.plain_text, file_name='account.txt', file_content=request.args.get('account')) }}"
                class="btn btn-warning w-100 mb-3" target="_blank">
                 <span class="iconify-inline" data-icon="fe:login"></span>
                 <span>下載帳號地址</span>
@@ -28,7 +28,7 @@
             <span class="iconify-inline" data-icon="fe:login"></span>
             <span>登入</span>
         </button>
-        <a href="{{ url_for('user.register') }}" class="btn btn-secondary text-white w-100 mb-3">
+        <a href="{{ url_for(g.endpoint.user.sign_up) }}" class="btn btn-secondary text-white w-100 mb-3">
             <span class="iconify-inline" data-icon="fe:login"></span>
             <span>註冊</span>
         </a>

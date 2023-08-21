@@ -1,4 +1,5 @@
-import * as utils from "../utilities";
+import * as utils from "@static/src/js/utilities"
+import {endpoint} from "@static/src/js/endpoint";
 
 
 function component_action(id, code) {
@@ -44,7 +45,7 @@ function load_data() {
 }
 
 let expTable = document.querySelector('#expTable')
-if (expTable && server.endpoint === 'exp.index') {
+if (expTable && server.endpoint === endpoint.exp.public.index) {
     document.addEventListener("DOMContentLoaded", function () {
         load_data()
     })

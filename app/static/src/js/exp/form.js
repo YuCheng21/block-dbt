@@ -1,4 +1,5 @@
-import * as utils from "../utilities";
+import * as utils from "@static/src/js/utilities"
+import {endpoint} from "@static/src/js/endpoint";
 
 function component_mc(index, max){
     var data = ``
@@ -43,7 +44,7 @@ function load_table(data) {
 
 let MCTable = document.querySelector('#MCTable')
 let SATable = document.querySelector('#SATable')
-if (MCTable && SATable && server.endpoint === 'exp.form') {
+if (MCTable && SATable && server.endpoint === endpoint.exp.private.form) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {

@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
 from app.config.exception import exception_code
+from app.config.endpoint import endpoint
 from app.model.oauth import OAuth
 
 
@@ -26,12 +27,12 @@ def store():
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for('oauth.store'))
+                return redirect(url_for(endpoint.oauth.store))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             flash('新增成功', category='success-toast')
-            return redirect(url_for('oauth.index'))
+            return redirect(url_for(endpoint.oauth.index))
 
 
 @app.route('/oauth/authenticate', methods=['GET', 'POST'])
@@ -51,9 +52,9 @@ def authenticate_id(id):
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for('oauth.authenticate'))
+                return redirect(url_for(endpoint.oauth.authenticate))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             flash('成功', category='success')
-            return redirect(url_for('oauth.authenticate'))
+            return redirect(url_for(endpoint.oauth.authenticate))

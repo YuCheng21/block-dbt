@@ -1,4 +1,5 @@
-import * as utils from "../../utilities";
+import * as utils from "@static/src/js/utilities"
+import {endpoint} from "@static/src/js/endpoint";
 
 
 function component_action(id, code) {
@@ -39,7 +40,7 @@ function load_data() {
 }
 
 let expTable = document.querySelector('#expTable')
-if (expTable && server.endpoint === 'exp.join') {
+if (expTable && server.endpoint === endpoint.exp.private.join) {
     document.addEventListener("DOMContentLoaded", function () {
         load_data()
     })

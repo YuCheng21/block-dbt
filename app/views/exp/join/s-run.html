@@ -33,7 +33,7 @@
                 <div class="row py-4">
                     <div class="col-12">
                         <button type="button" class="btn btn-secondary text-white w-100"
-                                onclick="location.href='{{ url_for('exp.form', id=id) }}'">
+                                onclick="location.href='{{ url_for(g.endpoint.exp.private.form, id=id) }}'">
                             <span class="iconify-inline" data-icon="jam:write-f"></span>
                             <span>填寫問卷</span>
                         </button>
@@ -45,7 +45,7 @@
             <div class="row py-4">
                 <div class="col-12">
                     <button type="button" class="btn btn-primary w-100"
-                            onclick="location.href='{{ url_for('exp.index') }}'">
+                            onclick="location.href='{{ url_for(g.endpoint.exp.public.index) }}'">
                         <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                         <span>返回</span>
                     </button>

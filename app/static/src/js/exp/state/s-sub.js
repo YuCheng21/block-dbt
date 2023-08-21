@@ -1,4 +1,6 @@
-import * as utils from "../../utilities";
+import * as utils from "@static/src/js/utilities"
+import {endpoint} from "@static/src/js/endpoint";
+
 
 function load_info(data){
     let exp = null;
@@ -50,7 +52,7 @@ function load_location(data) {
 let MCTable = document.querySelector('#MCTable')
 let SATable = document.querySelector('#SATable')
 let stateSubSend = document.querySelector('#stateSubSend')
-if (MCTable && SATable && server.endpoint === 'exp.show' && typeof page != 'undefined' && ['s-sub'].includes(page.state)) {
+if (MCTable && SATable && server.endpoint === endpoint.exp.public.show && typeof page != 'undefined' && ['s-sub'].includes(page.state)) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
         utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
