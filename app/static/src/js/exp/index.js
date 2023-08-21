@@ -11,7 +11,10 @@ function component_action(id, code) {
         '4': 's-run',
         '5': 's-over'
     }
-    const href = `/exp/show/${state[code]}/${id}`
+    let href = `/exp/show/${state[code]}/${id}`
+    if (code === '4'){
+        href = `/exp/join/${state[code]}/${id}`
+    }
     const active = `
         <a href="${href}" class="btn btn-secondary text-white">查看</a>
     `
