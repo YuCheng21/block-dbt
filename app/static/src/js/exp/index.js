@@ -1,5 +1,6 @@
 import * as utils from "@static/src/js/utilities"
-import {endpoint} from "@static/src/js/endpoint";
+import {endpoint} from "@static/src/js/config/endpoint";
+import {state} from "@static/src/js/config/state";
 
 
 if (server.endpoint === endpoint.exp.public.index) {
@@ -31,14 +32,6 @@ function load_table(data) {
 }
 
 function component_action(id, code) {
-    const state = {
-        '0': 's-form',
-        '1': 's-auth',
-        '2': 's-exp',
-        '3': 's-sub',
-        '4': 's-run',
-        '5': 's-over'
-    }
     let href = utils.route2url(server.route.exp.public.show, state[code], id)
     if (code === '4') {
         href = utils.route2url(server.route.exp.private.content, state[code], id)
