@@ -5,7 +5,7 @@ app, settings = create_app()
 
 if __name__ == '__main__':
     if settings.mode == 'development':
-        print(app.url_map)
+        # print(app.my_route())
         app.run(host=settings.app_host, port=settings.app_port)
     elif settings.mode == 'production':
         from waitress import serve

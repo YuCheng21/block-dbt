@@ -1,5 +1,7 @@
-from flask import Flask, render_template, g, request, make_response, Blueprint
 import logging
+
+from flask import Flask, render_template, g, request, make_response, Blueprint
+from easydict import EasyDict as edict
 
 from app.config.flask_cfg import config as flask_config
 from app.config.logger_cfg import console_logger, file_logger
@@ -34,26 +36,9 @@ def create_app():
     def before_request():
         g.website_name = settings.website_name
         g.url = url
-
         g.endpoint = endpoint
 
-        end_rule_args = [dict(endpoint=v[0].endpoint, rule=v[0].rule, args=list(v[0].arguments)
-                      ) for k, v in app.url_map.__dict__['_rules_by_endpoint'].items()]
-        route = {}
-        for k, v in enumerate(end_rule_args):
-            ll = v['endpoint'].split('.')
-            point = route
-            while len(ll) != 0:
-                point = point.setdefault(ll[0], {})
-                ll.pop(0)
-            point.setdefault('endpoint', v['endpoint'])
-            point.setdefault('rule', v['rule'])
-            point.setdefault('args', v['args'])
-        g.route = route
-
-        # endpoint_list = list(app.url_map.__dict__['_rules_by_endpoint'].keys())
-        # g.endpoint_list = dict(zip(list(map(lambda x: x.replace('.', '_'), endpoint_list)), endpoint_list))
-
+        g.route = app.my_route
 
     @app.errorhandler(404)
     def page_not_found(e):
@@ -72,9 +57,29 @@ def create_app():
 
 
 class MyFlask(Flask):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.my_route = self.get_my_route()
+
     @staticmethod
     def register_middleware(app: Blueprint, middleware_func):
         @app.before_request
         @middleware_func
         def before_request():
             pass
+
+    def get_my_route(self) -> edict:
+        rules_by_endpoint = self.url_map.__dict__['_rules_by_endpoint']
+        my_rules = [dict(endpoint=v[0].endpoint, rule=v[0].rule, args=list(v[0].arguments)
+                              ) for k, v in rules_by_endpoint.items()]
+        my_route = {}
+        for k, v in enumerate(my_rules):
+            ll = v['endpoint'].split('.')
+            point = my_route
+            while len(ll) != 0:
+                point = point.setdefault(ll[0], {})
+                ll.pop(0)
+            point.setdefault('endpoint', v['endpoint'])
+            point.setdefault('rule', v['rule'])
+            point.setdefault('args', v['args'])
+        return edict(my_route)
