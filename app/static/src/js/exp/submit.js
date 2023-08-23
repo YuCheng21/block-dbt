@@ -1,16 +1,15 @@
-import * as utils from "../utilities";
+import * as utils from "@static/src/js/utilities"
 
 
 let expSend = document.querySelector('#expSend')
 if (expSend) {
     expSend.addEventListener('click', function () {
         let data = {
-            expName: $('#expName').val(),
-            expContent: $('#expContent').val(),
-            expTime: $('#expTime').val(),
-            expSub: $('#expSub').val(),
+            expName: document.querySelector('#expName').value,
+            expContent: document.querySelector('#expContent').value,
+            expTime: document.querySelector('#expTime').value,
+            expSub: document.querySelector('#expSub').value,
         }
-
         utils.submitForm(data);
     })
 }
@@ -40,16 +39,16 @@ if (expFormSend) {
     expFormSend.addEventListener('click', function () {
         let subId = document.querySelector("#subId").value;
         let mc = []
-        var temp = $('#MCTable tr>td:nth-child(2)')
-        Object.values(temp).forEach((item, key) => {
-            if(temp.length > key) {
+        let mc_element = document.querySelectorAll('#MCTable tr>td:nth-child(2)')
+        Object.values(mc_element).forEach((item, key) => {
+            if(mc_element.length > key) {
                 mc.push(getRadioValue('inlineRadioOptions'+key))
             }
         })
         let sa = []
-        var temp = $('#SATable tr>td:nth-child(2)')
-        Object.values(temp).forEach((item, key) => {
-            if(temp.length > key) {
+        let sa_element = document.querySelectorAll('#SATable tr>td:nth-child(2)')
+        Object.values(sa_element).forEach((item, key) => {
+            if(sa_element.length > key) {
                 sa.push(document.getElementsByName('shortAnswer'+key)[0].value)
             }
         })
@@ -58,7 +57,6 @@ if (expFormSend) {
             MCTable: mc,
             SATable: sa,
         }
-
         utils.submitForm(data)
     })
 }

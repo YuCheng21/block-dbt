@@ -1,16 +1,18 @@
-$(document).on('click', '.MCDelete, .SADelete', function (e) {
+document.addEventListener('click', function (event) {
+    if (!event.target.matches('.MCDelete, .SADelete')) return false
+    const target = event.target
     // getting the target index that was click.
-    const index = $(e.currentTarget).closest('tr').data('index');
+    const index = target.closest('tr').getAttribute('data-index')
     // Delete items from table
-    let target;
-    if ($(e.currentTarget).hasClass('MCDelete')) {
-        target = $('#MCTable');
-    } else if ($(e.currentTarget).hasClass('SADelete')) {
-        target = $('#SATable');
+    let table;
+    if (target.classList.contains('MCDelete')){
+        table = document.querySelector('#MCTable')
+    } else if (target.classList.contains('SADelete')) {
+        table = document.querySelector('#SATable')
     } else {
         throw 'class name error'
     }
-    target.bootstrapTable('remove', {
-        field: '$index', values: [index]
+    $(table).bootstrapTable('remove', {
+        field: '$index', values: [parseInt(index)]
     });
 })

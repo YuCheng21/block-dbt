@@ -1,4 +1,4 @@
-import * as utils from "../../utilities";
+import * as utils from "@static/src/js/utilities"
 
 let contentSend = document.querySelector('#contentSend')
 if (contentSend) {
