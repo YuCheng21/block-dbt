@@ -10,48 +10,64 @@
                 </h2>
             </div>
             <div class="card-body px-5 py-4">
-                <div class="row py-4">
-                    <div class="col-12">
-                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
-                                data-bs-target="#modalTopicMC">
-                            <span class="iconify" data-icon="material-symbols:add-circle"></span>
-                            <span>新增選擇題</span>
-                        </button>
+                <div class="card border mb-4">
+                    <div class="card-header justify-content-between d-inline-flex align-items-center ">
+                        <h2 class="my-2">
+                        <span class="iconify" data-icon="ic:round-fact-check"></span>
+                            <span>選擇題</span>
+                        </h2>
+                        <div class="d-flex flex-column flex-sm-row">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modalTopicMC">
+                                <span class="iconify" data-icon="material-symbols:add-circle"></span>
+                                <span>新增選擇題</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body px-5 py-4">
+                        <div class="table-responsive">
+                            <table id="MCTable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                                   data-toggle="table"
+                                   data-locale="zh-TW">
+                                <thead>
+                                <tr>
+                                    <th data-width="80" data-width-unit="%" data-field="multipleChoice">題目</th>
+                                    <th data-width="10" data-width-unit="%" data-field="maxScore">最大分數</th>
+                                    <th data-width="10" data-width-unit="%" data-field="MCAction">操作</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table id="MCTable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
-                           data-toggle="table"
-                           data-locale="zh-TW">
-                        <thead>
-                        <tr>
-                            <th data-width="80" data-width-unit="%" data-field="multipleChoice">題目</th>
-                            <th data-width="10" data-width-unit="%" data-field="maxScore">最大分數</th>
-                            <th data-width="10" data-width-unit="%" data-field="MCAction">操作</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="row py-4">
-                    <div class="col-12">
-                        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
-                                data-bs-target="#modalTopicSA">
-                            <span class="iconify" data-icon="material-symbols:add-circle"></span>
-                            <span>新增簡答題</span>
-                        </button>
+                <div class="card border mb-4">
+                    <div class="card-header justify-content-between d-inline-flex align-items-center ">
+                        <h2 class="my-2">
+                            <span class="iconify" data-icon="icon-park-solid:topic"></span>
+                            <span>簡答題</span>
+                        </h2>
+                        <div class="d-flex flex-column flex-sm-row">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modalTopicSA">
+                                <span class="iconify" data-icon="material-symbols:add-circle"></span>
+                                <span>新增簡答題</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="table-responsive">
-                    <table id="SATable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
-                           data-toggle="table"
-                           data-locale="zh-TW">
-                        <thead>
-                        <tr>
-                            <th data-width="90" data-width-unit="%" data-field="shortAnswer">題目</th>
-                            <th data-width="10" data-width-unit="%" data-field="SAAction">操作</th>
-                        </tr>
-                        </thead>
-                    </table>
+                    <div class="card-body px-5 py-4">
+                        <div class="table-responsive">
+                            <table id="SATable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
+                                   data-toggle="table"
+                                   data-locale="zh-TW">
+                                <thead>
+                                <tr>
+                                    <th data-width="90" data-width-unit="%" data-field="shortAnswer">題目</th>
+                                    <th data-width="10" data-width-unit="%" data-field="SAAction">操作</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div class="row py-4">
                     <div class="col-6">

@@ -32,31 +32,12 @@
                 </div>
             </div>
         </div>
-        <div class="card border hv-shadow mb-4">
-            <div class="card-header">
-                <h2 class="my-2">
-                    <span class="iconify" data-icon="material-symbols:add-circle"></span>
-                    <span>實驗資訊</span>
-                </h2>
-            </div>
-            <div class="card-body px-5 py-4">
-                <div class="input-group mb-2">
-                    <label class="input-group-text">實驗地址</label>
-                    <input  type="text" class="form-control" placeholder="{{ id }}" disabled>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row py-4">
-                <div class="col-12">
-                    <button type="button" class="btn btn-primary w-100"
-                            onclick="location.href='{{ url_for(g.endpoint.exp.parent.user) }}'">
-                        <span class="iconify-inline" data-icon="websymbol:cancel"></span>
-                        <span>返回</span>
-                    </button>
-                </div>
-            </div>
-        </div>
+
+        <button type="button" class="btn btn-primary w-100"
+                onclick="location.href='{{ url_for(g.endpoint.exp.parent.user) }}'">
+            <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+            <span>返回</span>
+        </button>
     </div>
 {% endblock %}
 
