@@ -11,7 +11,7 @@ function component_action(id, code) {
         '4': 's-run',
         '5': 's-over'
     }
-    const href = `/exp/join/${state[code]}/${id}`
+    const href = utils.route2url(server.route.exp.private.content, state[code], id)
     return `
         <a href="${href}" class="btn btn-secondary text-white">查看</a>
     `

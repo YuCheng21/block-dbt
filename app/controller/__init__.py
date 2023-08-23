@@ -32,6 +32,8 @@ def create_app():
     app.logger.addHandler(console_logger())
     app.logger.addHandler(file_logger())
 
+    app.my_route = app.get_my_route()
+
     @app.before_request
     def before_request():
         g.website_name = settings.website_name
@@ -59,7 +61,7 @@ def create_app():
 class MyFlask(Flask):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.my_route = self.get_my_route()
+        self.my_route = None
 
     @staticmethod
     def register_middleware(app: Blueprint, middleware_func):

@@ -3,14 +3,22 @@ import {endpoint} from "@static/src/js/endpoint";
 
 
 function component_action(id) {
+    let href = [
+        utils.route2url(server.route.exp.parent.update, id),
+        utils.route2url(server.route.exp.parent.submit, id),
+        utils.route2url(server.route.exp.parent.subject, id),
+        utils.route2url(server.route.exp.parent.add_object, id),
+        utils.route2url(server.route.exp.parent.start, id),
+        utils.route2url(server.route.exp.parent.obj_list, id),
+    ]
     return `
         <div class="row g-2">
-            <a href="/exp/update/${id}" class="btn btn-primary text-white col-6">編輯問卷</a>
-            <a href="/exp/topic/${id}" class="btn btn-secondary text-white col-6 setLoading">確認問卷</a>
-            <a href="/exp/subject/${id}" class="btn btn-warning text-white col-6 setLoading">招募受測員</a>
-            <a href="/exp/object/${id}" class="btn btn-success text-white col-6">新增實驗物</a>
-            <a href="/exp/start/${id}" class="btn btn-danger text-white col-6">開始實驗</a>
-            <a href="/exp/object/${id}/list" class="btn btn-info text-white col-6">實驗物清單</a>
+            <a href="${href[0]}" class="btn btn-primary text-white col-6">編輯問卷</a>
+            <a href="${href[1]}" class="btn btn-secondary text-white col-6 setLoading">確認問卷</a>
+            <a href="${href[2]}" class="btn btn-warning text-white col-6 setLoading">招募受測員</a>
+            <a href="${href[3]}" class="btn btn-success text-white col-6">新增實驗物</a>
+            <a href="${href[4]}" class="btn btn-danger text-white col-6">開始實驗</a>
+            <a href="${href[5]}" class="btn btn-info text-white col-6">實驗物清單</a>
         </div>
     `
 }
