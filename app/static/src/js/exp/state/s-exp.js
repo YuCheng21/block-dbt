@@ -55,14 +55,11 @@ if (MCTable && SATable && server.endpoint === endpoint.exp.public.show && typeof
         document.querySelector('#stateExpSend').addEventListener('click', function (element){
             let location = document.querySelector('#expLocation').value
             let path = element.target.dataset.url
-            console.log(path)
             path = path.split('/')
             path[path.length-1] = location
             path = path.join('/')
-            let button = document.querySelector('#stateExpSend')
-            button.setAttribute('onclick', `location.href='${path}'`)
-            console.log(`location.href='${path}'`)
-            button.click()
+            window.location.href = path
+            utils.loading.show()
         })
     })
 }
