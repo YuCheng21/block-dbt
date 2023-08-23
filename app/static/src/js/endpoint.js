@@ -3,7 +3,7 @@ export let endpoint = {
         'parent': {
             'add_object': 'exp.parent.add_object',
             'obj_list': 'exp.parent.obj_list',
-            'sign_up': 'exp.parent.register',
+            'sign_up': 'exp.parent.sign_up',
             'start': 'exp.parent.start',
             'store': 'exp.parent.store',
             'subject': 'exp.parent.subject',
@@ -28,7 +28,7 @@ export let endpoint = {
     'user': {
         'login': 'user.login',
         'logout': 'user.logout',
-        'sign_up': 'user.register',
+        'sign_up': 'user.sign_up',
         'update': 'user.update'
     }
 }

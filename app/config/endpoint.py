@@ -12,7 +12,7 @@ class Parent(BaseModel):
     update = 'exp.parent.update'
     subject = 'exp.parent.subject'
     add_object = 'exp.parent.add_object'
-    sign_up = 'exp.parent.register'
+    sign_up = 'exp.parent.sign_up'
     submit = 'exp.parent.submit'
     start = 'exp.parent.start'
     obj_list = 'exp.parent.obj_list'
@@ -31,7 +31,7 @@ class Exp(BaseModel):
 
 
 class User(BaseModel):
-    sign_up = 'user.register'
+    sign_up = 'user.sign_up'
     login = 'user.login'
     logout = 'user.logout'
     update = 'user.update'

@@ -7,11 +7,11 @@ from app.middleware.authenticate import Authenticate
 app = Blueprint('user', __name__)
 
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
+@app.route('/sign_up', methods=['GET', 'POST'])
+def sign_up():
     if request.method == 'GET':
         title = '註冊'
-        return render_template('./user/register.html', **locals())
+        return render_template('./user/sign_up.html', **locals())
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()
@@ -56,17 +56,4 @@ def logout():
         UserModel.remove_session()
         flash('登出成功！', category='success-toast')
         return redirect(url_for(endpoint.user.login))
-    abort(404)
-
-
-@app.route('/user/update', methods=['POST'])
-@Authenticate.user()
-def update():
-    if request.method == 'POST':
-        # TODO: Do user update action
-        # TODO: if update failed
-        flash('更新失敗', category='error')
-        # TODO: if update success
-        flash('更新成功', category='success')
-        return redirect(request.referrer)
     abort(404)

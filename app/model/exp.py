@@ -69,7 +69,7 @@ class Exp:
         return status_code.ok
 
     @staticmethod
-    def register(data, account=None, password=None):
+    def sign_up(data, account=None, password=None):
         payload = {
             'scaddress': data['address'],
             'id': data['type'],
@@ -153,9 +153,9 @@ class Exp:
         return status_code.ok
 
     @staticmethod
-    async def register_and_upload_file(data, file):
+    async def sign_up_and_upload_file(data, file):
         auth = [session.get('account'), session.get('password')]
-        register = partial(Exp.register, data, *auth)
+        register = partial(Exp.sign_up, data, *auth)
         upload_file = partial(Exp.upload_file, data, file, *auth)
 
         loop = asyncio.get_event_loop()

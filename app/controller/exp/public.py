@@ -43,7 +43,7 @@ def show(id, state):
             try:
                 # Exp.register(args)
                 # Exp.upload_file(args, file_consent)
-                results = asyncio.run(Exp.register_and_upload_file(args, file_consent))
+                results = asyncio.run(Exp.sign_up_and_upload_file(args, file_consent))
             except Exception as e:
                 if e.args[0] in exception_code.dict().values():
                     flash(e.args[0], category='error')

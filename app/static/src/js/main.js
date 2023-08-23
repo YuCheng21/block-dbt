@@ -6,7 +6,7 @@ import copy from 'copy-to-clipboard';
 import * as utils from "@static/src/js/utilities"
 
 import './user/login'
-import './user/register'
+import './user/sign_up'
 
 import './exp/index'
 import './exp/user'

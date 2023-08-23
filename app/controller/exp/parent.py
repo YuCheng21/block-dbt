@@ -106,12 +106,12 @@ def add_object(id):
     abort(404)
 
 
-@app.route('/exp/register/<address>/<type>/<location>', methods=['GET'])
-def register(address, type, location):
+@app.route('/exp/sign_up/<address>/<type>/<location>', methods=['GET'])
+def sign_up(address, type, location):
     if request.method == 'GET':
         data = dict(address=address, type=type, location=location)
         try:
-            Exp.register(data)
+            Exp.sign_up(data)
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
