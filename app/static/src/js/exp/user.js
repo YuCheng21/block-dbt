@@ -17,7 +17,7 @@ function load_data() {
 
 function load_table(data) {
     const rows = [];
-    Object.values(data).forEach((item) => {
+    Object.entries(data).forEach(([key, item]) => {
         if (item._Researchers_name === server.account){
             rows.push({
                 id: `${item._serial}`,
@@ -25,14 +25,14 @@ function load_table(data) {
                 member: utils.component_member(item._Researchers_name),
                 content: utils.component_content(item._content),
                 state: utils.component_state(item._status),
-                action: component_action(item._address)
+                action: component_action(item._address, key)
             })
         }
     });
     $('#expTable').bootstrapTable('load', rows)
 }
 
-function component_action(id) {
+function component_action(id, key) {
     let href = [
         utils.route2url(server.route.exp.parent.update, id),
         utils.route2url(server.route.exp.parent.submit, id),
@@ -42,13 +42,17 @@ function component_action(id) {
         utils.route2url(server.route.exp.parent.obj_list, id),
     ]
     return `
-        <div class="row g-2">
-            <a href="${href[0]}" class="btn btn-primary text-white col-6">編輯問卷</a>
-            <a href="${href[1]}" class="btn btn-secondary text-white col-6 setLoading">確認問卷</a>
-            <a href="${href[2]}" class="btn btn-warning text-white col-6 setLoading">招募受測員</a>
-            <a href="${href[3]}" class="btn btn-success text-white col-6">新增實驗物</a>
-            <a href="${href[4]}" class="btn btn-danger text-white col-6">開始實驗</a>
-            <a href="${href[5]}" class="btn btn-info text-white col-6">實驗物清單</a>
+        <button class="btn btn-primary w-100" data-bs-toggle="collapse" data-bs-target="#key${key}">
+            <span class="iconify" data-icon="icon-park-solid:down-c" data-rotate="270deg"></span>
+            <span>展開選項</span>
+        </button>
+        <div class="row g-2 collapse pt-2" id="key${key}">
+            <a href="${href[0]}" class="btn btn-info w-100">編輯問卷</a>
+            <a href="${href[1]}" class="btn btn-secondary w-100 setLoading">確認問卷</a>
+            <a href="${href[2]}" class="btn btn-warning w-100 setLoading">招募受測員</a>
+            <a href="${href[3]}" class="btn btn-success w-100">新增實驗物</a>
+            <a href="${href[4]}" class="btn btn-danger w-100">開始實驗</a>
+            <a href="${href[5]}" class="btn btn-primary w-100">實驗物清單</a>
         </div>
     `
 }
