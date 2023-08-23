@@ -1,5 +1,4 @@
 import Swal from 'sweetalert2'
-import copy from "copy-to-clipboard";
 
 /**
  * sweetAlert
@@ -191,4 +190,37 @@ export function route2url(route, ...params){
         rule = rule.replace(/<.*?>/, params[key])
     })
     return rule
+}
+
+export function load_info(data){
+    let exp = null;
+    Object.values(data).forEach((item) => {
+        if (item._address === page.id) {
+            exp = item
+        }
+    });
+    document.querySelector("#expId").value = exp._serial
+    document.querySelector("#expName").value = exp._name
+    document.querySelector("#expContent").value = exp._content
+    document.querySelector("#expTime").value = '2023/08/30 22:00:00'
+}
+
+export function load_topic(data) {
+    const mc = [];
+    const sa = [];
+    Object.values(data).forEach((item) => {
+        if (item._type === 'choose') {
+            mc.push({
+                multipleChoice: `${item._topic}`,
+                maxScore: `${item._scale}`
+            })
+        }
+        if (item._type === 'filling') {
+            sa.push({
+                shortAnswer: `${item._topic}`
+            })
+        }
+    });
+    $('#MCTable').bootstrapTable('load', mc)
+    $('#SATable').bootstrapTable('load', sa)
 }
