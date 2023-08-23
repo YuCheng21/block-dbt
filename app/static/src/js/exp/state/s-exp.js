@@ -2,10 +2,36 @@ import * as utils from "@static/src/js/utilities"
 import {endpoint} from "@static/src/js/endpoint";
 
 
-function load_info(data){
+if (server.endpoint === endpoint.exp.public.show && ['s-exp'].includes(page.state)) {
+    document.addEventListener("DOMContentLoaded", function () {
+        const body = {"scaddress": page.id};
+        utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
+            load_info(data)
+        })
+        utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
+            document.querySelector("#expNum").value = data[0]['experimenter']
+            document.querySelector("#subNum").value = data[0]['subject']
+        })
+        utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
+            load_topic(data)
+        })
+        let stateExpSend = document.querySelector('#stateExpSend')
+        stateExpSend.addEventListener('click', function (event) {
+            let location = document.querySelector('#expLocation').value
+            let path = event.target.dataset.url
+            path = path.split('/')
+            path[path.length - 1] = location
+            path = path.join('/')
+            window.location.href = path
+            utils.loading.show()
+        })
+    })
+}
+
+function load_info(data) {
     let exp = null;
     Object.values(data).forEach((item) => {
-        if (item._address === page.id){
+        if (item._address === page.id) {
             exp = item
         }
     });
@@ -33,33 +59,4 @@ function load_topic(data) {
     });
     $('#MCTable').bootstrapTable('load', mc)
     $('#SATable').bootstrapTable('load', sa)
-}
-
-let MCTable = document.querySelector('#MCTable')
-let SATable = document.querySelector('#SATable')
-if (MCTable && SATable && server.endpoint === endpoint.exp.public.show && typeof page != 'undefined' && ['s-exp'].includes(page.state)) {
-    document.addEventListener("DOMContentLoaded", function () {
-        const body = {"scaddress": page.id};
-        utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
-            load_info(data)
-
-        })
-        utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
-            document.querySelector("#expNum").value = data[0]['experimenter']
-            document.querySelector("#subNum").value = data[0]['subject']
-
-        })
-        utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
-            load_topic(data)
-        })
-        document.querySelector('#stateExpSend').addEventListener('click', function (element){
-            let location = document.querySelector('#expLocation').value
-            let path = element.target.dataset.url
-            path = path.split('/')
-            path[path.length-1] = location
-            path = path.join('/')
-            window.location.href = path
-            utils.loading.show()
-        })
-    })
 }

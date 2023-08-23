@@ -2,6 +2,15 @@ import * as utils from "@static/src/js/utilities"
 import {endpoint} from "@static/src/js/endpoint";
 
 
+if (server.endpoint === endpoint.exp.parent.update) {
+    document.addEventListener("DOMContentLoaded", function () {
+        const body = {"scaddress": page.id};
+        utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
+            load_table(data)
+        })
+    })
+}
+
 function load_table(data) {
     const mc = [];
     const sa = [];
@@ -28,15 +37,4 @@ function load_table(data) {
     });
     $('#MCTable').bootstrapTable('load', mc)
     $('#SATable').bootstrapTable('load', sa)
-}
-
-let MCTable = document.querySelector('#MCTable')
-let SATable = document.querySelector('#SATable')
-if (MCTable && SATable && server.endpoint === endpoint.exp.parent.update) {
-    document.addEventListener("DOMContentLoaded", function () {
-        const body = {"scaddress": page.id};
-        utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
-            load_table(data)
-        })
-    })
 }

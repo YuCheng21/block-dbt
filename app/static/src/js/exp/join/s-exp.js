@@ -1,7 +1,9 @@
 import * as utils from "@static/src/js/utilities"
+import {endpoint} from "@static/src/js/endpoint";
 
-let contentSend = document.querySelector('#contentSend')
-if (contentSend) {
+
+if (server.endpoint === endpoint.exp.private.content && page.state === 's-exp') {
+    let contentSend = document.querySelector('#contentSend')
     contentSend.addEventListener('click', function () {
         let data = {
             smartContractAddress: page.id,

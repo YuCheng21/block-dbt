@@ -2,8 +2,8 @@ import * as utils from "@static/src/js/utilities"
 import {endpoint} from "@static/src/js/endpoint";
 
 
-let send = document.querySelector('#send')
-if (send && server.endpoint === endpoint.user.sign_up) {
+if (server.endpoint === endpoint.user.sign_up) {
+    let send = document.querySelector('#send')
     send.addEventListener('click', function () {
         // check required item
         if (document.querySelector("#password").value === '') return false
