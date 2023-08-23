@@ -23,8 +23,10 @@ document.addEventListener('click', function (event) {
     targetTable.bootstrapTable('check', index)
     let value = targetTable.bootstrapTable('getSelections')
     targetTable.bootstrapTable('uncheck', index)
-
-    document.querySelector('#shortAnswer').value = value[0].shortAnswer
-    document.querySelector('#multipleChoice').value = value[0].multipleChoice
-    document.querySelector('#maxScore').value = value[0].maxScore
+    if (target.matches('.MCUpdate')) {
+        document.querySelector('#multipleChoice').value = value[0].multipleChoice
+        document.querySelector('#maxScore').value = value[0].maxScore
+    } else if (target.matches('.SAUpdate')) {
+        document.querySelector('#shortAnswer').value = value[0].shortAnswer
+    }
 })
