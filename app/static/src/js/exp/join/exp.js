@@ -41,6 +41,6 @@ function component_action(id, code) {
     }
     const href = utils.route2url(server.route.exp.private.content, state[code], id)
     return `
-        <a href="${href}" class="btn btn-secondary text-white">查看</a>
+        <a href="${href}" class="btn btn-secondary w-100">查看</a>
     `
 }

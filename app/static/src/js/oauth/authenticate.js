@@ -33,6 +33,6 @@ function load_table(data) {
 function component_action(id) {
     let href = utils.route2url(server.route.oauth.authenticate_id, id)
     return `
-        <a href="${href}" class="btn btn-primary text-white setLoading">驗證</a>
+        <a href="${href}" class="btn btn-primary w-100 setLoading">驗證</a>
     `
 }
