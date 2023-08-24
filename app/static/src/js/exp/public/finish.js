@@ -15,6 +15,10 @@ if (server.endpoint === endpoint.exp.public.show && page.state === 's-over') {
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
             utils.load_topic(data)
         })
+        utils.fetch_data(server.url.exp.n_object, server.basic_auth, 'POST', body).then(data => {
+            document.querySelector("#expObject").value = data[0]['experimental']
+            document.querySelector("#controlObject").value = data[0]['control']
+        })
         utils.fetch_data(server.url.exp.data, server.basic_auth, 'POST', body).then(data => {
             let div = document.querySelector("body > main > div > div:nth-child(3) > div.card-body.px-5.py-4 > div")
             div.innerHTML = `<pre>${JSON.stringify(data, null, 4)}</pre>`

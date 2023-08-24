@@ -12,7 +12,10 @@ if (server.endpoint === endpoint.exp.public.show && ['s-sub'].includes(page.stat
         utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
             document.querySelector("#expNum").value = data[0]['experimenter']
             document.querySelector("#subNum").value = data[0]['subject']
-
+        })
+        utils.fetch_data(server.url.exp.n_object, server.basic_auth, 'POST', body).then(data => {
+            document.querySelector("#expObject").value = data[0]['experimental']
+            document.querySelector("#controlObject").value = data[0]['control']
         })
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
             utils.load_topic(data)

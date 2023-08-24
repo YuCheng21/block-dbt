@@ -20,6 +20,7 @@ class Exp(BaseModel):
     number: HttpUrl = f'{settings.api_url}/getMember'
     submit: HttpUrl = f'{settings.api_url}/fillQuestion'
     data: HttpUrl = f'{settings.api_url}/getResult'
+    n_object: HttpUrl = f'{settings.api_url}/itemlength'
 
 
 class User(BaseModel):
