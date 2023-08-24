@@ -7,21 +7,21 @@ class Public(BaseModel):
 
 
 class Parent(BaseModel):
-    user = 'exp.parent.user'
-    store = 'exp.parent.store'
-    update = 'exp.parent.update'
-    subject = 'exp.parent.subject'
-    add_object = 'exp.parent.add_object'
+    index = 'exp.parent.index'
+    build = 'exp.parent.build'
+    update4build = 'exp.parent.update4build'
+    exp2sub = 'exp.parent.exp2sub'
+    obj4sub = 'exp.parent.obj4sub'
     sign_up = 'exp.parent.sign_up'
-    submit = 'exp.parent.submit'
-    start = 'exp.parent.start'
-    obj_list = 'exp.parent.obj_list'
+    build2auth = 'exp.parent.build2auth'
+    start4sub = 'exp.parent.start4sub'
+    obj4run = 'exp.parent.obj4run'
 
 
 class Private(BaseModel):
-    join = 'exp.private.join'
-    content = 'exp.private.content'
-    form = 'exp.private.form'
+    index = 'exp.private.index'
+    show = 'exp.private.show'
+    form4run = 'exp.private.form4run'
 
 
 class Exp(BaseModel):
@@ -34,14 +34,12 @@ class User(BaseModel):
     sign_up = 'user.sign_up'
     login = 'user.login'
     logout = 'user.logout'
-    update = 'user.update'
 
 
 class OAuth(BaseModel):
     index = 'oauth.index'
     store = 'oauth.store'
     authenticate = 'oauth.authenticate'
-    authenticate_id = 'oauth.authenticate_id'
 
 
 class Endpoint(BaseModel):

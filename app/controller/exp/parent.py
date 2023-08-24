@@ -12,15 +12,15 @@ app = Blueprint('parent', __name__)
 
 @app.route('/exp/parent/index', methods=['GET'])
 @app.route('/exp/parent', methods=['GET'])
-def user():
+def index():
     if request.method == 'GET':
         title = '實驗管理'
         return render_template('./exp/parent/index.html', **locals())
     abort(404)
 
 
-@app.route('/exp/parent/store', methods=['GET', 'POST'])
-def store():
+@app.route('/exp/parent/build', methods=['GET', 'POST'])
+def build():
     if request.method == 'GET':
         title = '新增實驗'
         return render_template('./exp/parent/store.html', **locals())
@@ -31,16 +31,16 @@ def store():
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.exp.parent.store))
+                return redirect(url_for(endpoint.exp.parent.build))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             flash('新增成功', category='success-toast')
-            return redirect(url_for(endpoint.exp.parent.user))
+            return redirect(url_for(endpoint.exp.parent.index))
 
 
 @app.route('/exp/parent/build/update/<id>', methods=['GET', 'POST'])
-def update(id):
+def update4build(id):
     if request.method == 'GET':
         title = '編輯實驗'
         return render_template('./exp/parent/build.html', **locals())
@@ -59,16 +59,16 @@ def update(id):
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.exp.parent.user))
+                return redirect(url_for(endpoint.exp.parent.index))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             flash('新增成功', category='success-toast')
-            return redirect(url_for(endpoint.exp.parent.user))
+            return redirect(url_for(endpoint.exp.parent.index))
 
 
-@app.route('/exp/parent/build/topic/<id>', methods=['GET'])
-def submit(id):
+@app.route('/exp/parent/build/auth/<id>', methods=['GET'])
+def build2auth(id):
     if request.method == 'GET':
         data = dict(address=id)
         try:
@@ -76,16 +76,16 @@ def submit(id):
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.exp.parent.user))
+                return redirect(url_for(endpoint.exp.parent.index))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             flash('成功', category='success')
-            return redirect(url_for(endpoint.exp.parent.user))
+            return redirect(url_for(endpoint.exp.parent.index))
 
 
-@app.route('/exp/parent/experiment/<id>', methods=['GET'])
-def subject(id):
+@app.route('/exp/parent/experiment/subject/<id>', methods=['GET'])
+def exp2sub(id):
     if request.method == 'GET':
         data = dict(address=id)
         try:
@@ -93,16 +93,16 @@ def subject(id):
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.exp.parent.user))
+                return redirect(url_for(endpoint.exp.parent.index))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             flash('成功', category='success')
-            return redirect(url_for(endpoint.exp.parent.user))
+            return redirect(url_for(endpoint.exp.parent.index))
 
 
 @app.route('/exp/parent/subject/object/<id>', methods=['GET', 'POST'])
-def add_object(id):
+def obj4sub(id):
     if request.method == 'GET':
         title = '新增實驗物'
         return render_template('./exp/parent/subject-object.html', **locals())
@@ -114,17 +114,17 @@ def add_object(id):
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.exp.parent.user))
+                return redirect(url_for(endpoint.exp.parent.index))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             flash('成功', category='success')
-            return redirect(url_for(endpoint.exp.parent.add_object, id=id))
+            return redirect(url_for(endpoint.exp.parent.obj4sub, id=id))
     abort(404)
 
 
 @app.route('/exp/parent/subject/start/<id>', methods=['GET', 'POST'])
-def start(id):
+def start4sub(id):
     if request.method == 'GET':
         title = '開始實驗'
         return render_template('./exp/parent/subject.html', **locals())
@@ -136,16 +136,16 @@ def start(id):
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.exp.parent.user))
+                return redirect(url_for(endpoint.exp.parent.index))
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
             flash('成功', category='success')
-            return redirect(url_for(endpoint.exp.parent.user))
+            return redirect(url_for(endpoint.exp.parent.index))
 
 
 @app.route('/exp/parent/running/object/<id>', methods=['GET', 'POST'])
-def obj_list(id):
+def obj4run(id):
     if request.method == 'GET':
         title = '實驗物清單'
         return render_template('./exp/parent/running.html', **locals())

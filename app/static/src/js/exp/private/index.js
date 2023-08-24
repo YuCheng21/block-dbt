@@ -3,7 +3,7 @@ import {endpoint} from "@static/src/js/config/endpoint";
 import {state} from "@static/src/js/config/state";
 
 
-if (server.endpoint === endpoint.exp.private.join) {
+if (server.endpoint === endpoint.exp.private.index) {
     document.addEventListener("DOMContentLoaded", function () {
         load_data()
     })
@@ -32,7 +32,7 @@ function load_table(data) {
 }
 
 function component_action(id, code) {
-    const href = utils.route2url(server.route.exp.private.content, state[code], id)
+    const href = utils.route2url(server.route.exp.private.show, state[code], id)
     return `
         <a href="${href}" class="btn btn-secondary w-100">查看</a>
     `

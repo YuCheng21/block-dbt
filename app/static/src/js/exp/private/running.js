@@ -5,7 +5,7 @@ import {endpoint} from "@static/src/js/config/endpoint";
 /*
 * 實驗人員填寫表單與掃描實驗物頁面載入資料
 * */
-if (server.endpoint === endpoint.exp.private.content && page.state === 's-run') {
+if (server.endpoint === endpoint.exp.private.show && page.state === 's-run') {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
         utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
@@ -24,7 +24,7 @@ if (server.endpoint === endpoint.exp.private.content && page.state === 's-run') 
 /*
 * 實驗人員填寫表單載入資料
 * */
-if (server.endpoint === endpoint.exp.private.form) {
+if (server.endpoint === endpoint.exp.private.form4run) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {

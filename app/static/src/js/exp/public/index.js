@@ -34,7 +34,7 @@ function load_table(data) {
 function component_action(id, code) {
     let href = utils.route2url(server.route.exp.public.show, state[code], id)
     if (code === '4') {
-        href = utils.route2url(server.route.exp.private.content, state[code], id)
+        href = utils.route2url(server.route.exp.private.show, state[code], id)
     }
     const active = `
         <a href="${href}" class="btn btn-secondary w-100">查看</a>

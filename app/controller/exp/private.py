@@ -10,15 +10,15 @@ app = Blueprint('private', __name__)
 
 @app.route('/exp/private/index', methods=['GET'])
 @app.route('/exp/private', methods=['GET'])
-def join():
+def index():
     if request.method == 'GET':
         title = '我的實驗'
         return render_template('./exp/private/index.html', **locals())
     abort(404)
 
 
-@app.route('/exp/private/<state>/<id>', methods=['GET', 'POST'])
-def content(id, state):
+@app.route('/exp/private/show/<state>/<id>', methods=['GET', 'POST'])
+def show(id, state):
     if request.method == 'GET':
         title = id
         if state in ['s-exp']:
@@ -33,7 +33,7 @@ def content(id, state):
             except Exception as e:
                 if e.args[0] in exception_code.dict().values():
                     flash(e.args[0], category='error')
-                    return redirect(url_for(endpoint.exp.private.content, id=id, state=state))
+                    return redirect(url_for(endpoint.exp.private.show, id=id, state=state))
                 current_app.logger.error(f'error msg: {e}')
                 abort(404)
             else:
@@ -45,17 +45,17 @@ def content(id, state):
             except Exception as e:
                 if e.args[0] in exception_code.dict().values():
                     flash(e.args[0], category='error')
-                    return redirect(url_for(endpoint.exp.private.content, id=id, state=state))
+                    return redirect(url_for(endpoint.exp.private.show, id=id, state=state))
                 current_app.logger.error(f'error msg: {e}')
                 abort(404)
             else:
                 flash('新增成功', category='success-toast')
-                return redirect(url_for(endpoint.exp.private.join))
+                return redirect(url_for(endpoint.exp.private.index))
     abort(404)
 
 
 @app.route('/exp/private/running/<id>', methods=['GET', 'POST'])
-def form(id):
+def form4run(id):
     if request.method == 'GET':
         title = '填寫問卷'
         return render_template('./exp/private/running-form.html', **locals())

@@ -5,7 +5,7 @@ import {endpoint} from "@static/src/js/config/endpoint";
 /*
 *  實驗管理頁面載入資料
 * */
-if (server.endpoint === endpoint.exp.parent.user) {
+if (server.endpoint === endpoint.exp.parent.index) {
     document.addEventListener("DOMContentLoaded", function () {
         load_data()
     })
@@ -37,12 +37,12 @@ function load_table(data) {
 
 function component_action(id, key) {
     let href = [
-        utils.route2url(server.route.exp.parent.update, id),
-        utils.route2url(server.route.exp.parent.submit, id),
-        utils.route2url(server.route.exp.parent.subject, id),
-        utils.route2url(server.route.exp.parent.add_object, id),
-        utils.route2url(server.route.exp.parent.start, id),
-        utils.route2url(server.route.exp.parent.obj_list, id),
+        utils.route2url(server.route.exp.parent.update4build, id),
+        utils.route2url(server.route.exp.parent.build2auth, id),
+        utils.route2url(server.route.exp.parent.exp2sub, id),
+        utils.route2url(server.route.exp.parent.obj4sub, id),
+        utils.route2url(server.route.exp.parent.start4sub, id),
+        utils.route2url(server.route.exp.parent.obj4run, id),
     ]
     return `
         <button class="btn btn-primary w-100" data-bs-toggle="collapse" data-bs-target="#key${key}">

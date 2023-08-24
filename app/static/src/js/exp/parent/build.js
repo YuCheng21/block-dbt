@@ -5,7 +5,7 @@ import {endpoint} from "@static/src/js/config/endpoint";
 /*
 *  編輯問卷頁面載入資料
 * */
-if (server.endpoint === endpoint.exp.parent.update) {
+if (server.endpoint === endpoint.exp.parent.update4build) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
