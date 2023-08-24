@@ -15,7 +15,7 @@ app = Blueprint('public', __name__)
 def index():
     if request.method == 'GET':
         title = '所有實驗'
-        return render_template('./exp/index.html', **locals())
+        return render_template('./exp/public/index.html', **locals())
     abort(404)
 
 
@@ -24,15 +24,15 @@ def show(id, state):
     if request.method == 'GET':
         title = '檢視實驗'
         if state in ['s-form', 's-auth']:
-            return render_template('./exp/state/s-form.html', **locals())
+            return render_template('./exp/public/build.html', **locals())
         elif state in ['s-exp']:
-            return render_template('./exp/state/s-exp.html', **locals())
+            return render_template('./exp/public/experiment.html', **locals())
         elif state in ['s-sub']:
-            return render_template('./exp/state/s-sub.html', **locals())
+            return render_template('./exp/public/subject.html', **locals())
         elif state in ['s-run']:
-            return render_template('./exp/state/s-run.html', **locals())
+            return render_template('./exp/public/running.html', **locals())
         elif state in ['s-over']:
-            return render_template('./exp/state/s-over.html', **locals())
+            return render_template('./exp/public/finish.html', **locals())
         abort(404)
     elif request.method == 'POST':
         if state in ['s-exp']:

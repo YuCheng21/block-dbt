@@ -12,7 +12,7 @@ app = Blueprint('private', __name__)
 def join():
     if request.method == 'GET':
         title = '我的實驗'
-        return render_template('./exp/join/exp.html', **locals())
+        return render_template('./exp/private/index.html', **locals())
     abort(404)
 
 
@@ -21,9 +21,9 @@ def content(id, state):
     if request.method == 'GET':
         title = id
         if state in ['s-exp']:
-            return render_template('./exp/join/s-exp.html', **locals())
+            return render_template('./exp/private/experiment.html', **locals())
         elif state in ['s-run']:
-            return render_template('./exp/join/s-run.html', **locals())
+            return render_template('./exp/private/running.html', **locals())
     elif request.method == 'POST':
         if state in ['s-exp']:
             try:
@@ -57,7 +57,7 @@ def content(id, state):
 def form(id):
     if request.method == 'GET':
         title = '填寫問卷'
-        return render_template('./exp/form.html', **locals())
+        return render_template('./exp/private/running-form.html', **locals())
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()

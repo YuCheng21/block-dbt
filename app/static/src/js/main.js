@@ -19,7 +19,7 @@ import './exp/public/experiment'
 import './exp/public/subject'
 import './exp/public/running'
 import './exp/public/finish'
-import './exp/parent/object'
+import './exp/parent/running'
 
 import './topic/delete'
 import './topic/update'

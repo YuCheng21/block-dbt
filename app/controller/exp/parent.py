@@ -15,7 +15,7 @@ app = Blueprint('parent', __name__)
 def user():
     if request.method == 'GET':
         title = '實驗管理'
-        return render_template('./exp/user.html', **locals())
+        return render_template('./exp/parent/index.html', **locals())
     abort(404)
 
 
@@ -23,7 +23,7 @@ def user():
 def store():
     if request.method == 'GET':
         title = '新增實驗'
-        return render_template('./exp/add.html', **locals())
+        return render_template('./exp/parent/store.html', **locals())
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()
@@ -43,7 +43,7 @@ def store():
 def update(id):
     if request.method == 'GET':
         title = '編輯實驗'
-        return render_template('./exp/update.html', **locals())
+        return render_template('./exp/parent/build.html', **locals())
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()
@@ -88,7 +88,7 @@ def subject(id):
 def add_object(id):
     if request.method == 'GET':
         title = '新增實驗物'
-        return render_template('./exp/object.html', **locals())
+        return render_template('./exp/parent/subject-object.html', **locals())
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()
@@ -144,7 +144,7 @@ def submit(id):
 def start(id):
     if request.method == 'GET':
         title = '開始實驗'
-        return render_template('./exp/start.html', **locals())
+        return render_template('./exp/parent/subject.html', **locals())
     elif request.method == 'POST':
         form_data = request.values.to_dict()
         data = dict(address=id, date=form_data['date'])
@@ -165,4 +165,4 @@ def start(id):
 def obj_list(id):
     if request.method == 'GET':
         title = '實驗物清單'
-        return render_template('./exp/object-list.html', **locals())
+        return render_template('./exp/parent/running.html', **locals())
