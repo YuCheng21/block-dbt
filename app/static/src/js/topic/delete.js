@@ -1,3 +1,6 @@
+/*
+* click delete button: remove target row
+* */
 document.addEventListener('click', function (event) {
     if (!event.target.matches('.MCDelete, .SADelete')) return false
     const target = event.target

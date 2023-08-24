@@ -1,3 +1,6 @@
+/*
+* click edit button: open target row on edit modal, and write info on modal
+* */
 document.addEventListener('click', function (event) {
     if (!event.target.matches('.MCUpdate, .SAUpdate')) return false
     const target = event.target

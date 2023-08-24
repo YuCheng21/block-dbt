@@ -1,3 +1,6 @@
+/*
+* click confirm button on mc modal: update/add the data on mc table
+* */
 let multipleChoiceSend = document.querySelector('#multipleChoiceSend')
 if (multipleChoiceSend){
     let modalTopicMC = document.querySelector('#modalTopicMC')

@@ -1,3 +1,6 @@
+/*
+* click confirm button on sa modal: update/add the data on sa table
+* */
 let shortAnswerSend = document.querySelector('#shortAnswerSend')
 if (shortAnswerSend){
     let modalTopicSA = document.querySelector('#modalTopicSA')
