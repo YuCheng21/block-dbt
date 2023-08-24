@@ -1,6 +1,9 @@
 import * as utils from "@static/src/js/utilities"
 
 
+/*
+*  新增實驗頁面
+* */
 let expSend = document.querySelector('#expSend')
 if (expSend) {
     expSend.addEventListener('click', function () {
@@ -14,6 +17,9 @@ if (expSend) {
     })
 }
 
+/*
+*  編輯問卷頁面
+* */
 let expUpdateSend = document.querySelector('#expUpdateSend')
 if (expUpdateSend) {
     expUpdateSend.addEventListener('click', function () {
@@ -26,6 +32,9 @@ if (expUpdateSend) {
     })
 }
 
+/*
+* 實驗人員填寫資訊與掃描實驗物頁面
+* */
 function getRadioValue(theRadioGroup){
     let elements = document.getElementsByName(theRadioGroup);
     for (let i = 0, l = elements.length; i < l; i++){
