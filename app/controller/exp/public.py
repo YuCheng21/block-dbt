@@ -9,9 +9,10 @@ from app.model.exp import Exp
 app = Blueprint('public', __name__)
 
 
-@app.route('/', methods=['GET'])
-@app.route('/index', methods=['GET'])
+@app.route('/exp/public/index', methods=['GET'])
+@app.route('/exp/public', methods=['GET'])
 @app.route('/exp', methods=['GET'])
+@app.route('/', methods=['GET'])
 def index():
     if request.method == 'GET':
         title = '所有實驗'
@@ -19,7 +20,7 @@ def index():
     abort(404)
 
 
-@app.route('/exp/show/<state>/<id>', methods=['GET', 'POST'])
+@app.route('/exp/public/show/<state>/<id>', methods=['GET', 'POST'])
 def show(id, state):
     if request.method == 'GET':
         title = '檢視實驗'

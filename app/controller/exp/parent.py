@@ -7,11 +7,11 @@ from app.config.endpoint import endpoint
 from app.model.exp import Exp
 from app.model.topic import Topic
 
-
 app = Blueprint('parent', __name__)
 
 
-@app.route('/exp/user', methods=['GET'])
+@app.route('/exp/parent/index', methods=['GET'])
+@app.route('/exp/parent', methods=['GET'])
 def user():
     if request.method == 'GET':
         title = '實驗管理'
@@ -19,7 +19,7 @@ def user():
     abort(404)
 
 
-@app.route('/exp/store', methods=['GET', 'POST'])
+@app.route('/exp/parent/store', methods=['GET', 'POST'])
 def store():
     if request.method == 'GET':
         title = '新增實驗'
@@ -39,7 +39,7 @@ def store():
             return redirect(url_for(endpoint.exp.parent.user))
 
 
-@app.route('/exp/update/<id>', methods=['GET', 'POST'])
+@app.route('/exp/parent/build/update/<id>', methods=['GET', 'POST'])
 def update(id):
     if request.method == 'GET':
         title = '編輯實驗'
@@ -67,7 +67,24 @@ def update(id):
             return redirect(url_for(endpoint.exp.parent.user))
 
 
-@app.route('/exp/subject/<id>', methods=['GET'])
+@app.route('/exp/parent/build/topic/<id>', methods=['GET'])
+def submit(id):
+    if request.method == 'GET':
+        data = dict(address=id)
+        try:
+            Topic.confirm(data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for(endpoint.exp.parent.user))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash('成功', category='success')
+            return redirect(url_for(endpoint.exp.parent.user))
+
+
+@app.route('/exp/parent/experiment/<id>', methods=['GET'])
 def subject(id):
     if request.method == 'GET':
         data = dict(address=id)
@@ -84,7 +101,7 @@ def subject(id):
             return redirect(url_for(endpoint.exp.parent.user))
 
 
-@app.route('/exp/object/<id>', methods=['GET', 'POST'])
+@app.route('/exp/parent/subject/object/<id>', methods=['GET', 'POST'])
 def add_object(id):
     if request.method == 'GET':
         title = '新增實驗物'
@@ -106,41 +123,7 @@ def add_object(id):
     abort(404)
 
 
-@app.route('/exp/sign_up/<address>/<type>/<location>', methods=['GET'])
-def sign_up(address, type, location):
-    if request.method == 'GET':
-        data = dict(address=address, type=type, location=location)
-        try:
-            Exp.sign_up(data)
-        except Exception as e:
-            if e.args[0] in exception_code.dict().values():
-                flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.exp.public.index))
-            current_app.logger.error(f'error msg: {e}')
-            abort(404)
-        else:
-            flash('成功', category='success')
-            return redirect(url_for(endpoint.exp.public.index))
-
-
-@app.route('/exp/topic/<id>', methods=['GET'])
-def submit(id):
-    if request.method == 'GET':
-        data = dict(address=id)
-        try:
-            Topic.confirm(data)
-        except Exception as e:
-            if e.args[0] in exception_code.dict().values():
-                flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.exp.parent.user))
-            current_app.logger.error(f'error msg: {e}')
-            abort(404)
-        else:
-            flash('成功', category='success')
-            return redirect(url_for(endpoint.exp.parent.user))
-
-
-@app.route('/exp/start/<id>', methods=['GET', 'POST'])
+@app.route('/exp/parent/subject/start/<id>', methods=['GET', 'POST'])
 def start(id):
     if request.method == 'GET':
         title = '開始實驗'
@@ -161,8 +144,25 @@ def start(id):
             return redirect(url_for(endpoint.exp.parent.user))
 
 
-@app.route('/exp/object/<id>/list', methods=['GET', 'POST'])
+@app.route('/exp/parent/running/object/<id>', methods=['GET', 'POST'])
 def obj_list(id):
     if request.method == 'GET':
         title = '實驗物清單'
         return render_template('./exp/parent/running.html', **locals())
+
+
+@app.route('/exp/parent/sign_up/<address>/<type>/<location>', methods=['GET'])
+def sign_up(address, type, location):
+    if request.method == 'GET':
+        data = dict(address=address, type=type, location=location)
+        try:
+            Exp.sign_up(data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for(endpoint.exp.public.index))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash('成功', category='success')
+            return redirect(url_for(endpoint.exp.public.index))

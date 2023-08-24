@@ -8,7 +8,8 @@ from app.model.topic import Topic
 app = Blueprint('private', __name__)
 
 
-@app.route('/exp/join', methods=['GET'])
+@app.route('/exp/private/index', methods=['GET'])
+@app.route('/exp/private', methods=['GET'])
 def join():
     if request.method == 'GET':
         title = '我的實驗'
@@ -16,7 +17,7 @@ def join():
     abort(404)
 
 
-@app.route('/exp/join/<state>/<id>', methods=['GET', 'POST'])
+@app.route('/exp/private/<state>/<id>', methods=['GET', 'POST'])
 def content(id, state):
     if request.method == 'GET':
         title = id
@@ -53,7 +54,7 @@ def content(id, state):
     abort(404)
 
 
-@app.route('/exp/form/<id>', methods=['GET', 'POST'])
+@app.route('/exp/private/running/<id>', methods=['GET', 'POST'])
 def form(id):
     if request.method == 'GET':
         title = '填寫問卷'
