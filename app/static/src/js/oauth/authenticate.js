@@ -31,8 +31,11 @@ function load_table(data) {
 }
 
 function component_action(id) {
-    let href = utils.route2url(server.route.oauth.authenticate_id, id)
+    let href = utils.route2url(server.route.oauth.authenticate)
     return `
-        <a href="${href}" class="btn btn-primary w-100 setLoading">驗證</a>
+        <form action="${href}" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="id" value="${id}">
+            <button type="submit" class="btn btn-primary w-100 setLoading">驗證</button>           
+        </form>
     `
 }

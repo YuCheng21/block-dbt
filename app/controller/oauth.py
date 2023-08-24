@@ -40,13 +40,9 @@ def authenticate():
     if request.method == 'GET':
         title = '驗證實驗'
         return render_template('./oauth/authenticate.html', **locals())
-    abort(404)
-
-
-@app.route('/oauth/authenticate/<id>', methods=['GET'])
-def authenticate_id(id):
-    if request.method == 'GET':
-        data = dict(address=id)
+    elif request.method == 'POST':
+        form_data = request.values.to_dict()
+        data = dict(address=form_data['id'])
         try:
             OAuth.start(data)
         except Exception as e:
@@ -58,3 +54,4 @@ def authenticate_id(id):
         else:
             flash('成功', category='success')
             return redirect(url_for(endpoint.oauth.authenticate))
+    abort(404)
