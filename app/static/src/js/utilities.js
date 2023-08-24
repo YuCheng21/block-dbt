@@ -140,15 +140,15 @@ export function component_content(content) {
 
 export function component_state(code) {
     const state = {
-        '0': ['未確認問卷', 'text-primary'],
-        '1': ['權威機構審核中', 'text-info'],
-        '2': ['招募實驗人員中', 'text-info'],
-        '3': ['招募受測人員中', 'text-danger'],
+        '0': ['建立問卷', 'text-secondary'],
+        '1': ['機構審核', 'text-info'],
+        '2': ['招募實驗員', 'text-success'],
+        '3': ['招募受測員', 'text-warning'],
         '4': ['實驗中', 'text-danger'],
-        '5': ['已解盲', 'text-success'],
+        '5': ['解盲完成', 'text-primary'],
     }
     return `
-        <span class="${state[code][1]} fw-bold">${state[code][0]}</span>
+        <span class="${state[code][1]} text-nowrap fw-bold">${state[code][0]}</span>
     `
 }
 
