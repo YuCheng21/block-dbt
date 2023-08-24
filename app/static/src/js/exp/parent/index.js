@@ -46,7 +46,7 @@ function component_action(id, key) {
     ]
     return `
         <button class="btn btn-primary w-100" data-bs-toggle="collapse" data-bs-target="#key${key}">
-            <span class="iconify" data-icon="icon-park-solid:down-c" data-rotate="270deg"></span>
+            <span class="iconify iconify-inline" data-icon="icon-park-solid:down-c"></span>
             <span>展開選項</span>
         </button>
         <div class="row g-2 collapse pt-2" id="key${key}">
