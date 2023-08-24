@@ -15,6 +15,10 @@ if (server.endpoint === endpoint.exp.private.show && page.state === 's-run') {
             document.querySelector("#expNum").value = data[0]['experimenter']
             document.querySelector("#subNum").value = data[0]['subject']
         })
+        utils.fetch_data(server.url.exp.n_object, server.basic_auth, 'POST', body).then(data => {
+            document.querySelector("#expObject").value = data[0]['experimental']
+            document.querySelector("#controlObject").value = data[0]['control']
+        })
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
             utils.load_topic(data)
         })
