@@ -13,14 +13,12 @@ import './exp/parent'
 import './exp/private'
 import './exp/private/experiment'
 import './exp/private/running'
-import './exp/parent/form'
-import './exp/submit'
+import './exp/parent/build'
 import './exp/public/build'
 import './exp/public/experiment'
 import './exp/public/subject'
 import './exp/public/running'
 import './exp/public/finish'
-import './exp/private/form'
 import './exp/parent/object'
 
 import './topic/delete'
@@ -29,7 +27,7 @@ import './topic/multiple-choice'
 import './topic/short-answer'
 
 import './oauth/store'
-import './oauth/authenticate'
+import './oauth/auth'
 
 window.addEventListener('pageshow', function (event) {
     utils.loading.remove()

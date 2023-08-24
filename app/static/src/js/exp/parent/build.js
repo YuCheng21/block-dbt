@@ -2,6 +2,9 @@ import * as utils from "@static/src/js/utilities"
 import {endpoint} from "@static/src/js/config/endpoint";
 
 
+/*
+*  編輯問卷頁面載入資料
+* */
 if (server.endpoint === endpoint.exp.parent.update) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
@@ -37,4 +40,19 @@ function load_table(data) {
     });
     $('#MCTable').bootstrapTable('load', mc)
     $('#SATable').bootstrapTable('load', sa)
+}
+
+/*
+*  編輯問卷頁面送出資料
+* */
+let expUpdateSend = document.querySelector('#expUpdateSend')
+if (expUpdateSend) {
+    expUpdateSend.addEventListener('click', function () {
+        let data = {
+            MCTable: JSON.stringify($('#MCTable').bootstrapTable('getData')),
+            SATable: JSON.stringify($('#SATable').bootstrapTable('getData')),
+        }
+
+        utils.submitForm(data)
+    })
 }

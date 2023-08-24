@@ -2,6 +2,9 @@ import * as utils from "@static/src/js/utilities"
 import {endpoint} from "@static/src/js/config/endpoint";
 
 
+/*
+*  實驗管理頁面載入資料
+* */
 if (server.endpoint === endpoint.exp.parent.user) {
     document.addEventListener("DOMContentLoaded", function () {
         load_data()
@@ -55,4 +58,20 @@ function component_action(id, key) {
             <a href="${href[5]}" class="btn btn-primary w-100">實驗物清單</a>
         </div>
     `
+}
+
+/*
+*  新增實驗頁面送出資料
+* */
+let expSend = document.querySelector('#expSend')
+if (expSend) {
+    expSend.addEventListener('click', function () {
+        let data = {
+            expName: document.querySelector('#expName').value,
+            expContent: document.querySelector('#expContent').value,
+            expTime: document.querySelector('#expTime').value,
+            expSub: document.querySelector('#expSub').value,
+        }
+        utils.submitForm(data);
+    })
 }
