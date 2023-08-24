@@ -7,11 +7,25 @@
 //$danger:        $red !default;
 //$light:         $gray-100 !default;
 //$dark:          $gray-900 !default;
-$primary:       #425D8A !default;
-$secondary:     #55A3B0 !default;
-$success:       #28A745 !default;
-$info:          #A78D6C !default;
-$warning:       #FFC107 !default;
-$danger:        #DC3545 !default;
-$light:         #B4BDC7 !default;
-$dark:          #134358 !default;
+
+//$primary:       #425D8A !default;
+//$secondary:     #55A3B0 !default;
+//$success:       #28A745 !default;
+//$info:          #A78D6C !default;
+//$warning:       #FFC107 !default;
+//$danger:        #DC3545 !default;
+//$light:         #B4BDC7 !default;
+//$dark:          #134358 !default;
+
+$white: #ffffff;
+
+$theme-colors: (
+    "light":      #c2d2e3,
+    "dark":       #000305,
+    "primary":    #008979,
+    "secondary":  #1c569e,
+    "info":       #00a5e4,
+    "success":    #00ab3f,
+    "warning":    #f1c700,
+    "danger":     #f6003a,
+);
