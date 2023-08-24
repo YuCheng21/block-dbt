@@ -1,5 +1,6 @@
 import requests
 from flask import session
+
 from app.config.exception import exception_code
 
 
@@ -18,6 +19,10 @@ class MyRequest:
             result = self.session.request(*args, **kwargs)
         except requests.ReadTimeout:
             raise Exception(exception_code.timeout)
+        except requests.ConnectionError:
+            raise Exception(exception_code.max_retry)
+        except Exception as e:
+            raise Exception(e)
         finally:
             self.session.close()
         return result
