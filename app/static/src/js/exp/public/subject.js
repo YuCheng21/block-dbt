@@ -3,7 +3,7 @@ import {endpoint} from "@static/src/js/config/endpoint";
 import {loading} from "@static/src/js/utilities";
 
 
-if (server.endpoint === endpoint.exp.public.show && ['s-sub'].includes(page.state)) {
+if (server.endpoint === endpoint.exp.public.show && ['subject'].includes(page.state)) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
         utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {

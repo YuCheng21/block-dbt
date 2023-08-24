@@ -24,21 +24,21 @@ def index():
 def show(id, state):
     if request.method == 'GET':
         title = '檢視實驗'
-        if state in ['s-form', 's-auth']:
+        if state in ['build', 'auth']:
             return render_template('./exp/public/build.html', **locals())
-        elif state in ['s-exp']:
+        elif state in ['experiment']:
             return render_template('./exp/public/experiment.html', **locals())
-        elif state in ['s-sub']:
+        elif state in ['subject']:
             return render_template('./exp/public/subject.html', **locals())
-        elif state in ['s-run']:
+        elif state in ['running']:
             return render_template('./exp/public/running.html', **locals())
-        elif state in ['s-over']:
+        elif state in ['finish']:
             return render_template('./exp/public/finish.html', **locals())
         abort(404)
     elif request.method == 'POST':
-        if state in ['s-exp']:
+        if state in ['experiment']:
             print('TODO')
-        elif state in ['s-sub']:
+        elif state in ['subject']:
             file_consent = request.files.getlist('consentData')
             args = request.values.to_dict()
             try:

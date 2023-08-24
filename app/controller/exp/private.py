@@ -21,12 +21,12 @@ def index():
 def show(id, state):
     if request.method == 'GET':
         title = id
-        if state in ['s-exp']:
+        if state in ['experiment']:
             return render_template('./exp/private/experiment.html', **locals())
-        elif state in ['s-run']:
+        elif state in ['running']:
             return render_template('./exp/private/running.html', **locals())
     elif request.method == 'POST':
-        if state in ['s-exp']:
+        if state in ['experiment']:
             try:
                 form_data = request.values.to_dict()
                 exp = Exp.sign_exp(form_data)
@@ -39,7 +39,7 @@ def show(id, state):
             else:
                 flash('新增成功', category='success-toast')
                 return redirect(url_for(endpoint.exp.public.index))
-        elif state in ['s-run']:
+        elif state in ['running']:
             try:
                 exp = Exp.scan_obj(data=dict(address=id))
             except Exception as e:
