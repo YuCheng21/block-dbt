@@ -19,9 +19,9 @@
 
 // 改變顏色
 .hv-color-bg:hover {
-  background-color: tint-color($success, 40%) !important;
+  background-color: tint-color(map-get($theme-colors, info), 40%) !important;
 }
 
 .hv-color-text:hover {
-  color: tint-color($success, 40%) !important;
+  color: tint-color(map-get($theme-colors, info), 40%) !important;
 }
