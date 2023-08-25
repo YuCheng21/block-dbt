@@ -19,8 +19,8 @@
         </div>
         {% if request.args.get('account') is not none %}
             <a href="{{ url_for(g.endpoint.plain_text, file_name='account.txt', file_content=request.args.get('account')) }}"
-               class="btn btn-warning w-100 mb-3" target="_blank">
-                <span class="iconify-inline" data-icon="fe:login"></span>
+               class="btn btn-outline-info fs-5 fw-bold w-100 mb-2" target="_blank">
+                <span class="iconify-inline" data-icon="icon-park-outline:download-one"></span>
                 <span>下載帳號地址</span>
             </a>
         {% endif %}
