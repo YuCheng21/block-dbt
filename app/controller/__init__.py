@@ -23,6 +23,7 @@ def create_app():
     app.template_folder = settings.project_path.joinpath('app', 'views').absolute()
 
     app.register_middleware(exp, Authenticate.user())
+    app.register_middleware(oauth, Authenticate.user())
 
     app.register_blueprint(user)
     app.register_blueprint(exp)
