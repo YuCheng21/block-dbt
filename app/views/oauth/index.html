@@ -9,14 +9,18 @@
                     <span>權威機構</span>
                 </h2>
                 <div class="d-flex flex-column flex-sm-row">
-                    <a href="{{ url_for(g.endpoint.oauth.authenticate) }}" class="btn btn-warning mx-1">
-                        <span class="iconify-inline" data-icon="mdi:shield-unlocked"></span>
-                        <span>驗證實驗</span>
-                    </a>
-                    <a href="{{ url_for(g.endpoint.oauth.store) }}" class="btn btn-primary mx-1">
-                        <span class="iconify-inline" data-icon="material-symbols:add-circle"></span>
-                        <span>新增權威機構</span>
-                    </a>
+                    <div class="btn-group w-100">
+                        <a href="{{ url_for(g.endpoint.oauth.authenticate) }}"
+                           class="btn btn-outline-secondary fs-5 fw-bold w-100 ws-nowrap">
+                            <span class="iconify-inline" data-icon="mdi:shield-unlocked"></span>
+                            <span>驗證實驗</span>
+                        </a>
+                        <a href="{{ url_for(g.endpoint.oauth.store) }}"
+                           class="btn btn-outline-primary fs-5 fw-bold w-100 ws-nowrap">
+                            <span class="iconify-inline" data-icon="material-symbols:add-circle"></span>
+                            <span>新增權威機構</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
