@@ -1,0 +1,35 @@
+{% extends "base/all.html" %}
+
+{% block main %}
+    <div class="container-fluid py-4">
+        <div class="card border hv-shadow mb-4">
+            <div class="card-header justify-content-between d-inline-flex align-items-center ">
+                <h2 class="my-2">
+                    <span class="iconify-inline" data-icon="mdi:register"></span>
+                    <span>我的實驗</span>
+                </h2>
+            </div>
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
+                <a href="{{ url_for(g.endpoint.exp.private.consent, id) }}">下載同意書</a>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary w-100"
+                onclick="location.href='{{ url_for(g.endpoint.exp.private.index) }}'">
+            <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+            <span>返回</span>
+        </button>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <!--  Parameters  -->
+    <script>
+        const page = {
+            'id': '{{id}}',
+            'state': '{{ state }}'
+        }
+    </script>
+    {{ super() }}
+    <!--  Page Customize Javascript  -->
+{% endblock %}

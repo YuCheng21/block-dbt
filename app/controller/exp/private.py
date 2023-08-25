@@ -23,6 +23,8 @@ def show(id, state):
         title = id
         if state in ['experiment']:
             return render_template('./exp/private/experiment.html', **locals())
+        elif state in ['subject']:
+            return render_template('./exp/private/subject.html', **locals())
         elif state in ['running']:
             return render_template('./exp/private/running.html', **locals())
     elif request.method == 'POST':
