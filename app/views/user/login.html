@@ -24,14 +24,18 @@
                 <span>下載帳號地址</span>
             </a>
         {% endif %}
-        <button type="submit" class="btn btn-primary w-100 mb-3" id="send" onclick="event.preventDefault()">
-            <span class="iconify-inline" data-icon="ph:user-focus-fill"></span>
-            <span>登入</span>
-        </button>
-        <a href="{{ url_for(g.endpoint.user.sign_up) }}" class="btn btn-secondary text-white w-100 mb-3">
-            <span class="iconify-inline" data-icon="ph:user-circle-plus-bold"></span>
-            <span>註冊</span>
-        </a>
+
+        <div class="btn-group w-100">
+            <a href="{{ url_for(g.endpoint.user.sign_up) }}" class="btn btn-outline-primary fs-5 fw-bold w-100">
+                <span class="iconify-inline" data-icon="ph:user-circle-plus-bold"></span>
+                <span>註冊</span>
+            </a>
+            <button type="submit" class="btn btn-outline-secondary fs-5 fw-bold w-100" id="send"
+                    onclick="event.preventDefault()">
+                <span class="iconify-inline" data-icon="ph:user-focus-fill"></span>
+                <span>登入</span>
+            </button>
+        </div>
     </form>
 {% endblock %}
 
