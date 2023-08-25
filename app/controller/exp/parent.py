@@ -42,7 +42,7 @@ def build():
 @app.route('/exp/parent/build/update/<id>', methods=['GET', 'POST'])
 def update4build(id):
     if request.method == 'GET':
-        title = '編輯實驗'
+        title = '編輯問卷'
         return render_template('./exp/parent/build.html', **locals())
     elif request.method == 'POST':
         try:
