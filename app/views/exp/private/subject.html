@@ -5,19 +5,19 @@
         <div class="card border hv-shadow mb-4">
             <div class="card-header justify-content-between d-inline-flex align-items-center ">
                 <h2 class="my-2">
-                    <span class="iconify-inline" data-icon="icon-park-solid:experiment"></span>
-                    <span>我的實驗</span>
+                    <span class="iconify-inline" data-icon="fluent:document-text-24-regular"></span>
+                    <span>同意書</span>
                 </h2>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 px-xl-5 d-flex justify-content-center">
-                <a class="btn btn-lg btn-primary" href="{{ url_for(g.endpoint.exp.private.consent, id=id) }}">
+            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
+                <a class="btn btn-lg btn-secondary w-100" href="{{ url_for(g.endpoint.exp.private.consent, id=id) }}">
                     <span class="iconify-inline" data-icon="icon-park-outline:download-one"></span>
                     <span>下載同意書</span>
                 </a>
             </div>
         </div>
 
-        <button type="button" class="btn btn-primary w-100"
+        <button type="button" class="btn  btn-primary w-100"
                 onclick="location.href='{{ url_for(g.endpoint.exp.private.index) }}'">
             <span class="iconify-inline" data-icon="ion:chevron-back-circle-outline"></span>
             <span>返回</span>

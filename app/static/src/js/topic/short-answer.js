@@ -1,6 +1,12 @@
 /*
 * click confirm button on sa modal: update/add the data on sa table
 * */
+export let action = `
+<div class="btn-group w-100">
+    <button class="btn btn-secondary fs-6 fw-bold w-100 ws-nowrap SAUpdate">編輯</button>
+    <button class="btn btn-danger fs-6 fw-bold w-100 ws-nowrap SADelete">刪除</button>
+</div>
+`
 let shortAnswerSend = document.querySelector('#shortAnswerSend')
 if (shortAnswerSend){
     let modalTopicSA = document.querySelector('#modalTopicSA')
@@ -10,10 +16,6 @@ if (shortAnswerSend){
         if (shortAnswer.value === '') return false;
         // dialog data
         const topic = shortAnswer.value
-        const action = `
-            <button class="btn btn-primary w-50 SAUpdate">編輯</button>
-            <button class="btn btn-danger w-50 SADelete">刪除</button>
-        `
         // Is insert or update
         const index = modalTopicSA.getAttribute('data-update')
         modalTopicSA.removeAttribute('data-update')

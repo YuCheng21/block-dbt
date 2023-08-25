@@ -5,31 +5,29 @@
         <div class="card border hv-shadow mb-4">
             <div class="card-header">
                 <h2 class="my-2">
-                    <span class="iconify-inline" data-icon="fluent-mdl2:questionnaire"></span>
+                    <span class="iconify-inline" data-icon="bxs:package"></span>
                     <span>新增實驗物</span>
                 </h2>
             </div>
             <div class="card-body px-5 py-4">
-                <div class="row py-4">
-                    <div class="col-6">
-                        <form action="" enctype="multipart/form-data" method="post">
-                            <input type="hidden" name="group" value="0">
-                            <button type="submit" class="btn btn-success text-white w-100 setLoading">
-                                <span class="iconify-inline" data-icon="mdi:patient"></span>
-                                <span>對照組</span>
-                            </button>
-                        </form>
-                    </div>
-                    <div class="col-6">
-                        <form action="" enctype="multipart/form-data" method="post">
-                            <input type="hidden" name="group" value="1">
-                            <button type="submit" class="btn btn-danger text-white w-100 setLoading">
-                                <span class="iconify-inline" data-icon="mdi:patient"></span>
-                                <span>實驗組</span>
-                            </button>
-                        </form>
-                    </div>
+
+                <div class="btn-group w-100">
+                    <form action="" enctype="multipart/form-data" method="post" class="w-100">
+                        <input type="hidden" name="group" value="0">
+                        <button type="submit" class="btn btn-outline-secondary fs-1 fw-bold w-100 ws-nowrap setLoading">
+                            <span class="iconify-inline" data-icon="game-icons:clown"></span>
+                            <span>對照組</span>
+                        </button>
+                    </form>
+                    <form action="" enctype="multipart/form-data" method="post" class="w-100">
+                        <input type="hidden" name="group" value="1">
+                        <button type="submit" class="btn btn-outline-primary fs-1 fw-bold w-100 ws-nowrap setLoading">
+                            <span class="iconify-inline" data-icon="healthicons:syringe-outline"></span>
+                            <span>實驗組</span>
+                        </button>
+                    </form>
                 </div>
+
             </div>
         </div>
 

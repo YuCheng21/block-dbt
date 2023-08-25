@@ -1,5 +1,7 @@
 import * as utils from "@static/src/js/utilities"
 import {endpoint} from "@static/src/js/config/endpoint";
+import {action as MCAction} from "@static/src/js/topic/multiple-choice";
+import {action as SAAction} from "@static/src/js/topic/short-answer";
 
 
 /*
@@ -22,19 +24,13 @@ function load_table(data) {
             mc.push({
                 multipleChoice: `${item._topic}`,
                 maxScore: `${item._scale}`,
-                MCAction: `
-                <button class="btn btn-primary w-50 MCUpdate">編輯</button>
-                <button class="btn btn-danger w-50 MCDelete">刪除</button>
-                `
+                MCAction: MCAction
             })
         }
         if (item._type === 'filling') {
             sa.push({
                 shortAnswer: `${item._topic}`,
-                SAAction: `
-                <button class="btn btn-primary w-50 SAUpdate">編輯</button>
-                <button class="btn btn-danger w-50 SADelete">刪除</button>
-                `
+                SAAction: SAAction
             })
         }
     });

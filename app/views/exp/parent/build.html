@@ -17,7 +17,7 @@
                             <span>選擇題</span>
                         </h2>
                         <div class="d-flex flex-column flex-sm-row">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-outline-primary fs-5 fw-bold w-100 ws-nowrap" data-bs-toggle="modal"
                                     data-bs-target="#modalTopicMC">
                                 <span class="iconify-inline" data-icon="material-symbols:add-circle"></span>
                                 <span>新增選擇題</span>
@@ -47,7 +47,7 @@
                             <span>簡答題</span>
                         </h2>
                         <div class="d-flex flex-column flex-sm-row">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-outline-primary fs-5 fw-bold w-100 ws-nowrap" data-bs-toggle="modal"
                                     data-bs-target="#modalTopicSA">
                                 <span class="iconify-inline" data-icon="material-symbols:add-circle"></span>
                                 <span>新增簡答題</span>
@@ -69,20 +69,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="row py-4">
-                    <div class="col-6">
-                        <button type="button" class="btn btn-danger w-100"
-                                onclick="location.href='{{ url_for(g.endpoint.exp.parent.index) }}'">
-                            <span class="iconify-inline" data-icon="websymbol:cancel"></span>
-                            <span>取消</span>
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <button type="button" class="btn btn-primary w-100" id="expUpdateSend">
-                            <span class="iconify-inline" data-icon="subway:tick"></span>
-                            <span>確認</span>
-                        </button>
-                    </div>
+                <div class="btn-group w-100 py-4">
+                    <button type="button" class="btn btn-outline-secondary fs-5 fw-bold w-100 ws-nowrap"
+                            onclick="location.href='{{ url_for(g.endpoint.exp.parent.index) }}'">
+                        <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                        <span>取消</span>
+                    </button>
+
+                    <button type="button" class="btn btn-outline-primary fs-5 fw-bold w-100 ws-nowrap" id="expUpdateSend">
+                        <span class="iconify-inline" data-icon="subway:tick"></span>
+                        <span>確認</span>
+                    </button>
                 </div>
             </div>
         </div>

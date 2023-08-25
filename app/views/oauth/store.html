@@ -15,22 +15,17 @@
                     <input name="account" id="account" type="text" class="form-control" placeholder="請輸入帳號">
                 </div>
 
-                <div class="row py-4">
-                    <div class="col-6">
-                        <button type="button" class="btn btn-danger w-100"
-                                onclick="location.href='{{ url_for(g.endpoint.oauth.index) }}'">
-                            <span class="iconify-inline" data-icon="websymbol:cancel"></span>
-                            <span>取消</span>
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <button type="button" class="btn btn-primary w-100" id="oauthSend">
-                            <span class="iconify-inline" data-icon="subway:tick"></span>
-                            <span>確認</span>
-                        </button>
-                    </div>
+                <div class="btn-group w-100 py-4">
+                    <button type="button" class="btn btn-outline-secondary fs-5 fw-bold w-100 ws-nowrap"
+                            onclick="location.href='{{ url_for(g.endpoint.oauth.index) }}'">
+                        <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                        <span>取消</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-primary fs-5 fw-bold w-100 ws-nowrap" id="oauthSend">
+                        <span class="iconify-inline" data-icon="subway:tick"></span>
+                        <span>確認</span>
+                    </button>
                 </div>
-
             </div>
         </div>
     </div>
