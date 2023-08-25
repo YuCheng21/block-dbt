@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
+from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app, make_response
 from app.config.exception import exception_code
 from app.config.endpoint import endpoint
 from app.model.exp import Exp
@@ -89,4 +89,6 @@ def consent(id):
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
-            return result
+            response = make_response(result.content)
+            response.mimetype = 'application/pdf'
+            return response

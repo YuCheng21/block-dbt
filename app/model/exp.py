@@ -175,4 +175,4 @@ class Exp:
         if result.status_code is not status_code.ok:
             raise Exception(exception_code.fail)
 
-        return status_code.ok
+        return result
