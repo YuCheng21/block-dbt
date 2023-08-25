@@ -5,78 +5,39 @@
         <div class="card border hv-shadow mb-4">
             <div class="card-header">
                 <h2 class="my-2">
-                    <span class="iconify-inline" data-icon="fluent-mdl2:questionnaire"></span>
-                    <span>實驗問卷</span>
+                    <span class="iconify-inline" data-icon="material-symbols:add-circle"></span>
+                    <span>實驗資訊</span>
                 </h2>
             </div>
             <div class="card-body px-5 py-4">
-                <div class="card border mb-4">
-                    <div class="card-header justify-content-between d-inline-flex align-items-center ">
-                        <h2 class="my-2">
-                        <span class="iconify-inline" data-icon="ic:round-fact-check"></span>
-                            <span>選擇題</span>
-                        </h2>
-                        <div class="d-flex flex-column flex-sm-row">
-                            <button type="button" class="btn btn-outline-primary fs-5 fw-bold w-100 ws-nowrap" data-bs-toggle="modal"
-                                    data-bs-target="#modalTopicMC">
-                                <span class="iconify-inline" data-icon="material-symbols:add-circle"></span>
-                                <span>新增選擇題</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body px-5 py-4">
-                        <div class="table-responsive">
-                            <table id="MCTable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
-                                   data-toggle="table"
-                                   data-locale="zh-TW">
-                                <thead>
-                                <tr>
-                                    <th data-width="80" data-width-unit="%" data-field="multipleChoice">題目</th>
-                                    <th data-width="10" data-width-unit="%" data-field="maxScore">最大分數</th>
-                                    <th data-width="10" data-width-unit="%" data-field="MCAction">操作</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
+                <div class="input-group mb-2">
+                    <label for="expName" class="input-group-text">實驗名稱</label>
+                    <input name="expName" id="expName" type="text"
+                           class="form-control" placeholder="請輸入實驗名稱">
                 </div>
-                <div class="card border mb-4">
-                    <div class="card-header justify-content-between d-inline-flex align-items-center ">
-                        <h2 class="my-2">
-                            <span class="iconify-inline" data-icon="icon-park-solid:topic"></span>
-                            <span>簡答題</span>
-                        </h2>
-                        <div class="d-flex flex-column flex-sm-row">
-                            <button type="button" class="btn btn-outline-primary fs-5 fw-bold w-100 ws-nowrap" data-bs-toggle="modal"
-                                    data-bs-target="#modalTopicSA">
-                                <span class="iconify-inline" data-icon="material-symbols:add-circle"></span>
-                                <span>新增簡答題</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body px-5 py-4">
-                        <div class="table-responsive">
-                            <table id="SATable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
-                                   data-toggle="table"
-                                   data-locale="zh-TW">
-                                <thead>
-                                <tr>
-                                    <th data-width="90" data-width-unit="%" data-field="shortAnswer">題目</th>
-                                    <th data-width="10" data-width-unit="%" data-field="SAAction">操作</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
+                <div class="input-group mb-2">
+                    <label for="expContent" class="input-group-text">實驗內容</label>
+                    <textarea name="expContent" id="expContent"
+                              class="form-control" placeholder="請輸入實驗內容" rows="8"></textarea>
                 </div>
+                <div class="input-group mb-2">
+                    <label for="expTime" class="input-group-text">實驗結束日期</label>
+                    <input name="expTime" id="expTime" type="datetime-local"
+                           class="form-control" placeholder="請輸入實驗時間">
+                </div>
+                <div class="input-group mb-2">
+                    <label for="expSub" class="input-group-text">受測人員數量</label>
+                    <input name="expSub" id="expSub" type="number" min="1" max="45"
+                           class="form-control" placeholder="請輸入受測人員數量">
+                </div>
+
                 <div class="btn-group w-100 py-4">
                     <button type="button" class="btn btn-outline-secondary fs-5 fw-bold w-100 ws-nowrap"
-                            onclick="location.href='{{ url_for(g.endpoint.exp.parent.index) }}'">
+                            onclick="location.href='{{ url_for(g.endpoint.exp.public.index) }}'">
                         <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                         <span>取消</span>
                     </button>
-
-                    <button type="button" class="btn btn-outline-primary fs-5 fw-bold w-100 ws-nowrap" id="expUpdateSend">
+                    <button type="button" class="btn btn-outline-primary fs-5 fw-bold w-100 ws-nowrap" id="expSend">
                         <span class="iconify-inline" data-icon="subway:tick"></span>
                         <span>確認</span>
                     </button>
@@ -88,17 +49,9 @@
 
 {% block footer %}
     {{ super() }}
-    {% include 'includes/modal/topic/multiple-choice.html' %}
-    {% include 'includes/modal/topic/short-answer.html' %}
 {% endblock %}
 
 {% block script %}
     {{ super() }}
-    <!--  Parameters  -->
-    <script>
-        const page = {
-            'id': '{{id}}'
-        }
-    </script>
     <!--  Page Customize Javascript  -->
 {% endblock %}

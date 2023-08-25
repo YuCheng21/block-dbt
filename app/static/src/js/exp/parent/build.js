@@ -1,7 +1,7 @@
 import * as utils from "@static/src/js/utilities"
 import {endpoint} from "@static/src/js/config/endpoint";
-import {action as MCAction} from "@static/src/js/topic/multiple-choice";
-import {action as SAAction} from "@static/src/js/topic/short-answer";
+import {action as MCAction} from "@static/src/js/form/multiple-choice";
+import {action as SAAction} from "@static/src/js/form/short-answer";
 
 
 /*

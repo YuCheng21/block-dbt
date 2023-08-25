@@ -5,7 +5,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from app.config.exception import exception_code
 from app.config.endpoint import endpoint
 from app.model.exp import Exp
-from app.model.topic import Topic
+from app.model.form import Form
 
 app = Blueprint('parent', __name__)
 
@@ -23,7 +23,7 @@ def index():
 def build():
     if request.method == 'GET':
         title = '新增實驗'
-        return render_template('./exp/parent/store.html', **locals())
+        return render_template('./exp/parent/build.html', **locals())
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()
@@ -43,7 +43,7 @@ def build():
 def update4build(id):
     if request.method == 'GET':
         title = '編輯問卷'
-        return render_template('./exp/parent/build.html', **locals())
+        return render_template('./exp/parent/build-form.html', **locals())
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()
@@ -51,11 +51,11 @@ def update4build(id):
             short_answer = json_loads(form_data['SATable'])
             # for _, value in enumerate(multiple_choice):
             #     data = dict(address=id, content=value['multipleChoice'], value=value['maxScore'])
-            #     Topic.store_mc(data)
+            #     Form.store_mc(data)
             # for _, value in enumerate(short_answer):
             #     data = dict(address=id, content=value['shortAnswer'])
-            #     Topic.store_sa(data)
-            results = asyncio.run(Topic.store_mc_and_sa(id, multiple_choice, short_answer))
+            #     Form.store_sa(data)
+            results = asyncio.run(Form.store_mc_and_sa(id, multiple_choice, short_answer))
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
@@ -72,7 +72,7 @@ def build2auth(id):
     if request.method == 'GET':
         data = dict(address=id)
         try:
-            Topic.confirm(data)
+            Form.confirm(data)
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')

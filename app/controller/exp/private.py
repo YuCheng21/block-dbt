@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from app.config.exception import exception_code
 from app.config.endpoint import endpoint
 from app.model.exp import Exp
-from app.model.topic import Topic
+from app.model.form import Form
 
 
 app = Blueprint('private', __name__)
@@ -64,7 +64,7 @@ def form4run(id):
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()
-            Topic.submit(form_data, id)
+            Form.submit(form_data, id)
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')

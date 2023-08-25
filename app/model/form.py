@@ -9,7 +9,7 @@ from app.config.api import url, status_code
 from app.config.exception import exception_code
 
 
-class Topic:
+class Form:
     def __init__(self, dtype: str, content: str, value: str = None) -> None:
         self.dtype = dtype
         self.content = content
@@ -91,11 +91,11 @@ class Topic:
         mc = []
         for _, value in enumerate(mc_data):
             data = dict(address=id, content=value['multipleChoice'], value=value['maxScore'])
-            mc += [partial(Topic.store_mc, data, *auth)]
+            mc += [partial(Form.store_mc, data, *auth)]
         sa = []
         for _, value in enumerate(sa_data):
             data = dict(address=id, content=value['shortAnswer'])
-            sa += [partial(Topic.store_sa, data, *auth)]
+            sa += [partial(Form.store_sa, data, *auth)]
 
         loop = asyncio.get_event_loop()
         tasks = []
