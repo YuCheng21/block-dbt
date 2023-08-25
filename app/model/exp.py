@@ -164,3 +164,15 @@ class Exp:
             tasks += [loop.create_task(make_func_async(func=i_func, loop=loop))]
         results = await asyncio.gather(*tasks)
         return results
+
+    @staticmethod
+    def download_consent(data):
+        payload = {
+            'scaddress': data['address'],
+        }
+        result = req().basic_auth().get(url=url.exp.download, data=payload, timeout=30)
+
+        if result.status_code is not status_code.ok:
+            raise Exception(exception_code.fail)
+
+        return status_code.ok

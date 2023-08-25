@@ -72,3 +72,19 @@ def form4run(id):
         else:
             flash('成功', category='success-toast')
             return redirect(url_for(endpoint.exp.public.index))
+
+
+@app.route('/exp/private/consent/<id>', methods=['GET'])
+def consent(id):
+    if request.method == 'GET':
+        data = dict(address=id)
+        try:
+            result = Exp.download_consent(data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(url_for(endpoint.exp.private.index))
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            return result
