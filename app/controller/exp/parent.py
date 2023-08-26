@@ -109,12 +109,14 @@ def obj4sub(id):
     elif request.method == 'POST':
         try:
             form_data = request.values.to_dict()
-            data = dict(address=id, group=form_data['group'])
+            if form_data.get('group') is None: raise Exception(exception_code.fail)
+            data = dict(address=id, group=form_data.get('group'))
+            if form_data.get('objectID') is not None: data['ID'] = form_data.get('objectID')
             Exp.add_obj(data)
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.exp.parent.index))
+                return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
