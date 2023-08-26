@@ -49,14 +49,14 @@ function component_action(id, key) {
             <span class="iconify iconify-inline" data-icon="icon-park-solid:down-c"></span>
             <span>展開選項</span>
         </button>
-        <div class="row g-2 collapse pt-2 text-nowrap" id="key${key}">
-            <div class="btn-group-vertical ">
-            <a href="${href[0]}" class="btn btn-outline-primary">編輯問卷</a>
-            <a href="${href[1]}" class="btn btn-outline-primary setLoading">確認問卷</a>
-            <a href="${href[2]}" class="btn btn-outline-primary setLoading">招募受測員</a>
-            <a href="${href[3]}" class="btn btn-outline-primary">新增實驗物</a>
-            <a href="${href[4]}" class="btn btn-outline-primary">開始實驗</a>
-            <a href="${href[5]}" class="btn btn-outline-primary">實驗物清單</a>
+        <div class="collapse pt-2 text-nowrap" id="key${key}">
+            <div class="btn-group-vertical w-100">
+                <a href="${href[0]}" class="btn btn-outline-primary">編輯問卷</a>
+                <a href="${href[1]}" class="btn btn-outline-primary setLoading">確認問卷</a>
+                <a href="${href[2]}" class="btn btn-outline-primary setLoading">招募受測員</a>
+                <a href="${href[3]}" class="btn btn-outline-primary">新增實驗物</a>
+                <a href="${href[4]}" class="btn btn-outline-primary">開始實驗</a>
+                <a href="${href[5]}" class="btn btn-outline-primary">實驗物清單</a>
             </div>
         </div>
     `

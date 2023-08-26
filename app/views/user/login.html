@@ -2,41 +2,45 @@
 
 
 {% block content %}
-    <form action="{{ url_for(g.endpoint.user.login) }}" method="POST"
-          enctype="multipart/form-data"
-          class="w-100 mb-3">
-        <div class="input-group mb-3">
-            <label for="account" class="input-group-text fs-5">帳號</label>
-            <input name="account" type="text" id="account"
-                   class="form-control form-control-lg" placeholder="請輸入帳號地址"
-                   value="{% if request.args.get('account') is not none %}{{ request.args.get('account') }}{% endif %}" autofocus>
-        </div>
-        <div class="input-group mb-3">
-            <label for="password" class="input-group-text fs-5">密碼</label>
-            <input name="password" type="password" id="password"
-                   class="form-control form-control-lg"
-                   placeholder="請輸入密碼">
-        </div>
-        {% if request.args.get('account') is not none %}
-            <a href="{{ url_for(g.endpoint.plain_text, file_name='account.txt', file_content=request.args.get('account')) }}"
-               class="btn btn-outline-info fs-5 fw-bold w-100 mb-2" target="_blank">
-                <span class="iconify-inline" data-icon="icon-park-outline:download-one"></span>
-                <span>下載帳號地址</span>
-            </a>
-        {% endif %}
+        <form action="{{ url_for(g.endpoint.user.login) }}" method="POST" enctype="multipart/form-data"
+              class="row g-2 w-100">
+            <div class="col-12">
+                <div class="input-group">
+                    <label class="input-group-text fs-5" for="account">帳號</label>
+                    <input type="text" class="form-control form-control-lg" name="account" id="account" placeholder="請輸入帳號地址"
+                    value="{% if request.args.get('account') is not none %}{{ request.args.get('account') }}{% endif %}"
+                   autofocus>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="input-group">
+                    <label class="input-group-text fs-5" for="password">密碼</label>
+                    <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="請輸入密碼">
+                </div>
+            </div>
 
-        <div class="btn-group w-100">
-            <a href="{{ url_for(g.endpoint.user.sign_up) }}" class="btn btn-outline-primary fs-5 fw-bold w-100">
-                <span class="iconify-inline" data-icon="ph:user-circle-plus-bold"></span>
-                <span>註冊</span>
-            </a>
-            <button type="submit" class="btn btn-outline-secondary fs-5 fw-bold w-100" id="send"
-                    onclick="event.preventDefault()">
-                <span class="iconify-inline" data-icon="ph:user-focus-fill"></span>
-                <span>登入</span>
-            </button>
-        </div>
-    </form>
+            {% if request.args.get('account') is not none %}
+                <div class="col-12">
+                    <a href="{{ url_for(g.endpoint.plain_text, file_name='account.txt', file_content=request.args.get('account')) }}"
+                       class="btn btn-outline-info fw-bold fs-5 w-100" target="_blank">
+                        <span class="iconify-inline" data-icon="icon-park-outline:download-one"></span>
+                        <span>下載帳號地址</span>
+                    </a>
+                </div>
+            {% endif %}
+
+            <div class="col-12 btn-group">
+                <a href="{{ url_for(g.endpoint.user.sign_up) }}" class="btn btn-outline-primary fs-5 fw-bold w-100">
+                    <span class="iconify-inline" data-icon="ph:user-circle-plus-bold"></span>
+                    <span>註冊</span>
+                </a>
+                <button type="submit" class="btn btn-outline-secondary fs-5 fw-bold w-100" id="send"
+                        onclick="event.preventDefault()">
+                    <span class="iconify-inline" data-icon="ph:user-focus-fill"></span>
+                    <span>登入</span>
+                </button>
+            </div>
+        </form>
 {% endblock %}
 
 {% block script %}
