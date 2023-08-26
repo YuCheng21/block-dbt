@@ -7,8 +7,17 @@ if (server.endpoint === endpoint.exp.parent.obj4run) {
         const body = {"scaddress": page.id};
 
         utils.fetch_data(server.url.exp.object_list, server.basic_auth, 'POST', body).then(data => {
-            let div = document.querySelector("#connectData")
-            div.innerHTML = `<pre>${JSON.stringify(data, null, 4)}</pre>`
+            let connectTable = document.querySelector("#connectTable")
+            let obj = [];
+            Object.entries(data[0]).forEach(([key, value]) => {
+                Object.entries(value).forEach(([i_key, i_value]) => {
+                    obj.push({
+                        objectID: `${i_value}`,
+                        location: `${key}`,
+                    })
+                })
+            })
+            $(connectTable).bootstrapTable('load', obj)
         })
 
         utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
