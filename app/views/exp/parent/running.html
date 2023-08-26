@@ -2,25 +2,25 @@
 
 {% block main %}
     <div class="container-fluid py-4">
-        <div class="card border hv-shadow mb-4">
+
+        {% with url=url_for(g.endpoint.exp.parent.index) %}
+            {% include 'includes/back.html' %}
+        {% endwith %}
+
+        <div class="card hv-shadow mb-4">
             <div class="card-header">
                 <h2 class="my-2">
-                    <span class="iconify-inline" data-icon="fluent-mdl2:questionnaire"></span>
+                    <span class="iconify-inline" data-icon="icon-park-outline:connection-box"></span>
                     <span>實驗物資料</span>
                 </h2>
             </div>
-            <div class="card-body px-5 py-4">
-                <div class="row py-4">
+            <div class="card-body">
+                <div id="connectData">
 
                 </div>
             </div>
         </div>
 
-        <button type="button" class="btn btn-primary w-100"
-                onclick="location.href='{{ url_for(g.endpoint.exp.parent.index) }}'">
-            <span class="iconify-inline" data-icon="ion:chevron-back-circle-outline"></span>
-            <span>返回</span>
-        </button>
     </div>
 {% endblock %}
 

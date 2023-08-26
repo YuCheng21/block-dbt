@@ -37,11 +37,11 @@ function component_action(id, code) {
         href = utils.route2url(server.route.exp.private.show, state[code], id)
     }
     const active = `
-        <a href="${href}" class="btn btn-primary w-100">查看</a>
+        <a href="${href}" class="btn btn-primary w-100 text-white">查看</a>
     `
     const disabled = `
         <a href="${href}" class="btn btn-close w-100 disabled"></a>
     `
-    const action = (['0', '1'].includes(code) ? disabled : active)
+    const action = (['6'].includes(code) ? disabled : active)
     return action
 }

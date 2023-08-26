@@ -2,17 +2,26 @@
 
 {% block main %}
     <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12 col-lg-6">
 
-        {% include 'includes/card/exp/n-member.html' %}
-        {% include 'includes/card/exp/n-object.html' %}
-        {% include 'includes/card/exp/info.html' %}
-        {% include 'includes/card/exp/form.html' %}
+                {% with url=url_for(g.endpoint.exp.public.index) %}
+                    {% include 'includes/back.html' %}
+                {% endwith %}
 
-        <button type="button" class="btn btn-primary w-100"
-                onclick="location.href='{{ url_for(g.endpoint.exp.public.index) }}'">
-            <span class="iconify-inline" data-icon="ion:chevron-back-circle-outline"></span>
-            <span>返回</span>
-        </button>
+                {% include 'includes/card/exp/n-member.html' %}
+                {% include 'includes/card/exp/n-object.html' %}
+
+            </div>
+            <div class="col-12 col-lg-6">
+
+                {% include 'includes/card/exp/info.html' %}
+                {% include 'includes/card/exp/form.html' %}
+
+            </div>
+        </div>
+
+
     </div>
 {% endblock %}
 

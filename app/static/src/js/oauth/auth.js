@@ -33,7 +33,7 @@ function load_table(data) {
 function component_action(id, code) {
     let href = utils.route2url(server.route.oauth.authenticate)
     let active = `
-        <button type="submit" class="btn btn-primary w-100 setLoading">驗證</button> 
+        <button type="submit" class="btn btn-primary w-100 text-white setLoading">驗證</button> 
     `
     let disabled = `
         <button type="submit" class="btn btn-close w-100 disabled"></button> 

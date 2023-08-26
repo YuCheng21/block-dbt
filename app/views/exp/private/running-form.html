@@ -2,19 +2,20 @@
 
 {% block main %}
     <div class="container-fluid py-4">
-        <div class="card border hv-shadow mb-4">
+        <div class="card hv-shadow mb-4">
             <div class="card-header">
                 <h2 class="my-2">
                     <span class="iconify-inline" data-icon="fluent-mdl2:questionnaire"></span>
                     <span>實驗問卷</span>
                 </h2>
             </div>
-            <div class="card-body px-5 py-4">
+            <div class="card-body">
                 <div class="input-group mb-2">
-                    <label for="subId" class="input-group-text">受測人員編號</label>
+                    <label for="subId" class="input-group-text fs-5">受測人員編號</label>
                     <input name="subId" id="subId" type="text"
-                           class="form-control" placeholder="請輸入受測人員編號">
+                           class="form-control fs-5" placeholder="請輸入受測人員編號">
                 </div>
+                <hr>
                 <h3>選擇題</h3>
                 <div class="table-responsive">
                     <table id="MCTable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
@@ -43,9 +44,9 @@
                     </table>
                 </div>
 
-                <div class="btn-group w-100 py-4">
+                <div class="btn-group w-100 pt-4">
                     <button type="button" class="btn btn-outline-secondary fs-5 fw-bold w-100 ws-nowrap"
-                            onclick="location.href='{{ url_for(g.endpoint.exp.parent.index) }}'">
+                            onclick="location.href='{{ url_for(g.endpoint.exp.private.show, state='running', id=id) }}'">
                         <span class="iconify-inline" data-icon="websymbol:cancel"></span>
                         <span>取消</span>
                     </button>

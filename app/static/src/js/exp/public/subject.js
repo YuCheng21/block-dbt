@@ -10,12 +10,12 @@ if (server.endpoint === endpoint.exp.public.show && ['subject'].includes(page.st
             utils.load_info(data)
         })
         utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
-            document.querySelector("#expNum").value = data[0]['experimenter']
-            document.querySelector("#subNum").value = data[0]['subject']
+            document.querySelector("#expNum").innerText = data[0]['experimenter']
+            document.querySelector("#subNum").innerText = data[0]['subject']
         })
         utils.fetch_data(server.url.exp.n_object, server.basic_auth, 'POST', body).then(data => {
-            document.querySelector("#expObject").value = data[0]['experimental']
-            document.querySelector("#controlObject").value = data[0]['control']
+            document.querySelector("#expObject").innerText = data[0]['experimental']
+            document.querySelector("#controlObject").innerText = data[0]['control']
         })
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
             utils.load_topic(data)
@@ -45,7 +45,7 @@ function load_location(data) {
     input_location.replaceChildren();
     let firstOptions = document.createElement('option');
     firstOptions.value = 0;
-    firstOptions.innerHTML = '請選擇實驗地點';
+    firstOptions.innerHTML = '點擊下拉選單選擇';
     input_location.appendChild(firstOptions)
     for (let i = 0; i < data.length; i++) {
         let newOptions = document.createElement('option');

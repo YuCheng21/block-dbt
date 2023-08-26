@@ -2,30 +2,56 @@
 
 {% block main %}
     <div class="container-fluid py-4">
-        <div class="card border hv-shadow mb-4">
-            <div class="card-header justify-content-between d-inline-flex align-items-center ">
+        <div class="card hv-shadow mb-4">
+            <div class="card-header">
                 <h2 class="my-2">
-                    <span class="iconify-inline" data-icon="mdi:register"></span>
+                    <span class="iconify-inline" data-icon="ph:user-circle-plus-bold"></span>
                     <span>實驗地點註冊實驗人員</span>
                 </h2>
             </div>
-            <div class="card-body py-4 px-2 px-lg-4 px-xl-5">
-                <div class="input-group mb-2">
-                    <label for="expList" class="input-group-text">實驗人員列表</label>
-                    <textarea name="expList" id="expList"
-                              class="form-control" rows="8" placeholder="請輸入實驗人員列表"></textarea>
+            <div class="card-body">
+
+                <div class="row g-2">
+                    <div class="col-12 col-lg-6">
+                        <div class="mb-2">
+                            <label for="expTemp" class="form-label fs-3">
+                                <span class="iconify-inline" data-icon="typcn:th-list-outline" style="color: #234;"></span>
+                                <span>實驗人員列表</span>
+                            </label>
+                            <textarea class="form-control" name="expTemp" id="expTemp" rows="6" placeholder="請輸入實驗人員列表"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-1 m-auto">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button class="btn btn-primary text-white w-100 fs-5" id="expListConvert">
+                                <span class="iconify-inline" data-icon="fluent:arrow-up-12-filled" data-rotate="90deg"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <div class="mb-2">
+                            <label for="expList" class="form-label fs-3">
+                                <span class="iconify-inline" data-icon="carbon:api-1"></span>
+                                <span>實驗人員字串</span>
+                            </label>
+                            <textarea class="form-control" name="expList" id="expList" rows="6" placeholder="目前為空" readonly></textarea>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="btn-group w-100">
+                            <button type="button" class="btn btn-outline-secondary fs-5 fw-bold w-100 ws-nowrap"
+                                    onclick="location.href='{{ url_for(g.endpoint.exp.public.index) }}'">
+                                <span class="iconify-inline" data-icon="websymbol:cancel"></span>
+                                <span>取消</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary fs-5 fw-bold w-100 ws-nowrap" id="contentSend">
+                                <span class="iconify-inline" data-icon="subway:tick"></span>
+                                <span>確認</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="btn-group w-100 py-4">
-                    <button type="button" class="btn btn-outline-secondary fs-5 fw-bold w-100 ws-nowrap"
-                            onclick="location.href='{{ url_for(g.endpoint.exp.public.index) }}'">
-                        <span class="iconify-inline" data-icon="websymbol:cancel"></span>
-                        <span>取消</span>
-                    </button>
-                    <button type="button" class="btn btn-outline-primary fs-5 fw-bold w-100 ws-nowrap" id="contentSend">
-                        <span class="iconify-inline" data-icon="subway:tick"></span>
-                        <span>確認</span>
-                    </button>
-                </div>
+
             </div>
         </div>
     </div>

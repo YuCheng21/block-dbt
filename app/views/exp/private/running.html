@@ -2,9 +2,15 @@
 
 {% block main %}
     <div class="container-fluid p-4">
+
         <div class="row">
-            <div class="col-6 mb-4">
-                <div class="card border hv-shadow">
+            <div class="col-12 col-lg-6">
+
+                {% with url=url_for(g.endpoint.exp.public.index) %}
+                    {% include 'includes/back.html' %}
+                {% endwith %}
+
+                <div class="card hv-shadow mb-4">
                     <div class="card-header">
                         <h2>
                             <span class="iconify-inline" data-icon="bi:upc-scan"></span>
@@ -13,16 +19,15 @@
                     </div>
                     <div class="card-body">
                         <form action="" enctype="multipart/form-data" method="post">
-                            <button type="submit" class="btn btn-outline-secondary w-100">
+                            <button type="submit" class="btn btn-secondary w-100 fs-5">
                                 <span class="iconify-inline" data-icon="bi:upc-scan"></span>
                                 <span>開始掃描</span>
                             </button>
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="card border hv-shadow">
+
+                <div class="card hv-shadow mb-4">
                     <div class="card-header">
                         <h2>
                             <span class="iconify-inline" data-icon="fluent-mdl2:questionnaire"></span>
@@ -30,27 +35,25 @@
                         </h2>
                     </div>
                     <div class="card-body">
-                        <button type="button" class="btn btn-outline-secondary w-100"
+                        <button type="button" class="btn btn-secondary w-100 fs-5"
                                 onclick="location.href='{{ url_for(g.endpoint.exp.private.form4run, id=id) }}'">
                             <span class="iconify-inline" data-icon="fluent-mdl2:questionnaire"></span>
                             <span>填寫問卷</span>
                         </button>
                     </div>
                 </div>
+
+                {% include 'includes/card/exp/n-member.html' %}
+                {% include 'includes/card/exp/n-object.html' %}
+
+            </div>
+            <div class="col-12 col-lg-6">
+
+                {% include 'includes/card/exp/info.html' %}
+                {% include 'includes/card/exp/form.html' %}
+
             </div>
         </div>
-
-
-        {% include 'includes/card/exp/n-member.html' %}
-        {% include 'includes/card/exp/n-object.html' %}
-        {% include 'includes/card/exp/info.html' %}
-        {% include 'includes/card/exp/form.html' %}
-
-        <button type="button" class="btn btn-primary w-100"
-                onclick="location.href='{{ url_for(g.endpoint.exp.public.index) }}'">
-            <span class="iconify-inline" data-icon="ion:chevron-back-circle-outline"></span>
-            <span>返回</span>
-        </button>
     </div>
 {% endblock %}
 

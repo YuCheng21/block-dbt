@@ -2,49 +2,53 @@
 
 {% block main %}
     <div class="container-fluid py-4">
-        <div class="card border hv-shadow mb-4">
-            <div class="card-header">
-                <h2 class="my-2">
-                    <span class="iconify-inline" data-icon="fluent-mdl2:questionnaire"></span>
-                    <span>註冊</span>
-                </h2>
-            </div>
-            <div class="card-body px-5 py-4">
-                <div class="input-group mb-2">
-                    <label class="input-group-text">實驗地點</label>
-                    <select class="form-select" id="expLocation">
-                        <option selected>正在載入實驗地點，請稍後...</option>
-                    </select>
-                </div>
-                <form action="" id="consentForm" method="POST" enctype="multipart/form-data">
-                    <div class="input-group mb-2">
-                        <label class="input-group-text">同意書</label>
-                        <input type="file" name="consentData" class="form-control">
-                    </div>
-                </form>
 
-                <div class="row py-4">
-                    <div class="col-12">
-                        <button type="button" class="btn btn-danger w-100" id="stateSubSend"
+        <div class="row">
+            <div class="col-12 col-lg-6">
+
+                {% with url=url_for(g.endpoint.exp.public.index) %}
+                    {% include 'includes/back.html' %}
+                {% endwith %}
+
+                <div class="card hv-shadow mb-4">
+                    <div class="card-header">
+                        <h2 class="my-2">
+                            <span class="iconify-inline" data-icon="uil:signin" data-rotate="180deg"></span>
+                            <span>註冊受測人員</span>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-2">
+                            <label class="input-group-text fs-5">實驗地點</label>
+                            <select class="form-select fs-5" id="expLocation">
+                                <option selected>正在載入實驗地點，請稍後...</option>
+                            </select>
+                        </div>
+                        <form action="" id="consentForm" method="POST" enctype="multipart/form-data">
+                            <div class="input-group mb-2">
+                                <label class="input-group-text fs-5">同意書</label>
+                                <input type="file" name="consentData" class="form-control fs-5">
+                            </div>
+                        </form>
+                        <button type="button" class="btn btn-secondary w-100 fs-5" id="stateSubSend"
                                 data-address="{{ id }}" data-type="2">
-                            <span class="iconify-inline" data-icon="mdi:patient"></span>
+                            <span class="iconify-inline" data-icon="ph:user-circle-plus-bold"></span>
                             <span>註冊受測人員</span>
                         </button>
                     </div>
                 </div>
+
+                {% include 'includes/card/exp/n-member.html' %}
+                {% include 'includes/card/exp/n-object.html' %}
+
+            </div>
+            <div class="col-12 col-lg-6">
+
+                {% include 'includes/card/exp/info.html' %}
+                {% include 'includes/card/exp/form.html' %}
+
             </div>
         </div>
-
-        {% include 'includes/card/exp/n-member.html' %}
-        {% include 'includes/card/exp/n-object.html' %}
-        {% include 'includes/card/exp/info.html' %}
-        {% include 'includes/card/exp/form.html' %}
-
-        <button type="button" class="btn btn-primary w-100"
-                onclick="location.href='{{ url_for(g.endpoint.exp.public.index) }}'">
-            <span class="iconify-inline" data-icon="ion:chevron-back-circle-outline"></span>
-            <span>返回</span>
-        </button>
     </div>
 {% endblock %}
 

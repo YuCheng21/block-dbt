@@ -2,20 +2,20 @@
 
 {% block main %}
     <div class="container-fluid py-4">
-        <div class="card border hv-shadow mb-4">
+        <div class="card hv-shadow mb-4">
             <div class="card-header">
                 <h2 class="my-2">
-                    <span class="iconify-inline" data-icon="material-symbols:add-circle"></span>
+                    <span class="iconify-inline" data-icon="gridicons:add-outline"></span>
                     <span>新增權威機構</span>
                 </h2>
             </div>
-            <div class="card-body px-5 py-4">
+            <div class="card-body">
                 <div class="input-group mb-2">
-                    <label for="account" class="input-group-text">帳號</label>
-                    <input name="account" id="account" type="text" class="form-control" placeholder="請輸入帳號">
+                    <label for="account" class="input-group-text fs-5">帳號</label>
+                    <input name="account" id="account" type="text" class="form-control fs-5" placeholder="請輸入帳號">
                 </div>
 
-                <div class="btn-group w-100 py-4">
+                <div class="btn-group w-100">
                     <button type="button" class="btn btn-outline-secondary fs-5 fw-bold w-100 ws-nowrap"
                             onclick="location.href='{{ url_for(g.endpoint.oauth.index) }}'">
                         <span class="iconify-inline" data-icon="websymbol:cancel"></span>
