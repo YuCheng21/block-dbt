@@ -22,6 +22,7 @@ class Private(BaseModel):
     index = 'exp.private.index'
     show = 'exp.private.show'
     form4run = 'exp.private.form4run'
+    scan4run = 'exp.private.scan4run'
     consent = 'exp.private.consent'
 
 

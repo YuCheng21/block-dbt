@@ -1,5 +1,6 @@
 import * as utils from "@static/src/js/utilities"
 import {endpoint} from "@static/src/js/config/endpoint";
+import {state} from "@static/src/js/config/state";
 
 
 /*
@@ -28,14 +29,14 @@ function load_table(data) {
                 member: utils.component_member(item._Researchers_name),
                 content: utils.component_content(item._content),
                 state: utils.component_state(item._status),
-                action: component_action(item._address, key)
+                action: component_action(item._address, item._status, key)
             })
         }
     });
     $('#expTable').bootstrapTable('load', rows)
 }
 
-function component_action(id, key) {
+function component_action(id, status, key) {
     let href = [
         utils.route2url(server.route.exp.parent.update4build, id),
         utils.route2url(server.route.exp.parent.build2auth, id),
@@ -44,20 +45,30 @@ function component_action(id, key) {
         utils.route2url(server.route.exp.parent.start4sub, id),
         utils.route2url(server.route.exp.parent.obj4run, id),
     ]
+    let newPage = '<span class="iconify-inline" data-icon="ph:arrow-square-out-duotone"></span>'
+    let buttonList = [
+        `<a href="${href[0]}" class="btn btn-outline-primary fw-bold">編輯問卷${newPage}</a>`,
+        `<a href="${href[1]}" class="btn btn-outline-primary fw-bold setLoading">確認問卷</a>`,
+        `<a href="${href[2]}" class="btn btn-outline-primary fw-bold setLoading">招募受測員</a>`,
+        `<a href="${href[3]}" class="btn btn-outline-primary fw-bold">新增實驗物${newPage}</a>`,
+        `<a href="${href[4]}" class="btn btn-outline-primary fw-bold">開始實驗${newPage}</a>`,
+        `<a href="${href[5]}" class="btn btn-outline-primary fw-bold">實驗物清單${newPage}</a>`,
+        `<a href="#" class="btn btn-outline-primary fw-bold disabled">無</a>`,
+    ]
+    // buttonList = buttonList.filter((v, k) => [0, 1, 2, 3, 4, 5].includes(k))
+    if (state[status] === 'build') buttonList = buttonList.filter((v, k) => [0, 1].includes(k))
+    if (state[status] === 'auth') buttonList = buttonList.filter((v, k) => [6].includes(k))
+    if (state[status] === 'experiment') buttonList = buttonList.filter((v, k) => [2].includes(k))
+    if (state[status] === 'subject') buttonList = buttonList.filter((v, k) => [3, 4].includes(k))
+    if (state[status] === 'running') buttonList = buttonList.filter((v, k) => [5].includes(k))
+    if (state[status] === 'finish') buttonList = buttonList.filter((v, k) => [6].includes(k))
     return `
         <button class="btn btn-primary text-nowrap w-100 text-white" data-bs-toggle="collapse" data-bs-target="#key${key}">
-            <span class="iconify iconify-inline" data-icon="icon-park-solid:down-c"></span>
+            <span class="iconify-inline" data-icon="icon-park-solid:down-c"></span>
             <span>展開選項</span>
         </button>
         <div class="collapse pt-2 text-nowrap" id="key${key}">
-            <div class="btn-group-vertical w-100">
-                <a href="${href[0]}" class="btn btn-outline-primary fw-bold">編輯問卷</a>
-                <a href="${href[1]}" class="btn btn-outline-primary fw-bold setLoading">確認問卷</a>
-                <a href="${href[2]}" class="btn btn-outline-primary fw-bold setLoading">招募受測員</a>
-                <a href="${href[3]}" class="btn btn-outline-primary fw-bold">新增實驗物</a>
-                <a href="${href[4]}" class="btn btn-outline-primary fw-bold">開始實驗</a>
-                <a href="${href[5]}" class="btn btn-outline-primary fw-bold">實驗物清單</a>
-            </div>
+            <div class="btn-group-vertical w-100">${buttonList.join('')}</div>
         </div>
     `
 }

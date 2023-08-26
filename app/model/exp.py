@@ -113,8 +113,10 @@ class Exp:
     def add_obj(data):
         payload = {
             'scaddress': data['address'],
-            'group': data['group'],
         }
+        if data['form_data'].get('group') is None: raise Exception(exception_code.fail)
+        payload['group'] = data['form_data'].get('group')
+        if data['form_data'].get('objectID') is not None: payload['ID'] = data['form_data'].get('objectID')
         result = req().basic_auth().post(url=url.exp.add_object, data=payload, timeout=30)
 
         if result.status_code is not status_code.ok:
@@ -127,12 +129,13 @@ class Exp:
         payload = {
             'scaddress': data['address'],
         }
+        if data['form_data'].get('objectID') is not None: payload['ID'] = data['form_data'].get('objectID')
         result = req().basic_auth().post(url=url.exp.scan_object, data=payload, timeout=30)
 
         if result.status_code is not status_code.ok:
             raise Exception(exception_code.fail)
 
-        return status_code.ok
+        return result
 
     @staticmethod
     def upload_file(data, file, account=None, password=None):

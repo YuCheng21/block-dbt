@@ -14,6 +14,7 @@ export let endpoint = {
         'private': {
             'show': 'exp.private.show',
             'form4run': 'exp.private.form4run',
+            'scan4run': 'exp.private.scan4run',
             'index': 'exp.private.index'
         },
         'public': {'index': 'exp.public.index', 'show': 'exp.public.show'}

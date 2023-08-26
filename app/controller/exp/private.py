@@ -35,25 +35,34 @@ def show(id, state):
             except Exception as e:
                 if e.args[0] in exception_code.dict().values():
                     flash(e.args[0], category='error')
-                    return redirect(url_for(endpoint.exp.private.show, id=id, state=state))
+                    return redirect(request.referrer)
                 current_app.logger.error(f'error msg: {e}')
                 abort(404)
             else:
                 flash('新增成功', category='success-toast')
                 return redirect(url_for(endpoint.exp.public.index))
-        elif state in ['running']:
-            try:
-                exp = Exp.scan_obj(data=dict(address=id))
-            except Exception as e:
-                if e.args[0] in exception_code.dict().values():
-                    flash(e.args[0], category='error')
-                    return redirect(url_for(endpoint.exp.private.show, id=id, state=state))
-                current_app.logger.error(f'error msg: {e}')
-                abort(404)
-            else:
-                flash('新增成功', category='success-toast')
-                return redirect(url_for(endpoint.exp.private.index))
     abort(404)
+
+
+@app.route('/exp/private/running/scan/<id>', methods=['GET', 'POST'])
+def scan4run(id):
+    if request.method == 'GET':
+        title = '掃描實驗物'
+        return render_template('./exp/private/running-scan.html', **locals())
+    elif request.method == 'POST':
+        try:
+            form_data = request.values.to_dict()
+            data = dict(address=id, form_data=form_data)
+            exp = Exp.scan_obj(data)
+        except Exception as e:
+            if e.args[0] in exception_code.dict().values():
+                flash(e.args[0], category='error')
+                return redirect(request.referrer)
+            current_app.logger.error(f'error msg: {e}')
+            abort(404)
+        else:
+            flash(f'受測人員: <br>{exp.text}', category='success')
+            return redirect(request.referrer)
 
 
 @app.route('/exp/private/running/<id>', methods=['GET', 'POST'])
@@ -68,7 +77,7 @@ def form4run(id):
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.exp.public.index))
+                return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:

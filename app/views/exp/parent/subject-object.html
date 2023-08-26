@@ -2,77 +2,76 @@
 
 {% block main %}
     <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12 col-lg-6">
 
-        {% with url=url_for(g.endpoint.exp.parent.index) %}
-            {% include 'includes/back.html' %}
-        {% endwith %}
+                {% with url=url_for(g.endpoint.exp.parent.index) %}
+                    {% include 'includes/back.html' %}
+                {% endwith %}
 
-        <div class="card hv-shadow mb-4">
-            <div class="card-header">
-                <h2 class="my-2">
-                    <span class="iconify-inline" data-icon="bxs:package"></span>
-                    <span>新增實驗物</span>
-                </h2>
+                <div class="card hv-shadow mb-4">
+                    <div class="card-header">
+                        <h2 class="my-2">
+                            <span class="iconify-inline" data-icon="bxs:package"></span>
+                            <span>新增實驗物</span>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+
+                        <form action="" enctype="multipart/form-data" method="post" class="w-100">
+
+                            <div class="btn-group w-100 mb-2">
+                                <input type="radio" class="btn-check" name="group" id="experimentalObj" autocomplete="off" value="1">
+                                <label class="btn btn-outline-secondary fs-5 fw-bold ws-nowrap" for="experimentalObj">
+                                    <span class="iconify-inline" data-icon="healthicons:syringe-outline"></span>
+                                    <span>實驗組</span>
+                                </label>
+
+                                <input type="radio" class="btn-check" name="group" id="controlObj" autocomplete="off" value="0">
+                                <label class="btn btn-outline-secondary fs-5 fw-bold ws-nowrap" for="controlObj">
+                                    <span class="iconify-inline" data-icon="game-icons:clown"></span>
+                                    <span>對照組</span>
+                                </label>
+                            </div>
+
+                            <div class="input-group mb-4">
+                                <div class="input-group-text">
+                                    <input class="form-check-input" type="checkbox" name="objTest" id="objTest">
+                                </div>
+                                <label class="input-group-text fs-5" for="objectID">實驗物 ID</label>
+                                <input name="objectID" id="objectID" type="text" class="form-control fs-5" placeholder="手動測試 ID" disabled>
+                            </div>
+
+                            <div class="btn-group w-100 mb-2">
+                                <button type="submit" class="btn btn-secondary text-white fs-5 fw-bold w-100 ws-nowrap setLoading">
+                                    <span class="iconify-inline" data-icon="subway:tick"></span>
+                                    <span>確認</span>
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
             </div>
-            <div class="card-body">
+            <div class="col-12 col-lg-6">
 
-                <form action="" enctype="multipart/form-data" method="post" class="w-100">
-
-                    <div class="btn-group w-100 mb-2">
-                        <input type="radio" class="btn-check" name="group" id="experimentalObj" autocomplete="off" value="1">
-                        <label class="btn btn-outline-secondary fs-5 fw-bold ws-nowrap" for="experimentalObj">
-                            <span class="iconify-inline" data-icon="healthicons:syringe-outline"></span>
-                            <span>實驗組</span>
-                        </label>
-
-                        <input type="radio" class="btn-check" name="group" id="controlObj" autocomplete="off" value="0">
-                        <label class="btn btn-outline-secondary fs-5 fw-bold ws-nowrap" for="controlObj">
-                            <span class="iconify-inline" data-icon="game-icons:clown"></span>
-                            <span>對照組</span>
-                        </label>
-                    </div>
-
-                    <div class="input-group mb-4">
-                        <div class="input-group-text">
-                            <input class="form-check-input" type="checkbox" name="objTest" id="objTest">
-                        </div>
-                        <label class="input-group-text fs-5" for="objectID">實驗物 ID</label>
-                        <input name="objectID" id="objectID" type="text" class="form-control fs-5" placeholder="手動測試 ID" disabled>
-                    </div>
-
-                    <div class="btn-group w-100 mb-2">
-                        <button type="submit" class="btn btn-primary text-white fs-5 fw-bold w-100 ws-nowrap">
-                            <span class="iconify-inline" data-icon="subway:tick"></span>
-                            <span>確認</span>
-                        </button>
-                    </div>
-
-                </form>
-
-{#                <div class="btn-group w-100">#}
-{#                    <form action="" enctype="multipart/form-data" method="post" class="w-100">#}
-{#                        <input type="hidden" name="group" value="1">#}
-{#                        <button type="submit" class="btn btn-outline-primary fs-1 fw-bold w-100 ws-nowrap rounded-0 setLoading">#}
-{#                            <span class="iconify-inline" data-icon="healthicons:syringe-outline"></span>#}
-{#                            <span>實驗組</span>#}
-{#                        </button>#}
-{#                    </form>#}
-{#                    <form action="" enctype="multipart/form-data" method="post" class="w-100">#}
-{#                        <input type="hidden" name="group" value="0">#}
-{#                        <button type="submit" class="btn btn-outline-secondary fs-1 fw-bold w-100 ws-nowrap rounded-0 setLoading">#}
-{#                            <span class="iconify-inline" data-icon="game-icons:clown"></span>#}
-{#                            <span>對照組</span>#}
-{#                        </button>#}
-{#                    </form>#}
-{#                </div>#}
+                {% include 'includes/card/exp/n-member.html' %}
+                {% include 'includes/card/exp/n-object.html' %}
 
             </div>
         </div>
-
     </div>
 {% endblock %}
 
 {% block script %}
+    <!--  Parameters  -->
+    <script>
+        const page = {
+            'id': '{{id}}',
+        }
+    </script>
     {{ super() }}
     <!--  Page Customize Javascript  -->
 {% endblock %}

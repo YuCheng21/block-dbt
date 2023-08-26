@@ -23,6 +23,7 @@ import './exp/parent/running'
 import './exp/private'
 import './exp/private/experiment'
 import './exp/private/running'
+import './exp/private/subject'
 
 import './form/delete'
 import './form/update'

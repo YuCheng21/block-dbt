@@ -27,7 +27,7 @@ def store():
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.oauth.store))
+                return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
@@ -48,7 +48,7 @@ def authenticate():
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.oauth.authenticate))
+                return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:

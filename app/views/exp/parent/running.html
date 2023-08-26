@@ -2,22 +2,37 @@
 
 {% block main %}
     <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12 col-lg-6">
 
-        {% with url=url_for(g.endpoint.exp.parent.index) %}
-            {% include 'includes/back.html' %}
-        {% endwith %}
+                {% with url=url_for(g.endpoint.exp.parent.index) %}
+                    {% include 'includes/back.html' %}
+                {% endwith %}
 
-        <div class="card hv-shadow mb-4">
-            <div class="card-header">
-                <h2 class="my-2">
-                    <span class="iconify-inline" data-icon="icon-park-outline:connection-box"></span>
-                    <span>實驗物資料</span>
-                </h2>
-            </div>
-            <div class="card-body">
-                <div id="connectData">
+                <div class="card hv-shadow mb-4">
+                    <div class="card-header">
+                        <h2 class="my-2">
+                            <span class="iconify-inline" data-icon="icon-park-outline:connection-box"></span>
+                            <span>實驗物資料</span>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div id="connectData">
 
+                        </div>
+                    </div>
                 </div>
+
+                {% include 'includes/card/exp/n-member.html' %}
+                {% include 'includes/card/exp/n-object.html' %}
+
+            </div>
+            <div class="col-12 col-lg-6">
+
+
+                {% include 'includes/card/exp/info.html' %}
+                {% include 'includes/card/exp/form.html' %}
+
             </div>
         </div>
 

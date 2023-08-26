@@ -19,7 +19,7 @@ def sign_up():
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.user.sign_up))
+                return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
@@ -40,7 +40,7 @@ def login():
         except Exception as e:
             if e.args[0] in exception_code.dict().values():
                 flash(e.args[0], category='error')
-                return redirect(url_for(endpoint.user.login))
+                return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
             abort(404)
         else:
