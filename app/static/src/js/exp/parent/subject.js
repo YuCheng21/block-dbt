@@ -6,13 +6,6 @@ if (server.endpoint === endpoint.exp.parent.obj4sub) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
 
-        utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
-            utils.load_member(data)
-        })
-        utils.fetch_data(server.url.exp.n_object, server.basic_auth, 'POST', body).then(data => {
-            utils.load_object(data)
-        })
-
         let objTest = document.querySelector('#objTest')
         if (objTest) {
             objTest.addEventListener('change', function (event) {
@@ -20,6 +13,12 @@ if (server.endpoint === endpoint.exp.parent.obj4sub) {
             })
         }
 
+        utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
+            utils.load_member(data)
+        })
+        utils.fetch_data(server.url.exp.n_object, server.basic_auth, 'POST', body).then(data => {
+            utils.load_object(data)
+        })
     })
 }
 

@@ -22,7 +22,7 @@ function load_data() {
 function load_table(data) {
     const rows = [];
     Object.entries(data).forEach(([key, item]) => {
-        if (item._Researchers_name === server.account){
+        if (item._Researchers_name === server.account) {
             rows.push({
                 id: `${item._serial}`,
                 name: utils.component_name(item._name, item._address),
@@ -73,18 +73,22 @@ function component_action(id, status, key) {
     `
 }
 
-/*
-*  新增實驗頁面送出資料
-* */
-let expSend = document.querySelector('#expSend')
-if (expSend) {
-    expSend.addEventListener('click', function () {
-        let data = {
-            expName: document.querySelector('#expName').value,
-            expContent: document.querySelector('#expContent').value,
-            expTime: document.querySelector('#expTime').value,
-            expSub: document.querySelector('#expSub').value,
+if (server.endpoint === endpoint.exp.parent.build) {
+    document.addEventListener("DOMContentLoaded", function () {
+        /*
+        *  新增實驗頁面送出資料
+        * */
+        let expSend = document.querySelector('#expSend')
+        if (expSend) {
+            expSend.addEventListener('click', function () {
+                let data = {
+                    expName: document.querySelector('#expName').value,
+                    expContent: document.querySelector('#expContent').value,
+                    expTime: document.querySelector('#expTime').value,
+                    expSub: document.querySelector('#expSub').value,
+                }
+                utils.submitForm(data);
+            })
         }
-        utils.submitForm(data);
     })
 }

@@ -4,15 +4,32 @@ import {action as MCAction} from "@static/src/js/form/multiple-choice";
 import {action as SAAction} from "@static/src/js/form/short-answer";
 
 
-/*
-*  編輯問卷頁面載入資料
-* */
 if (server.endpoint === endpoint.exp.parent.update4build) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
+
+        /*
+        *  編輯問卷頁面載入資料
+        * */
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
             load_table(data)
         })
+
+        /*
+        *  編輯問卷頁面送出資料
+        * */
+        let expUpdateSend = document.querySelector('#expUpdateSend')
+        if (expUpdateSend) {
+            expUpdateSend.addEventListener('click', function () {
+                let data = {
+                    MCTable: JSON.stringify($('#MCTable').bootstrapTable('getData')),
+                    SATable: JSON.stringify($('#SATable').bootstrapTable('getData')),
+                }
+
+                utils.submitForm(data)
+            })
+        }
+
     })
 }
 
@@ -36,19 +53,4 @@ function load_table(data) {
     });
     $('#MCTable').bootstrapTable('load', mc)
     $('#SATable').bootstrapTable('load', sa)
-}
-
-/*
-*  編輯問卷頁面送出資料
-* */
-let expUpdateSend = document.querySelector('#expUpdateSend')
-if (expUpdateSend) {
-    expUpdateSend.addEventListener('click', function () {
-        let data = {
-            MCTable: JSON.stringify($('#MCTable').bootstrapTable('getData')),
-            SATable: JSON.stringify($('#SATable').bootstrapTable('getData')),
-        }
-
-        utils.submitForm(data)
-    })
 }
