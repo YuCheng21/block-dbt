@@ -7,12 +7,10 @@ if (server.endpoint === endpoint.exp.parent.obj4sub) {
         const body = {"scaddress": page.id};
 
         utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
-            document.querySelector("#expNum").innerText = data[0]['experimenter']
-            document.querySelector("#subNum").innerText = data[0]['subject']
+            utils.load_member(data)
         })
         utils.fetch_data(server.url.exp.n_object, server.basic_auth, 'POST', body).then(data => {
-            document.querySelector("#expObject").innerText = data[0]['experimental']
-            document.querySelector("#controlObject").innerText = data[0]['control']
+            utils.load_object(data)
         })
 
         let objTest = document.querySelector('#objTest')
@@ -33,12 +31,10 @@ if (server.endpoint === endpoint.exp.parent.start4sub) {
             utils.load_info(data)
         })
         utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
-            document.querySelector("#expNum").innerText = data[0]['experimenter']
-            document.querySelector("#subNum").innerText = data[0]['subject']
+            utils.load_member(data)
         })
         utils.fetch_data(server.url.exp.n_object, server.basic_auth, 'POST', body).then(data => {
-            document.querySelector("#expObject").innerText = data[0]['experimental']
-            document.querySelector("#controlObject").innerText = data[0]['control']
+            utils.load_object(data)
         })
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
             utils.load_topic(data)

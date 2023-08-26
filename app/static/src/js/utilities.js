@@ -205,6 +205,16 @@ export function load_info(data){
     document.querySelector("#expTime").value = '2023/08/30 22:00:00'
 }
 
+export function load_member(data){
+    document.querySelector("#expNum").innerText = data[0]['experimenter']
+    document.querySelector("#subNum").innerText = data[0]['subject']
+}
+
+export function load_object(data){
+    document.querySelector("#expObject").innerText = data[0]['experimental']
+    document.querySelector("#controlObject").innerText = data[0]['control']
+}
+
 export function load_topic(data) {
     const mc = [];
     const sa = [];

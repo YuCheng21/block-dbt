@@ -5,19 +5,17 @@ import {endpoint} from "@static/src/js/config/endpoint";
 /*
 * 實驗人員填寫表單與掃描實驗物頁面載入資料
 * */
-if (server.endpoint === endpoint.exp.private.show && page.state === 'running') {
+if (server.endpoint === endpoint.exp.private.show && ['running'].includes(page.state)) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
         utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
             utils.load_info(data)
         })
         utils.fetch_data(server.url.exp.number, server.basic_auth, 'POST', body).then(data => {
-            document.querySelector("#expNum").innerText = data[0]['experimenter']
-            document.querySelector("#subNum").innerText = data[0]['subject']
+            utils.load_member(data)
         })
         utils.fetch_data(server.url.exp.n_object, server.basic_auth, 'POST', body).then(data => {
-            document.querySelector("#expObject").innerText = data[0]['experimental']
-            document.querySelector("#controlObject").innerText = data[0]['control']
+            utils.load_object(data)
         })
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
             utils.load_topic(data)
@@ -34,6 +32,32 @@ if (server.endpoint === endpoint.exp.private.form4run) {
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
             load_table(data)
         })
+        let expFormSend = document.querySelector('#expFormSend')
+        if (expFormSend) {
+            expFormSend.addEventListener('click', function () {
+                let subId = document.querySelector("#subId").value;
+                let mc = []
+                let mc_element = document.querySelectorAll('#MCTable tr>td:nth-child(2)')
+                Object.values(mc_element).forEach((item, key) => {
+                    if(mc_element.length > key) {
+                        mc.push(getRadioValue('inlineRadioOptions'+key))
+                    }
+                })
+                let sa = []
+                let sa_element = document.querySelectorAll('#SATable tr>td:nth-child(2)')
+                Object.values(sa_element).forEach((item, key) => {
+                    if(sa_element.length > key) {
+                        sa.push(document.getElementsByName('shortAnswer'+key)[0].value)
+                    }
+                })
+                let data = {
+                    subId: subId,
+                    MCTable: mc,
+                    SATable: sa,
+                }
+                utils.submitForm(data)
+            })
+        }
     })
 }
 
@@ -89,30 +113,4 @@ function getRadioValue(theRadioGroup){
             return elements[i].value;
         }
     }
-}
-let expFormSend = document.querySelector('#expFormSend')
-if (expFormSend) {
-    expFormSend.addEventListener('click', function () {
-        let subId = document.querySelector("#subId").value;
-        let mc = []
-        let mc_element = document.querySelectorAll('#MCTable tr>td:nth-child(2)')
-        Object.values(mc_element).forEach((item, key) => {
-            if(mc_element.length > key) {
-                mc.push(getRadioValue('inlineRadioOptions'+key))
-            }
-        })
-        let sa = []
-        let sa_element = document.querySelectorAll('#SATable tr>td:nth-child(2)')
-        Object.values(sa_element).forEach((item, key) => {
-            if(sa_element.length > key) {
-                sa.push(document.getElementsByName('shortAnswer'+key)[0].value)
-            }
-        })
-        let data = {
-            subId: subId,
-            MCTable: mc,
-            SATable: sa,
-        }
-        utils.submitForm(data)
-    })
 }
