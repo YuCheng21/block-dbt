@@ -1,7 +1,7 @@
 from json import loads as json_loads
 import asyncio
 
-from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
+from flask import render_template, request, flash, redirect, url_for, abort, current_app
 from app.config.exception import exception_code
 from app.config.endpoint import endpoint
 from app.model.exp import Exp
@@ -154,16 +154,3 @@ def sign_up(address, type, location):
         else:
             flash('成功', category='success')
             return redirect(url_for(endpoint.exp.public.index))
-
-
-# parent = Blueprint('parent', __name__, url_prefix='/parent')
-# parent.add_url_rule(rule='/', endpoint=None, view_func=index, methods=['GET'])
-# parent.add_url_rule(rule='/index', endpoint=None, view_func=index, methods=['GET'])
-# parent.add_url_rule(rule='/build', endpoint=None, view_func=build, methods=['GET', 'POST'])
-# parent.add_url_rule(rule='/build/update/<id>', endpoint=None, view_func=update4build, methods=['GET', 'POST'])
-# parent.add_url_rule(rule='/build/auth/<id>', endpoint=None, view_func=build2auth, methods=['GET'])
-# parent.add_url_rule(rule='/experiment/subject/<id>', endpoint=None, view_func=exp2sub, methods=['GET'])
-# parent.add_url_rule(rule='/subject/object/<id>', endpoint=None, view_func=obj4sub, methods=['GET', 'POST'])
-# parent.add_url_rule(rule='/subject/start/<id>', endpoint=None, view_func=start4sub, methods=['GET', 'POST'])
-# parent.add_url_rule(rule='/running/object/<id>', endpoint=None, view_func=obj4run, methods=['GET', 'POST'])
-# parent.add_url_rule(rule='/sign_up/<address>/<type>/<location>', endpoint=None, view_func=sign_up, methods=['GET'])

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
+from flask import render_template, request, flash, redirect, url_for, abort, current_app
 from app.model.user import UserModel
 from app.config.exception import exception_code
 from app.config.endpoint import endpoint
@@ -52,9 +52,3 @@ def logout():
         flash('登出成功！', category='success-toast')
         return redirect(url_for(endpoint.user.login))
     abort(404)
-
-
-# user = Blueprint('user', __name__, url_prefix='/user')
-# user.add_url_rule(rule='/sign_up', endpoint=None, view_func=sign_up, methods=['GET', 'POST'])
-# user.add_url_rule(rule='/login', endpoint=None, view_func=login, methods=['GET', 'POST'])
-# user.add_url_rule(rule='/logout', endpoint=None, view_func=logout, methods=['POST'])

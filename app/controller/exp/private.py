@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app, make_response
+from flask import render_template, request, flash, redirect, url_for, abort, current_app, make_response
 from app.config.exception import exception_code
 from app.config.endpoint import endpoint
 from app.model.exp import Exp
@@ -92,12 +92,3 @@ def consent(id):
             response = make_response(result.content)
             response.mimetype = 'application/pdf'
             return response
-
-
-# private = Blueprint('private', __name__, url_prefix='/private')
-# private.add_url_rule(rule='/', endpoint=None, view_func=index, methods=['GET'])
-# private.add_url_rule(rule='/index', endpoint=None, view_func=index, methods=['GET'])
-# private.add_url_rule(rule='/show/<state>/<id>', endpoint=None, view_func=show, methods=['GET', 'POST'])
-# private.add_url_rule(rule='/running/scan/<id>', endpoint=None, view_func=scan4run, methods=['GET', 'POST'])
-# private.add_url_rule(rule='/running/<id>', endpoint=None, view_func=form4run, methods=['GET', 'POST'])
-# private.add_url_rule(rule='/consent/<id>', endpoint=None, view_func=consent, methods=['GET'])

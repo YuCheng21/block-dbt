@@ -1,6 +1,6 @@
 import asyncio
 
-from flask import Blueprint, render_template, request, flash, redirect, url_for, abort, current_app
+from flask import render_template, request, flash, redirect, url_for, abort, current_app
 from app.config.exception import exception_code
 from app.config.endpoint import endpoint
 from app.model.exp import Exp
@@ -47,9 +47,3 @@ def show(id, state):
                 flash('成功', category='success')
                 return redirect(url_for(endpoint.exp.public.index))
     abort(404)
-
-
-# public = Blueprint('public', __name__, url_prefix='/public')
-# public.add_url_rule(rule='/', endpoint=None, view_func=index, methods=['GET'])
-# public.add_url_rule(rule='/index', endpoint=None, view_func=index, methods=['GET'])
-# public.add_url_rule(rule='/show/<state>/<id>', endpoint=None, view_func=show, methods=['GET', 'POST'])

@@ -9,13 +9,6 @@ from app.config.base import settings
 from app.config.api import url
 from app.config.endpoint import endpoint
 
-# from app.controller.user import user
-# from app.controller.oauth import oauth
-# from app.controller.exp import exp
-from app.routes.web import user, oauth, exp
-
-from app.middleware.authenticate import Authenticate
-
 
 def create_app():
     app = MyFlask(__name__)
@@ -23,12 +16,8 @@ def create_app():
     app.static_folder = settings.project_path.joinpath('app', 'static').absolute()
     app.template_folder = settings.project_path.joinpath('app', 'views').absolute()
 
-    app.register_middleware(oauth, Authenticate.user())
-    app.register_middleware(exp, Authenticate.user())
-
-    app.register_blueprint(user)
-    app.register_blueprint(oauth)
-    app.register_blueprint(exp)
+    from app.routes.web import set_blueprint
+    set_blueprint(app)
 
     app.logger.setLevel(logging.DEBUG)
     app.logger.addHandler(console_logger())
