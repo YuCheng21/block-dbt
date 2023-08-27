@@ -8,6 +8,7 @@ class BaseConfig:
     SESSION_COOKIE_NAME = settings.session_cookie_name
     SESSION_REFRESH_EACH_REQUEST = True
     PERMANENT_SESSION_LIFETIME = datetime.timedelta(minutes=30)
+    MAX_CONTENT_LENGTH = 16 * 1000 * 1000
 
 
 class DevelopmentConfig(BaseConfig):
