@@ -1,6 +1,6 @@
 import logging
 
-from flask import Flask, render_template, g, request, make_response, Blueprint, flash, redirect, current_app
+from flask import Flask, render_template, g, request, make_response, flash, redirect, current_app
 from easydict import EasyDict as edict
 
 from app.config.flask_cfg import config as flask_config
@@ -10,6 +10,8 @@ from app.config.api import url
 from app.config.exception import exception_code
 from app.config.endpoint import endpoint
 
+from app.routes.web import init_blueprint
+
 
 def create_app():
     app = MyFlask(__name__)
@@ -17,8 +19,8 @@ def create_app():
     app.static_folder = settings.project_path.joinpath('app', 'static').absolute()
     app.template_folder = settings.project_path.joinpath('app', 'views').absolute()
 
-    from app.routes.web import set_blueprint
-    set_blueprint(app)
+    with app.app_context():
+        init_blueprint()
 
     app.logger.setLevel(logging.DEBUG)
     app.logger.addHandler(console_logger())
@@ -64,13 +66,6 @@ class MyFlask(Flask):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.my_route = None
-
-    @staticmethod
-    def register_middleware(app: Blueprint, middleware_func):
-        @app.before_request
-        @middleware_func
-        def before_request():
-            pass
 
     def get_my_route(self) -> edict:
         rules_by_endpoint = self.url_map.__dict__['_rules_by_endpoint']
