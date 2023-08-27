@@ -5,11 +5,6 @@ from app.model.exp import Exp
 from app.model.form import Form
 
 
-app = Blueprint('private', __name__)
-
-
-@app.route('/exp/private/index', methods=['GET'])
-@app.route('/exp/private', methods=['GET'])
 def index():
     if request.method == 'GET':
         title = '我的實驗'
@@ -17,7 +12,6 @@ def index():
     abort(404)
 
 
-@app.route('/exp/private/show/<state>/<id>', methods=['GET', 'POST'])
 def show(id, state):
     if request.method == 'GET':
         title = id
@@ -44,7 +38,6 @@ def show(id, state):
     abort(404)
 
 
-@app.route('/exp/private/running/scan/<id>', methods=['GET', 'POST'])
 def scan4run(id):
     if request.method == 'GET':
         title = '掃描實驗物'
@@ -65,7 +58,6 @@ def scan4run(id):
             return redirect(request.referrer)
 
 
-@app.route('/exp/private/running/<id>', methods=['GET', 'POST'])
 def form4run(id):
     if request.method == 'GET':
         title = '填寫問卷'
@@ -85,7 +77,6 @@ def form4run(id):
             return redirect(url_for(endpoint.exp.public.index))
 
 
-@app.route('/exp/private/consent/<id>', methods=['GET'])
 def consent(id):
     if request.method == 'GET':
         data = dict(address=id)
@@ -101,3 +92,12 @@ def consent(id):
             response = make_response(result.content)
             response.mimetype = 'application/pdf'
             return response
+
+
+# private = Blueprint('private', __name__, url_prefix='/private')
+# private.add_url_rule(rule='/', endpoint=None, view_func=index, methods=['GET'])
+# private.add_url_rule(rule='/index', endpoint=None, view_func=index, methods=['GET'])
+# private.add_url_rule(rule='/show/<state>/<id>', endpoint=None, view_func=show, methods=['GET', 'POST'])
+# private.add_url_rule(rule='/running/scan/<id>', endpoint=None, view_func=scan4run, methods=['GET', 'POST'])
+# private.add_url_rule(rule='/running/<id>', endpoint=None, view_func=form4run, methods=['GET', 'POST'])
+# private.add_url_rule(rule='/consent/<id>', endpoint=None, view_func=consent, methods=['GET'])

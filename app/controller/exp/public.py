@@ -6,13 +6,6 @@ from app.config.endpoint import endpoint
 from app.model.exp import Exp
 
 
-app = Blueprint('public', __name__)
-
-
-@app.route('/exp/public/index', methods=['GET'])
-@app.route('/exp/public', methods=['GET'])
-@app.route('/exp', methods=['GET'])
-@app.route('/', methods=['GET'])
 def index():
     if request.method == 'GET':
         title = '所有實驗'
@@ -20,7 +13,6 @@ def index():
     abort(404)
 
 
-@app.route('/exp/public/show/<state>/<id>', methods=['GET', 'POST'])
 def show(id, state):
     if request.method == 'GET':
         title = '檢視實驗'
@@ -55,3 +47,9 @@ def show(id, state):
                 flash('成功', category='success')
                 return redirect(url_for(endpoint.exp.public.index))
     abort(404)
+
+
+# public = Blueprint('public', __name__, url_prefix='/public')
+# public.add_url_rule(rule='/', endpoint=None, view_func=index, methods=['GET'])
+# public.add_url_rule(rule='/index', endpoint=None, view_func=index, methods=['GET'])
+# public.add_url_rule(rule='/show/<state>/<id>', endpoint=None, view_func=show, methods=['GET', 'POST'])

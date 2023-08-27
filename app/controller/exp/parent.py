@@ -7,11 +7,7 @@ from app.config.endpoint import endpoint
 from app.model.exp import Exp
 from app.model.form import Form
 
-app = Blueprint('parent', __name__)
 
-
-@app.route('/exp/parent/index', methods=['GET'])
-@app.route('/exp/parent', methods=['GET'])
 def index():
     if request.method == 'GET':
         title = '實驗管理'
@@ -19,7 +15,6 @@ def index():
     abort(404)
 
 
-@app.route('/exp/parent/build', methods=['GET', 'POST'])
 def build():
     if request.method == 'GET':
         title = '新增實驗'
@@ -39,7 +34,6 @@ def build():
             return redirect(url_for(endpoint.exp.parent.index))
 
 
-@app.route('/exp/parent/build/update/<id>', methods=['GET', 'POST'])
 def update4build(id):
     if request.method == 'GET':
         title = '編輯問卷'
@@ -67,7 +61,6 @@ def update4build(id):
             return redirect(url_for(endpoint.exp.parent.index))
 
 
-@app.route('/exp/parent/build/auth/<id>', methods=['GET'])
 def build2auth(id):
     if request.method == 'GET':
         data = dict(address=id)
@@ -84,7 +77,6 @@ def build2auth(id):
             return redirect(url_for(endpoint.exp.parent.index))
 
 
-@app.route('/exp/parent/experiment/subject/<id>', methods=['GET'])
 def exp2sub(id):
     if request.method == 'GET':
         data = dict(address=id)
@@ -101,7 +93,6 @@ def exp2sub(id):
             return redirect(url_for(endpoint.exp.parent.index))
 
 
-@app.route('/exp/parent/subject/object/<id>', methods=['GET', 'POST'])
 def obj4sub(id):
     if request.method == 'GET':
         title = '新增實驗物'
@@ -123,7 +114,6 @@ def obj4sub(id):
     abort(404)
 
 
-@app.route('/exp/parent/subject/start/<id>', methods=['GET', 'POST'])
 def start4sub(id):
     if request.method == 'GET':
         title = '開始實驗'
@@ -144,14 +134,12 @@ def start4sub(id):
             return redirect(url_for(endpoint.exp.parent.index))
 
 
-@app.route('/exp/parent/running/object/<id>', methods=['GET', 'POST'])
 def obj4run(id):
     if request.method == 'GET':
         title = '實驗物清單'
         return render_template('./exp/parent/running.html', **locals())
 
 
-@app.route('/exp/parent/sign_up/<address>/<type>/<location>', methods=['GET'])
 def sign_up(address, type, location):
     if request.method == 'GET':
         data = dict(address=address, type=type, location=location)
@@ -166,3 +154,16 @@ def sign_up(address, type, location):
         else:
             flash('成功', category='success')
             return redirect(url_for(endpoint.exp.public.index))
+
+
+# parent = Blueprint('parent', __name__, url_prefix='/parent')
+# parent.add_url_rule(rule='/', endpoint=None, view_func=index, methods=['GET'])
+# parent.add_url_rule(rule='/index', endpoint=None, view_func=index, methods=['GET'])
+# parent.add_url_rule(rule='/build', endpoint=None, view_func=build, methods=['GET', 'POST'])
+# parent.add_url_rule(rule='/build/update/<id>', endpoint=None, view_func=update4build, methods=['GET', 'POST'])
+# parent.add_url_rule(rule='/build/auth/<id>', endpoint=None, view_func=build2auth, methods=['GET'])
+# parent.add_url_rule(rule='/experiment/subject/<id>', endpoint=None, view_func=exp2sub, methods=['GET'])
+# parent.add_url_rule(rule='/subject/object/<id>', endpoint=None, view_func=obj4sub, methods=['GET', 'POST'])
+# parent.add_url_rule(rule='/subject/start/<id>', endpoint=None, view_func=start4sub, methods=['GET', 'POST'])
+# parent.add_url_rule(rule='/running/object/<id>', endpoint=None, view_func=obj4run, methods=['GET', 'POST'])
+# parent.add_url_rule(rule='/sign_up/<address>/<type>/<location>', endpoint=None, view_func=sign_up, methods=['GET'])

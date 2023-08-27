@@ -4,10 +4,6 @@ from app.config.endpoint import endpoint
 from app.model.oauth import OAuth
 
 
-app = Blueprint('oauth', __name__)
-
-
-@app.route('/oauth', methods=['GET'])
 def index():
     if request.method == 'GET':
         title = '權威機構'
@@ -15,7 +11,6 @@ def index():
     abort(404)
 
 
-@app.route('/oauth/store', methods=['GET', 'POST'])
 def store():
     if request.method == 'GET':
         title = '新增權威機構'
@@ -35,7 +30,6 @@ def store():
             return redirect(url_for(endpoint.oauth.index))
 
 
-@app.route('/oauth/authenticate', methods=['GET', 'POST'])
 def authenticate():
     if request.method == 'GET':
         title = '驗證實驗'
@@ -55,3 +49,9 @@ def authenticate():
             flash('成功', category='success')
             return redirect(url_for(endpoint.oauth.authenticate))
     abort(404)
+
+
+# oauth = Blueprint('oauth', __name__, url_prefix='/oauth')
+# oauth.add_url_rule(rule='/', endpoint=None, view_func=index, methods=['GET'])
+# oauth.add_url_rule(rule='/store', endpoint=None, view_func=store, methods=['GET', 'POST'])
+# oauth.add_url_rule(rule='/authenticate', endpoint=None, view_func=authenticate, methods=['GET', 'POST'])

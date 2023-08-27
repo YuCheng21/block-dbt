@@ -4,10 +4,7 @@ from app.config.exception import exception_code
 from app.config.endpoint import endpoint
 from app.middleware.authenticate import Authenticate
 
-app = Blueprint('user', __name__)
 
-
-@app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'GET':
         title = '註冊'
@@ -27,7 +24,6 @@ def sign_up():
             return redirect(url_for(endpoint.user.login, account=user.account))
 
 
-@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         title = '登入'
@@ -49,7 +45,6 @@ def login():
             return redirect(url_for(endpoint.exp.public.index))
 
 
-@app.route('/user/logout', methods=['POST'])
 @Authenticate.user()
 def logout():
     if request.method == 'POST':
@@ -57,3 +52,9 @@ def logout():
         flash('登出成功！', category='success-toast')
         return redirect(url_for(endpoint.user.login))
     abort(404)
+
+
+# user = Blueprint('user', __name__, url_prefix='/user')
+# user.add_url_rule(rule='/sign_up', endpoint=None, view_func=sign_up, methods=['GET', 'POST'])
+# user.add_url_rule(rule='/login', endpoint=None, view_func=login, methods=['GET', 'POST'])
+# user.add_url_rule(rule='/logout', endpoint=None, view_func=logout, methods=['POST'])
