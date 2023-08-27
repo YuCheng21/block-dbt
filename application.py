@@ -5,8 +5,8 @@ app, settings = create_app()
 
 if __name__ == '__main__':
     if settings.mode == 'development':
-        from pprint import pprint
-        pprint(app.my_route)
+        # from pprint import pprint
+        # pprint(app.my_route)
         app.run(host=settings.app_host, port=settings.app_port)
     elif settings.mode == 'production':
         from waitress import serve

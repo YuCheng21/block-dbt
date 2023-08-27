@@ -1,5 +1,4 @@
 from flask import Blueprint, current_app, g
-
 from app.middleware.authenticate import Authenticate
 
 import app.controller.user as user_ctrl
@@ -9,11 +8,23 @@ import app.controller.exp.parent as parent_ctrl
 import app.controller.exp.private as private_ctrl
 
 
-def register_middleware(app: Blueprint, middleware_func):
-    @app.before_request
-    @middleware_func
-    def before_request():
-        pass
+# class MyBlueprint(Blueprint):
+#     def __init__(self, *args, middleware_decorator=None, **kwargs):
+#         self.middleware_decorator = middleware_decorator
+#         super().__init__(*args, **kwargs)
+#
+#     def add_url_rule(self, rule: str, endpoint: t.Optional[str] = None, view_func: t.Optional[ft.RouteCallable] = None,
+#                      provide_automatic_options: t.Optional[bool] = None, **options: t.Any) -> None:
+#         if self.middleware_decorator is None:
+#             new_view_func = view_func
+#         else:
+#             new_view_func = self.middleware_decorator(view_func)
+#         super().add_url_rule(rule, endpoint, new_view_func, provide_automatic_options, **options)
+
+
+def register_before_request(app: Blueprint, middleware_func):
+    empty_func = lambda: None
+    return app.before_request(middleware_func(empty_func))
 
 
 def init_blueprint():
@@ -68,8 +79,8 @@ def init_blueprint():
     exp.register_blueprint(parent)
     exp.register_blueprint(private)
 
-    register_middleware(oauth, Authenticate.user())
-    register_middleware(exp, Authenticate.user())
+    register_before_request(oauth, Authenticate.user())
+    register_before_request(exp, Authenticate.user())
 
     current_app.register_blueprint(user)
     current_app.register_blueprint(oauth)
