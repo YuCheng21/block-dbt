@@ -28,10 +28,10 @@ def build():
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash('新增成功', category='success-toast')
             return redirect(url_for(endpoint.exp.parent.index))
+    abort(404)
 
 
 def update4build(id):
@@ -55,10 +55,10 @@ def update4build(id):
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash('新增成功', category='success-toast')
             return redirect(url_for(endpoint.exp.parent.index))
+    abort(404)
 
 
 def build2auth(id):
@@ -71,10 +71,10 @@ def build2auth(id):
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash('成功', category='success')
             return redirect(url_for(endpoint.exp.parent.index))
+    abort(404)
 
 
 def exp2sub(id):
@@ -87,10 +87,10 @@ def exp2sub(id):
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash('成功', category='success')
             return redirect(url_for(endpoint.exp.parent.index))
+    abort(404)
 
 
 def obj4sub(id):
@@ -107,7 +107,6 @@ def obj4sub(id):
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash('成功', category='success')
             return redirect(url_for(endpoint.exp.parent.obj4sub, id=id))
@@ -128,10 +127,10 @@ def start4sub(id):
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash('成功', category='success')
             return redirect(url_for(endpoint.exp.parent.index))
+    abort(404)
 
 
 def obj4run(id):
@@ -150,7 +149,7 @@ def sign_up(address, type, location):
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash('成功', category='success')
             return redirect(url_for(endpoint.exp.public.index))
+    abort(404)

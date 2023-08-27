@@ -24,10 +24,10 @@ def store():
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash('新增成功', category='success-toast')
             return redirect(url_for(endpoint.oauth.index))
+    abort(404)
 
 
 def authenticate():
@@ -44,7 +44,6 @@ def authenticate():
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash('成功', category='success')
             return redirect(url_for(endpoint.oauth.authenticate))

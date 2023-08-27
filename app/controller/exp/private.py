@@ -31,7 +31,6 @@ def show(id, state):
                     flash(e.args[0], category='error')
                     return redirect(request.referrer)
                 current_app.logger.error(f'error msg: {e}')
-                abort(404)
             else:
                 flash('新增成功', category='success-toast')
                 return redirect(url_for(endpoint.exp.public.index))
@@ -52,10 +51,10 @@ def scan4run(id):
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash(f'受測人員: <br>{exp.text}', category='success')
             return redirect(request.referrer)
+    abort(404)
 
 
 def form4run(id):
@@ -71,10 +70,10 @@ def form4run(id):
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash('成功', category='success-toast')
             return redirect(url_for(endpoint.exp.public.index))
+    abort(404)
 
 
 def consent(id):
@@ -87,8 +86,8 @@ def consent(id):
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             response = make_response(result.content)
             response.mimetype = 'application/pdf'
             return response
+    abort(404)

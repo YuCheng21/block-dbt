@@ -26,7 +26,6 @@ def show(id, state):
             return render_template('./exp/public/running.html', **locals())
         elif state in ['finish']:
             return render_template('./exp/public/finish.html', **locals())
-        abort(404)
     elif request.method == 'POST':
         if state in ['experiment']:
             print('TODO')
@@ -42,7 +41,6 @@ def show(id, state):
                     flash(e.args[0], category='error')
                     return redirect(request.referrer)
                 current_app.logger.error(f'error msg: {e}')
-                abort(404)
             else:
                 flash('成功', category='success')
                 return redirect(url_for(endpoint.exp.public.index))

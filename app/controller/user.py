@@ -18,10 +18,10 @@ def sign_up():
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             flash('註冊成功', category='success-toast')
             return redirect(url_for(endpoint.user.login, account=user.account))
+    abort(404)
 
 
 def login():
@@ -38,11 +38,11 @@ def login():
                 flash(e.args[0], category='error')
                 return redirect(request.referrer)
             current_app.logger.error(f'error msg: {e}')
-            abort(404)
         else:
             user.save_session()
             flash('登入成功', category='success-toast')
             return redirect(url_for(endpoint.exp.public.index))
+    abort(404)
 
 
 @Authenticate.user()
