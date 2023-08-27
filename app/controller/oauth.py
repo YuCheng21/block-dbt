@@ -1,5 +1,4 @@
-from flask import render_template, request, flash, redirect, url_for, abort, current_app
-from app.config.exception import exception_code
+from flask import render_template, request, flash, redirect, url_for, abort
 from app.config.endpoint import endpoint
 from app.model.oauth import OAuth
 
@@ -16,17 +15,10 @@ def store():
         title = '新增權威機構'
         return render_template('./oauth/store.html', **locals())
     elif request.method == 'POST':
-        try:
-            form_data = request.values.to_dict()
-            oauth = OAuth.store(form_data)
-        except Exception as e:
-            if e.args[0] in exception_code.dict().values():
-                flash(e.args[0], category='error')
-                return redirect(request.referrer)
-            current_app.logger.error(f'error msg: {e}')
-        else:
-            flash('新增成功', category='success-toast')
-            return redirect(url_for(endpoint.oauth.index))
+        form_data = request.values.to_dict()
+        oauth = OAuth.store(form_data)
+        flash('新增成功', category='success-toast')
+        return redirect(url_for(endpoint.oauth.index))
     abort(404)
 
 
@@ -37,14 +29,7 @@ def authenticate():
     elif request.method == 'POST':
         form_data = request.values.to_dict()
         data = dict(address=form_data['id'])
-        try:
-            OAuth.start(data)
-        except Exception as e:
-            if e.args[0] in exception_code.dict().values():
-                flash(e.args[0], category='error')
-                return redirect(request.referrer)
-            current_app.logger.error(f'error msg: {e}')
-        else:
-            flash('成功', category='success')
-            return redirect(url_for(endpoint.oauth.authenticate))
+        OAuth.start(data)
+        flash('成功', category='success')
+        return redirect(url_for(endpoint.oauth.authenticate))
     abort(404)

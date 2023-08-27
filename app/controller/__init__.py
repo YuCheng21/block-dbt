@@ -1,12 +1,13 @@
 import logging
 
-from flask import Flask, render_template, g, request, make_response, Blueprint
+from flask import Flask, render_template, g, request, make_response, Blueprint, flash, redirect, current_app
 from easydict import EasyDict as edict
 
 from app.config.flask_cfg import config as flask_config
 from app.config.logger_cfg import console_logger, file_logger
 from app.config.base import settings
 from app.config.api import url
+from app.config.exception import exception_code
 from app.config.endpoint import endpoint
 
 
@@ -37,6 +38,16 @@ def create_app():
     def page_not_found(e):
         title = '訪問頁面失敗'
         return render_template('./404.html', **locals())
+
+    @app.errorhandler(Exception)
+    def handle_exception(exception):
+        if exception.args[0] in exception_code.dict().values():
+            flash(exception.args[0], category='error')
+            return redirect(request.referrer)
+        current_app.logger.error(f'error msg: {exception}')
+        title = '例外錯誤'
+        return render_template('./exception.html', **locals())
+
 
     @app.route('/file/plain-text/<file_name>')
     def plain_text(file_name):

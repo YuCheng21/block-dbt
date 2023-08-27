@@ -1,7 +1,6 @@
 import asyncio
 
-from flask import render_template, request, flash, redirect, url_for, abort, current_app
-from app.config.exception import exception_code
+from flask import render_template, request, flash, redirect, url_for, abort
 from app.config.endpoint import endpoint
 from app.model.exp import Exp
 
@@ -32,16 +31,9 @@ def show(id, state):
         elif state in ['subject']:
             file_consent = request.files.getlist('consentData')
             args = request.values.to_dict()
-            try:
-                # Exp.register(args)
-                # Exp.upload_file(args, file_consent)
-                results = asyncio.run(Exp.sign_up_and_upload_file(args, file_consent))
-            except Exception as e:
-                if e.args[0] in exception_code.dict().values():
-                    flash(e.args[0], category='error')
-                    return redirect(request.referrer)
-                current_app.logger.error(f'error msg: {e}')
-            else:
-                flash('成功', category='success')
-                return redirect(url_for(endpoint.exp.public.index))
+            # Exp.register(args)
+            # Exp.upload_file(args, file_consent)
+            results = asyncio.run(Exp.sign_up_and_upload_file(args, file_consent))
+            flash('成功', category='success')
+            return redirect(url_for(endpoint.exp.public.index))
     abort(404)
