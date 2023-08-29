@@ -19,6 +19,9 @@ if (server.endpoint === endpoint.exp.parent.obj4sub) {
         utils.fetch_data(server.url.exp.n_object, server.basic_auth, 'POST', body).then(data => {
             utils.load_object(data)
         })
+        utils.fetch_data(server.url.exp.object_limit, server.basic_auth, 'POST', body).then(data => {
+            utils.load_object_max(data)
+        })
     })
 }
 
@@ -34,6 +37,9 @@ if (server.endpoint === endpoint.exp.parent.start4sub) {
         })
         utils.fetch_data(server.url.exp.n_object, server.basic_auth, 'POST', body).then(data => {
             utils.load_object(data)
+        })
+        utils.fetch_data(server.url.exp.object_limit, server.basic_auth, 'POST', body).then(data => {
+            utils.load_object_max(data)
         })
         utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
             utils.load_topic(data)

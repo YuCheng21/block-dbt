@@ -15,13 +15,14 @@ class Exp(BaseModel):
     start: HttpUrl = f'{settings.api_url}/startExp'
     object_list: HttpUrl = f'{settings.api_url}/getItemlist'
     scan_object: HttpUrl = f'{settings.api_url}/scanitem'
-    in_exp: HttpUrl = f'{settings.api_url}/getGroupResult'
     sign_up: HttpUrl = f'{settings.api_url}/expRegister'
     number: HttpUrl = f'{settings.api_url}/getMember'
     submit: HttpUrl = f'{settings.api_url}/fillQuestion'
     data: HttpUrl = f'{settings.api_url}/getResult'
     n_object: HttpUrl = f'{settings.api_url}/itemlength'
     force_unblind: HttpUrl = f'{settings.api_url}/unblind_Ave'
+    object_limit: HttpUrl = f'{settings.api_url}/itemcount'
+    in_exp: HttpUrl = f'{settings.api_url}/getGroupResult'
 
 
 class User(BaseModel):

@@ -215,6 +215,11 @@ export function load_object(data){
     document.querySelector("#controlObject").innerText = data[0]['control']
 }
 
+export function load_object_max(data){
+    document.querySelector("#expObjectMax").innerText = `/${data[0]['experimental']}`
+    document.querySelector("#controlObjectMax").innerText = `/${data[0]['control']}`
+}
+
 export function load_topic(data) {
     const mc = [];
     const sa = [];
