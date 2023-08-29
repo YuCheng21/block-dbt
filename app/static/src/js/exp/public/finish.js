@@ -22,11 +22,14 @@ if (server.endpoint === endpoint.exp.public.show && ['finish'].includes(page.sta
                     unblind_mc.push({
                         topic: `${value._topic}`,
                         score: `${value._result}`,
+                        group: `${component_group(value._group)}`,
                     })
                 }
                 if (value._type === 'filling') {
                     unblind_sa.push({
+                        topic: `${value._topic}`,
                         scale: `${value._scale}`,
+                        group: `${component_group(value._group)}`,
                     })
                 }
             })
@@ -47,4 +50,12 @@ if (server.endpoint === endpoint.exp.public.show && ['finish'].includes(page.sta
             utils.load_topic(data)
         })
     })
+}
+
+function component_group(group){
+    const table = {
+        'Experiment': '實驗組',
+        'Control': '對照組',
+    }
+    return `${table[group]}`
 }
