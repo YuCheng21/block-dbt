@@ -3,7 +3,7 @@ import datetime
 
 
 class BaseConfig:
-    SECRET_KEY = settings.secret_key
+    SECRET_KEY = settings.secret_key  # $ python -c 'import secrets; print(secrets.token_hex())'
     JSON_AS_ASCII = False
     SESSION_COOKIE_NAME = settings.session_cookie_name
     SESSION_REFRESH_EACH_REQUEST = True
