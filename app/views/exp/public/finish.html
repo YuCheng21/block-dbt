@@ -18,42 +18,78 @@
                         </h2>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="unblindMCTable" class="table table-striped text-center align-middle fs-5"
-                                   data-toggle="table"
-                                   data-search="true"
-                                   data-pagination="true"
-                                   data-page-size="10"
-                                   data-page-list="[10, 20, 30, 50, All]"
-                                   data-locale="zh-TW">
-                                <thead>
-                                <tr>
-                                    <th data-width="70" data-width-unit="%" data-field="topic">題目</th>
-                                    <th data-width="15" data-width-unit="%" data-sortable="true" data-field="score">分數</th>
-                                    <th data-width="15" data-width-unit="%" data-field="group">組別</th>
-                                </tr>
-                                </thead>
-                            </table>
+                        <div class="card mb-4">
+                            <div class="card-header d-inline-flex justify-content-between align-items-center">
+                                <span class="fs-5">
+                                    <span class="iconify-inline" data-icon="ic:round-fact-check"></span>
+                                    <span>選擇題</span>
+                                </span>
+                                <div class="d-flex flex-column flex-sm-row">
+                                    <input type="search" id="MCSearch" class="form-control" placeholder="搜尋" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="unblindMCTable" class="table table-striped text-center align-middle fs-5"
+                                           data-toggle="table"
+                                           data-search="true"
+                                           data-search-selector="#MCSearch"
+                                           data-pagination="true"
+                                           data-page-size="10"
+                                           data-page-list="[10, 20, 30, 50, All]"
+                                           data-locale="zh-TW">
+                                        <thead>
+                                        <tr>
+                                            <th data-width="70" data-width-unit="%" data-field="topic">題目</th>
+                                            <th data-width="15" data-width-unit="%" data-sortable="true" data-field="score">分數</th>
+                                            <th data-width="15" data-width-unit="%" data-field="group">組別</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <div class="table-responsive">
-                            <table id="unblindSATable" class="table table-striped text-center align-middle fs-5"
-                                   data-toggle="table"
-                                   data-search="true"
-                                   data-pagination="true"
-                                   data-page-size="10"
-                                   data-page-list="[10, 20, 30, 50, All]"
-                                   data-locale="zh-TW">
-                                <thead>
-                                <tr>
-                                    <th data-width="45" data-width-unit="%" data-field="topic">題目</th>
-                                    <th data-width="40" data-width-unit="%" data-field="scale">回答</th>
-                                    <th data-width="15" data-width-unit="%" data-field="group">組別</th>
-                                </tr>
-                                </thead>
-                            </table>
+                        <div class="card mb-4">
+                            <div class="card-header d-inline-flex justify-content-between align-items-center">
+                                <span class="fs-5">
+                                    <span class="iconify-inline" data-icon="icon-park-solid:topic"></span>
+                                    <span>簡答題</span>
+                                </span>
+                                <div class="d-flex flex-column flex-sm-row">
+                                    <input type="search" id="SASearch" class="form-control" placeholder="搜尋" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="unblindSATable" class="table table-striped text-center align-middle fs-5"
+                                           data-toggle="table"
+                                           data-search="true"
+                                           data-search-selector="#SASearch"
+                                           data-pagination="true"
+                                           data-page-size="10"
+                                           data-page-list="[10, 20, 30, 50, All]"
+                                           data-locale="zh-TW">
+                                        <thead>
+                                        <tr>
+                                            <th data-width="45" data-width-unit="%" data-field="topic">題目</th>
+                                            <th data-width="40" data-width-unit="%" data-field="scale">回答</th>
+                                            <th data-width="15" data-width-unit="%" data-field="group">組別</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <div id="finishData">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <span class="fs-5">
+                                    <span class="iconify-inline" data-icon="carbon:raw"></span>
+                                    <span>原始資料</span>
+                                </span>
+                            </div>
+                            <div class="card-body" id="finishData">
 
+                            </div>
                         </div>
                     </div>
                 </div>
