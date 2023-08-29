@@ -89,6 +89,14 @@ class ParentController:
             title = '實驗物清單'
             return render_template('./exp/parent/running.html', **locals())
 
+    def run2finish(self, id):
+        if request.method == 'GET':
+            data = dict(address=id)
+            Exp.force_unblind(data)
+            flash('成功', category='success')
+            return redirect(url_for(endpoint.exp.parent.index))
+        abort(404)
+
     def sign_up(self, address, type, location):
         if request.method == 'GET':
             data = dict(address=address, type=type, location=location)

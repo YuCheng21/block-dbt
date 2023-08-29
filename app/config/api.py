@@ -21,6 +21,7 @@ class Exp(BaseModel):
     submit: HttpUrl = f'{settings.api_url}/fillQuestion'
     data: HttpUrl = f'{settings.api_url}/getResult'
     n_object: HttpUrl = f'{settings.api_url}/itemlength'
+    force_unblind: HttpUrl = f'{settings.api_url}/unblind_Ave'
 
 
 class User(BaseModel):

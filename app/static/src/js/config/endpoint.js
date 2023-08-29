@@ -8,6 +8,7 @@ export let endpoint = {
             'build': 'exp.parent.build',
             'exp2sub': 'exp.parent.exp2sub',
             'build2auth': 'exp.parent.build2auth',
+            'run2finish': 'exp.parent.run2finish',
             'update4build': 'exp.parent.update4build',
             'index': 'exp.parent.index'
         },

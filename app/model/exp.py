@@ -179,3 +179,15 @@ class Exp:
             raise Exception(exception_code.fail)
 
         return result
+
+    @staticmethod
+    def force_unblind(data):
+        payload = {
+            'scaddress': data['address'],
+        }
+        result = req().basic_auth().post(url=url.exp.force_unblind, data=payload, timeout=30)
+
+        if result.status_code is not status_code.ok:
+            raise Exception(exception_code.fail)
+
+        return status_code.ok

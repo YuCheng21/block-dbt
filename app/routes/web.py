@@ -52,6 +52,7 @@ def init_blueprint():
     parent.add_url_rule('/subject/object/<id>', None, parent_ctrl.obj4sub, methods=['GET', 'POST'])
     parent.add_url_rule('/subject/start/<id>', None, parent_ctrl.start4sub, methods=['GET', 'POST'])
     parent.add_url_rule('/running/object/<id>', None, parent_ctrl.obj4run, methods=['GET', 'POST'])
+    parent.add_url_rule('/running/finish/<id>', None, parent_ctrl.run2finish, methods=['GET'])
     parent.add_url_rule('/sign_up/<address>/<type>/<location>', None, parent_ctrl.sign_up, methods=['GET'])
 
     ## Private Blueprint
