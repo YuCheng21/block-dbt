@@ -66,13 +66,17 @@ def init_blueprint():
 
     ## Exp Blueprint
     exp = Blueprint('exp', __name__, url_prefix='/exp')
+    exp.add_url_rule('/', None, public_ctrl.index, methods=['GET'])
     exp.register_blueprint(public)
     exp.register_blueprint(parent)
     exp.register_blueprint(private)
 
+    # Register Middleware
     register_before_request(oauth, Authenticate.user())
     register_before_request(exp, Authenticate.user())
 
+    # Register Route
+    current_app.add_url_rule('/', None, public_ctrl.index, methods=['GET'])
     current_app.register_blueprint(user)
     current_app.register_blueprint(oauth)
     current_app.register_blueprint(exp)
