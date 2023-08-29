@@ -9,11 +9,13 @@ if (server.endpoint === endpoint.exp.parent.obj4run) {
         utils.fetch_data(server.url.exp.object_list, server.basic_auth, 'POST', body).then(data => {
             let connectTable = document.querySelector("#connectTable")
             let obj = [];
-            Object.entries(data[0]).forEach(([key, value]) => {
+            Object.entries(data).forEach(([key, value]) => {
                 Object.entries(value).forEach(([i_key, i_value]) => {
-                    obj.push({
-                        objectID: `${i_value}`,
-                        location: `${key}`,
+                    Object.entries(i_value).forEach(([ii_key, ii_value]) => {
+                        obj.push({
+                            objectID: `${ii_value}`,
+                            location: `${i_key}`,
+                        })
                     })
                 })
             })
