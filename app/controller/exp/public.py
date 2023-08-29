@@ -3,10 +3,10 @@ import asyncio
 from flask import render_template, request, flash, redirect, url_for, abort
 from app.config.endpoint import endpoint
 from app.model.exp import Exp
-from app.controller.controller import MyController
+from app.controller import BasicController
 
 
-class PublicController(MyController):
+class PublicController(BasicController):
     def index(self):
         if request.method == 'GET':
             title = '所有實驗'

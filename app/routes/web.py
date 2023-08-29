@@ -1,13 +1,13 @@
 from flask import Blueprint, current_app, g
 
-from app.controller.controller import MyController
+from app.controller import BasicController
 from app.controller.user import UserController
 from app.controller.oauth import OAuthController
 from app.controller.exp import ExpController
 from app.middleware.authenticate import Authenticate
 
 
-class Controller(MyController):
+class Controller(BasicController):
     def __init__(self):
         super().__init__()
         self.user = UserController()

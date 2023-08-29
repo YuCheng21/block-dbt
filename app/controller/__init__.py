@@ -1,3 +1,4 @@
+from sys import _getframe
 import logging
 
 from flask import Flask, render_template, g, request, make_response, flash, redirect, current_app
@@ -10,31 +11,30 @@ from app.config.api import url
 from app.config.exception import exception_code
 from app.config.endpoint import endpoint
 
-from app.routes.web import init_blueprint
-
 
 def create_app():
-    app = MyFlask(__name__)
+    app = Flask(__name__)
     app.config.from_object(flask_config[settings.mode])
     app.static_folder = settings.project_path.joinpath('app', 'static').absolute()
     app.template_folder = settings.project_path.joinpath('app', 'views').absolute()
-
-    with app.app_context():
-        init_blueprint()
 
     app.logger.setLevel(logging.DEBUG)
     app.logger.addHandler(console_logger())
     app.logger.addHandler(file_logger())
 
-    app.my_route = app.get_my_route()
+    with app.app_context():
+        from app.routes.web import init_blueprint
+        init_blueprint()
+        app.my_route = get_my_route()
 
     @app.before_request
     def before_request():
+        g.route = app.my_route
+
         g.website_name = settings.website_name
         g.url = url
-        g.endpoint = endpoint
 
-        g.route = app.my_route
+        g.endpoint = endpoint
 
     @app.errorhandler(404)
     def page_not_found(e):
@@ -50,7 +50,6 @@ def create_app():
         title = '例外錯誤'
         return render_template('./exception.html', **locals())
 
-
     @app.route('/file/plain-text/<file_name>')
     def plain_text(file_name):
         content = request.args.get('file_content') if request.args.get('file_content') is not None else 'empty'
@@ -62,23 +61,30 @@ def create_app():
     return app, settings
 
 
-class MyFlask(Flask):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.my_route = None
+def get_my_route() -> edict:
+    rules_by_endpoint = current_app.url_map.__dict__['_rules_by_endpoint']
+    my_rules = [dict(endpoint=v[0].endpoint, rule=v[0].rule, args=list(v[0].arguments)
+                     ) for k, v in rules_by_endpoint.items()]
+    my_route = {}
+    for k, v in enumerate(my_rules):
+        ll = v['endpoint'].split('.')
+        point = my_route
+        while len(ll) != 0:
+            point = point.setdefault(ll[0], {})
+            ll.pop(0)
+        point.setdefault('endpoint', v['endpoint'])
+        point.setdefault('rule', v['rule'])
+        point.setdefault('args', v['args'])
+    return edict(my_route)
 
-    def get_my_route(self) -> edict:
-        rules_by_endpoint = self.url_map.__dict__['_rules_by_endpoint']
-        my_rules = [dict(endpoint=v[0].endpoint, rule=v[0].rule, args=list(v[0].arguments)
-                              ) for k, v in rules_by_endpoint.items()]
-        my_route = {}
-        for k, v in enumerate(my_rules):
-            ll = v['endpoint'].split('.')
-            point = my_route
-            while len(ll) != 0:
-                point = point.setdefault(ll[0], {})
-                ll.pop(0)
-            point.setdefault('endpoint', v['endpoint'])
-            point.setdefault('rule', v['rule'])
-            point.setdefault('args', v['args'])
-        return edict(my_route)
+
+class BasicController:
+    def add_decorator(self, decorator):
+        self_name = _getframe().f_code.co_name  # add_decorator
+        for attribute in dir(self):
+            attribute_value = getattr(self, attribute)
+            if attribute.startswith('__') is False and attribute != self_name:
+                if callable(attribute_value) is True:
+                    setattr(self, attribute, decorator(attribute_value))
+                else:
+                    getattr(attribute_value, self_name)(decorator)
