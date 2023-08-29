@@ -1,10 +1,11 @@
 from flask import render_template, request, flash, redirect, url_for, abort
 from app.model.user import UserModel
 from app.config.endpoint import endpoint
+from app.controller.controller import MyController
 from app.middleware.authenticate import Authenticate
 
 
-class UserController:
+class UserController(MyController):
     def sign_up(self):
         if request.method == 'GET':
             title = '註冊'
