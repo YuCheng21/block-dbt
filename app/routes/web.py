@@ -5,6 +5,7 @@ from app.controller.user import UserController
 from app.controller.oauth import OAuthController
 from app.controller.exp import ExpController
 from app.middleware.authenticate import Authenticate
+from app.middleware.exception import ExceptionHandler
 
 
 class Controller(BasicController):
@@ -18,6 +19,7 @@ class Controller(BasicController):
 def init_blueprint():
     ctrl = Controller()
 
+    ctrl.add_decorator(ExceptionHandler.web())
     ctrl.oauth.add_decorator(Authenticate.user())
     ctrl.exp.add_decorator(Authenticate.user())
 

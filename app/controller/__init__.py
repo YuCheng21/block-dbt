@@ -37,18 +37,23 @@ def create_app():
         g.endpoint = endpoint
 
     @app.errorhandler(404)
-    def page_not_found(e):
+    def not_found(e):
         title = '訪問頁面失敗'
         return render_template('./404.html', **locals())
 
-    @app.errorhandler(Exception)
-    def handle_exception(exception):
-        if exception.args[0] in exception_code.dict().values():
-            flash(exception.args[0], category='error')
-            return redirect(request.referrer)
-        current_app.logger.error(f'error msg: {exception}')
-        title = '例外錯誤'
-        return render_template('./exception.html', **locals())
+    @app.errorhandler(500)
+    def internal_server_error(e):
+        title = '伺服器錯誤'
+        return render_template('./500.html', **locals())
+
+    # @app.errorhandler(Exception)
+    # def handle_exception(exception):
+    #     if exception.args[0] in exception_code.dict().values():
+    #         flash(exception.args[0], category='error')
+    #         return redirect(request.referrer)
+    #     current_app.logger.error(f'error msg: {exception}')
+    #     title = '例外錯誤'
+    #     return render_template('./exception.html', **locals())
 
     @app.route('/file/plain-text/<file_name>')
     def plain_text(file_name):
