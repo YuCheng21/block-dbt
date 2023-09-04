@@ -79,7 +79,7 @@ class ParentController(BasicController):
             return render_template('./exp/parent/subject.html', **locals())
         elif request.method == 'POST':
             form_data = request.values.to_dict()
-            data = dict(address=id, date=form_data['date'])
+            data = dict(address=id)
             Exp.start(data)
             flash('成功', category='success')
             return redirect(url_for(endpoint.exp.parent.index))

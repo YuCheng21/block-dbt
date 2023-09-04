@@ -59,7 +59,6 @@ class Exp:
     def start(cls, data):
         payload = {
             'scaddress': data['address'],
-            'date': data['date'],
         }
         result = req().basic_auth().post(url=url.exp.start, data=payload, timeout=30)
 
