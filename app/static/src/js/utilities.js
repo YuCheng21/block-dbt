@@ -202,7 +202,7 @@ export function load_info(data){
     document.querySelector("#expId").value = exp._serial
     document.querySelector("#expName").value = exp._name
     document.querySelector("#expContent").value = exp._content
-    document.querySelector("#expTime").value = '2023/08/30 22:00:00'
+    document.querySelector("#expTime").value = exp._time
 }
 
 export function load_member(data){
