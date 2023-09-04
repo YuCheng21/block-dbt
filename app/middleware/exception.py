@@ -15,9 +15,11 @@ class ExceptionHandler:
                 try:
                     return func(*args, **kwargs)
                 except Exception as exception:
-                    if exception.args[0] in exception_code.dict().values():
+                    if str(exception) in exception_code.dict().values():
                         flash(exception.args[0], category='error')
                         return redirect(request.referrer)
+                    if hasattr(exception, 'code'):
+                        return abort(exception.code)
                     current_app.logger.error(f'error msg: {exception}')
                     abort(500)
 
