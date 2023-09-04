@@ -8,6 +8,18 @@ if (server.endpoint === endpoint.oauth.authenticate) {
     })
 }
 
+if (server.endpoint === endpoint.oauth.auth) {
+    document.addEventListener("DOMContentLoaded", function () {
+        const body = {"scaddress": page.id};
+        utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
+            utils.load_info(data)
+        })
+        utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
+            utils.load_topic(data)
+        })
+    })
+}
+
 function load_data() {
     utils.fetch_data(server.url.exp.index, server.basic_auth, 'GET', null).then(data => {
         load_table(data)
@@ -31,16 +43,16 @@ function load_table(data) {
 }
 
 function component_action(id, code) {
-    let href = utils.route2url(server.route.oauth.authenticate)
+    let href = utils.route2url(server.route.oauth.auth, id)
     let active = `
-        <button type="submit" class="btn btn-primary w-100 text-white setLoading">驗證</button> 
+        <button type="submit" class="btn btn-primary w-100 text-white">驗證</button> 
     `
     let disabled = `
         <button type="submit" class="btn btn-close w-100 disabled"></button> 
     `
     let button = (['1'].includes(code) ? active : disabled)
     return `
-        <form action="${href}" method="post" enctype="application/x-www-form-urlencoded">
+        <form action="${href}" method="get">
             <input type="hidden" name="id" value="${id}">
             ${button}     
         </form>

@@ -22,6 +22,7 @@ export let endpoint = {
     },
     'oauth': {
         'authenticate': 'oauth.authenticate',
+        'auth': 'oauth.auth',
         'index': 'oauth.index',
         'store': 'oauth.store'
     },

@@ -37,7 +37,8 @@ def init_blueprint():
     oauth = Blueprint('oauth', __name__, url_prefix='/oauth')
     oauth.add_url_rule('/', None, ctrl.oauth.index, methods=['GET'])
     oauth.add_url_rule('/store', None, ctrl.oauth.store, methods=['GET', 'POST'])
-    oauth.add_url_rule('/authenticate', None, ctrl.oauth.authenticate, methods=['GET', 'POST'])
+    oauth.add_url_rule('/authenticate', None, ctrl.oauth.authenticate, methods=['GET'])
+    oauth.add_url_rule('/auth/<id>', None, ctrl.oauth.auth, methods=['GET', 'POST'])
 
     # Exp Blueprint
     ## Public Blueprint

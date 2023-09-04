@@ -42,6 +42,7 @@ class OAuth(BaseModel):
     index = 'oauth.index'
     store = 'oauth.store'
     authenticate = 'oauth.authenticate'
+    auth = 'oauth.auth'
 
 
 class Endpoint(BaseModel):

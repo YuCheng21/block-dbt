@@ -26,9 +26,15 @@ class OAuthController(BasicController):
         if request.method == 'GET':
             title = '驗證實驗'
             return render_template('./oauth/authenticate.html', **locals())
+        abort(404)
+
+    def auth(self, id):
+        if request.method == 'GET':
+            title = '驗證實驗'
+            return render_template('./oauth/auth.html', **locals())
         elif request.method == 'POST':
             form_data = request.values.to_dict()
-            data = dict(address=form_data['id'])
+            data = dict(address=id)
             OAuth.start(data)
             flash('成功', category='success')
             return redirect(url_for(endpoint.oauth.authenticate))
