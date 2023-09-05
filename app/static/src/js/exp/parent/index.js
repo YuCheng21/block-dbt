@@ -39,6 +39,8 @@ function load_table(data) {
 function component_action(id, status, key) {
     let href = [
         utils.route2url(server.route.exp.parent.update4build, id),
+        utils.route2url(server.route.exp.parent.delete4build, id),
+        utils.route2url(server.route.exp.parent.build2auth, id),
         utils.route2url(server.route.exp.parent.build2auth, id),
         utils.route2url(server.route.exp.parent.exp2sub, id),
         utils.route2url(server.route.exp.parent.obj4sub, id),
@@ -48,22 +50,23 @@ function component_action(id, status, key) {
     ]
     let newPage = '<span class="iconify-inline" data-icon="ph:arrow-square-out-duotone"></span>'
     let buttonList = [
-        `<a href="${href[0]}" class="btn btn-outline-primary fw-bold">編輯問卷${newPage}</a>`,
-        `<a href="${href[1]}" class="btn btn-outline-primary fw-bold setLoading">確認問卷</a>`,
-        `<a href="${href[2]}" class="btn btn-outline-primary fw-bold setLoading">招募受測員</a>`,
-        `<a href="${href[3]}" class="btn btn-outline-primary fw-bold">新增實驗物${newPage}</a>`,
-        `<a href="${href[4]}" class="btn btn-outline-primary fw-bold">開始實驗${newPage}</a>`,
-        `<a href="${href[5]}" class="btn btn-outline-primary fw-bold">實驗物清單${newPage}</a>`,
-        `<!--<a href="${href[6]}" class="btn btn-outline-primary fw-bold setLoading">[測試]強制解盲</a>-->`,
+        `<a href="${href[0]}" class="btn btn-outline-primary fw-bold">新增問卷${newPage}</a>`,
+        `<a href="${href[1]}" class="btn btn-outline-primary fw-bold">刪除問卷${newPage}</a>`,
+        `<a href="${href[2]}" class="btn btn-outline-primary fw-bold setLoading">確認問卷</a>`,
+        `<a href="${href[3]}" class="btn btn-outline-primary fw-bold setLoading">招募受測員</a>`,
+        `<a href="${href[4]}" class="btn btn-outline-primary fw-bold">新增實驗物${newPage}</a>`,
+        `<a href="${href[5]}" class="btn btn-outline-primary fw-bold">開始實驗${newPage}</a>`,
+        `<a href="${href[6]}" class="btn btn-outline-primary fw-bold">實驗物清單${newPage}</a>`,
+        `<!--<a href="${href[7]}" class="btn btn-outline-primary fw-bold setLoading">[測試]強制解盲</a>-->`,
         `<a href="#" class="btn btn-outline-primary fw-bold disabled">無</a>`,
     ]
-    // buttonList = buttonList.filter((v, k) => [0, 1, 2, 3, 4, 5, 6].includes(k))
-    if (state[status] === 'build') buttonList = buttonList.filter((v, k) => [0, 1].includes(k))
-    if (state[status] === 'auth') buttonList = buttonList.filter((v, k) => [7].includes(k))
-    if (state[status] === 'experiment') buttonList = buttonList.filter((v, k) => [2].includes(k))
-    if (state[status] === 'subject') buttonList = buttonList.filter((v, k) => [3, 4].includes(k))
-    if (state[status] === 'running') buttonList = buttonList.filter((v, k) => [5, 6].includes(k))
-    if (state[status] === 'finish') buttonList = buttonList.filter((v, k) => [7].includes(k))
+    // buttonList = buttonList.filter((v, k) => [0, 1, 2, 3, 4, 5, 6, 7].includes(k))
+    if (state[status] === 'build') buttonList = buttonList.filter((v, k) => [0, 1, 2].includes(k))
+    if (state[status] === 'auth') buttonList = buttonList.filter((v, k) => [8].includes(k))
+    if (state[status] === 'experiment') buttonList = buttonList.filter((v, k) => [3].includes(k))
+    if (state[status] === 'subject') buttonList = buttonList.filter((v, k) => [4, 5].includes(k))
+    if (state[status] === 'running') buttonList = buttonList.filter((v, k) => [6, 7].includes(k))
+    if (state[status] === 'finish') buttonList = buttonList.filter((v, k) => [8].includes(k))
     return `
         <button class="btn btn-primary text-nowrap w-100 text-white" data-bs-toggle="collapse" data-bs-target="#key${key}">
             <span class="iconify-inline" data-icon="icon-park-solid:down-c"></span>

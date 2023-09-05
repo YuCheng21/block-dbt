@@ -1,10 +1,15 @@
 /*
 * click confirm button on sa modal: update/add the data on sa table
 * */
-export let action = `
+export let addAction = `
 <div class="btn-group w-100">
     <button class="btn btn-secondary fs-6 fw-bold w-100 ws-nowrap SAUpdate">編輯</button>
     <button class="btn btn-danger fs-6 fw-bold w-100 ws-nowrap SADelete">刪除</button>
+</div>
+`
+export let deleteAction = `
+<div class="btn-group w-100">
+    <button class="btn btn-close fs-6 fw-bold w-100 ws-nowrap SADelete disabled"></button>
 </div>
 `
 let shortAnswerSend = document.querySelector('#shortAnswerSend')
@@ -25,14 +30,14 @@ if (shortAnswerSend){
             // Insert items to table
             $(SATable).bootstrapTable('insertRow', {
                 index: 0, row: {
-                    shortAnswer: topic, SAAction: action,
+                    shortAnswer: topic, SAAction: addAction,
                 }
             });
         } else {
             // update items to table
             $(SATable).bootstrapTable('updateRow', {
                 index: index, row: {
-                    shortAnswer: topic, SAAction: action,
+                    shortAnswer: topic, SAAction: addAction,
                 }
             });
         }

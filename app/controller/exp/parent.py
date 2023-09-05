@@ -28,8 +28,8 @@ class ParentController(BasicController):
 
     def update4build(self, id):
         if request.method == 'GET':
-            title = '編輯問卷'
-            return render_template('./exp/parent/build-form.html', **locals())
+            title = '新增問卷'
+            return render_template('./exp/parent/build-add-form.html', **locals())
         elif request.method == 'POST':
             form_data = request.values.to_dict()
             multiple_choice = json_loads(form_data['MCTable'])
@@ -43,6 +43,23 @@ class ParentController(BasicController):
             results = asyncio.run(Form.store_mc_and_sa(id, multiple_choice, short_answer))
             flash('新增成功', category='success-toast')
             return redirect(url_for(endpoint.exp.parent.index))
+        abort(404)
+
+    def delete4build(self, id):
+        if request.method == 'GET':
+            title = '刪除問卷'
+            return render_template('./exp/parent/build-delete-form.html', **locals())
+        elif request.method == 'POST':
+            form_data = request.values.to_dict()
+            multiple_choice, short_answer = json_loads(form_data['MCSelected']), json_loads(form_data['SASelected'])
+            for _, value in enumerate(multiple_choice):
+                data = dict(address=id, index=value)
+                Form.delete_mc(data)
+            for _, value in enumerate(short_answer):
+                data = dict(address=id, index=value)
+                Form.delete_sa(data)
+            flash('刪除成功', category='success-toast')
+            return redirect(request.referrer)
         abort(404)
 
     def build2auth(self, id):
