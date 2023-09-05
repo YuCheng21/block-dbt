@@ -134,3 +134,23 @@ class Form:
             raise Exception(exception_code.fail)
 
         return status_code.ok
+
+
+    @staticmethod
+    async def destroy_mc_and_sa(id, mc_data, sa_data):
+        auth = [session.get('account'), session.get('password')]
+        mc = []
+        for _, value in enumerate(mc_data):
+            data = dict(address=id, index=value)
+            mc += [partial(Form.destroy_mc, data, *auth)]
+        sa = []
+        for _, value in enumerate(sa_data):
+            data = dict(address=id, index=value)
+            sa += [partial(Form.destroy_sa, data, *auth)]
+
+        loop = asyncio.get_event_loop()
+        tasks = []
+        for i_func in mc + sa:
+            tasks += [loop.create_task(make_func_async(func=i_func, loop=loop))]
+        results = await asyncio.gather(*tasks)
+        return results

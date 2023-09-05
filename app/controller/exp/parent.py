@@ -52,12 +52,13 @@ class ParentController(BasicController):
         elif request.method == 'POST':
             form_data = request.values.to_dict()
             multiple_choice, short_answer = json_loads(form_data['MCSelected']), json_loads(form_data['SASelected'])
-            for _, value in enumerate(multiple_choice):
-                data = dict(address=id, index=value)
-                Form.destroy_mc(data)
-            for _, value in enumerate(short_answer):
-                data = dict(address=id, index=value)
-                Form.destroy_sa(data)
+            # for _, value in enumerate(multiple_choice):
+            #     data = dict(address=id, index=value)
+            #     Form.destroy_mc(data)
+            # for _, value in enumerate(short_answer):
+            #     data = dict(address=id, index=value)
+            #     Form.destroy_sa(data)
+            results = asyncio.run(Form.destroy_mc_and_sa(id, multiple_choice, short_answer))
             flash('刪除成功', category='success-toast')
             return redirect(request.referrer)
         abort(404)
