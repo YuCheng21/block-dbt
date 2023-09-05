@@ -47,7 +47,7 @@ class ParentController(BasicController):
 
     def destroy4build(self, id):
         if request.method == 'GET':
-            title = '刪除問卷'
+            title = '查看與刪除問卷'
             return render_template('./exp/parent/build-destroy-form.html', **locals())
         elif request.method == 'POST':
             form_data = request.values.to_dict()

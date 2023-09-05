@@ -51,7 +51,7 @@ function component_action(id, status, key) {
     let newPage = '<span class="iconify-inline" data-icon="ph:arrow-square-out-duotone"></span>'
     let buttonList = [
         `<a href="${href[0]}" class="btn btn-outline-primary fw-bold">新增問卷${newPage}</a>`,
-        `<a href="${href[1]}" class="btn btn-outline-primary fw-bold">刪除問卷${newPage}</a>`,
+        `<a href="${href[1]}" class="btn btn-outline-primary fw-bold">查看與刪除問卷${newPage}</a>`,
         `<a href="${href[2]}" class="btn btn-outline-primary fw-bold setLoading">確認問卷</a>`,
         `<a href="${href[3]}" class="btn btn-outline-primary fw-bold setLoading">招募受測員</a>`,
         `<a href="${href[4]}" class="btn btn-outline-primary fw-bold">新增實驗物${newPage}</a>`,
