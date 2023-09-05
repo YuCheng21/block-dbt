@@ -29,8 +29,9 @@ def init_blueprint():
     '''
     # User Blueprint
     user = Blueprint('user', __name__, url_prefix='/user')
-    user.add_url_rule('/sign_up', None, ctrl.user.sign_up, methods=['GET', 'POST'])
+    user.add_url_rule('/', None, ctrl.user.login, methods=['GET', 'POST'])
     user.add_url_rule('/login', None, ctrl.user.login, methods=['GET', 'POST'])
+    user.add_url_rule('/sign_up', None, ctrl.user.sign_up, methods=['GET', 'POST'])
     user.add_url_rule('/logout', None, ctrl.user.logout, methods=['POST'])
 
     # OAuth Blueprint
