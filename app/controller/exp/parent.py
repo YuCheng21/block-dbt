@@ -116,14 +116,6 @@ class ParentController(BasicController):
             return redirect(url_for(endpoint.exp.parent.index))
         abort(404)
 
-    # def sign_up(self, address, type, location):
-    #     if request.method == 'GET':
-    #         data = dict(address=address, type=type, location=location)
-    #         Exp.sign_up(data)
-    #         flash('成功', category='success')
-    #         return redirect(url_for(endpoint.exp.public.index))
-    #     abort(404)
-
     def experiment(self, address, location):
         if request.method == 'GET':
             data = dict(address=address, type=3, location=location)

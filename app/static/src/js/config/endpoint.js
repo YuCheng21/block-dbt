@@ -3,7 +3,6 @@ export let endpoint = {
         'parent': {
             'obj4sub': 'exp.parent.obj4sub',
             'obj4run': 'exp.parent.obj4run',
-            // 'sign_up': 'exp.parent.sign_up',
             'experiment': 'exp.parent.experiment',
             'start4sub': 'exp.parent.start4sub',
             'build': 'exp.parent.build',
@@ -15,7 +14,6 @@ export let endpoint = {
             'index': 'exp.parent.index'
         },
         'private': {
-            // 'show': 'exp.private.show',
             'experiment': 'exp.private.experiment',
             'subject': 'exp.private.subject',
             'running': 'exp.private.running',
@@ -25,7 +23,6 @@ export let endpoint = {
         },
         'public': {
             'index': ['exp.public.index', 'exp.index', 'index'],
-            // 'show': 'exp.public.show',
             'build': 'exp.public.build',
             'auth': 'exp.public.auth',
             'experiment': 'exp.public.experiment',

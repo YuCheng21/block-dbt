@@ -3,7 +3,6 @@ from pydantic import BaseModel
 
 class Public(BaseModel):
     index = 'exp.public.index'
-    # show = 'exp.public.show'
     build = 'exp.public.build'
     auth = 'exp.public.auth'
     experiment = 'exp.public.experiment'
@@ -19,7 +18,6 @@ class Parent(BaseModel):
     destroy4build = 'exp.parent.destroy4build'
     exp2sub = 'exp.parent.exp2sub'
     obj4sub = 'exp.parent.obj4sub'
-    # sign_up = 'exp.parent.sign_up'
     experiment = 'exp.parent.experiment'
     build2auth = 'exp.parent.build2auth'
     start4sub = 'exp.parent.start4sub'
@@ -28,7 +26,6 @@ class Parent(BaseModel):
 
 class Private(BaseModel):
     index = 'exp.private.index'
-    # show = 'exp.private.show'
     experiment = 'exp.private.experiment'
     subject = 'exp.private.subject'
     running = 'exp.private.running'
