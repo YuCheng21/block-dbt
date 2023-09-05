@@ -37,6 +37,13 @@ class MyRequest:
         kw = {**{'method': 'POST', 'url': url, 'headers': headers, 'timeout': timeout}, **kwargs}
         return self.request(*args, **kw)
 
+    def delete(self, url, content_type='urlencoded', timeout=5, *args, **kwargs):
+        if not content_type == 'urlencoded':
+            raise Exception(exception_code.unknown_type)
+        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+        kw = {**{'method': 'DELETE', 'url': url, 'headers': headers, 'timeout': timeout}, **kwargs}
+        return self.request(*args, **kw)
+
 
 async def make_func_async(func, loop):
     result = await loop.run_in_executor(None, func)
