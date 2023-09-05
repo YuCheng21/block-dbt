@@ -19,7 +19,10 @@ export let endpoint = {
             'scan4run': 'exp.private.scan4run',
             'index': 'exp.private.index'
         },
-        'public': {'index': 'exp.public.index', 'show': 'exp.public.show'}
+        'public': {
+            'index': ['exp.public.index', 'exp.index', 'index'],
+            'show': 'exp.public.show'
+        }
     },
     'oauth': {
         'authenticate': 'oauth.authenticate',

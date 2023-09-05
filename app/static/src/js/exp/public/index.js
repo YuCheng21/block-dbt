@@ -3,7 +3,7 @@ import {endpoint} from "@static/src/js/config/endpoint";
 import {state} from "@static/src/js/config/state";
 
 
-if (server.endpoint === endpoint.exp.public.index) {
+if (endpoint.exp.public.index.includes(server.endpoint)) {
     document.addEventListener("DOMContentLoaded", function () {
         load_data()
     })
