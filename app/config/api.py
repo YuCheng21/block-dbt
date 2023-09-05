@@ -23,6 +23,7 @@ class Exp(BaseModel):
     force_unblind: HttpUrl = f'{settings.api_url}/unblind_Ave'
     object_limit: HttpUrl = f'{settings.api_url}/itemcount'
     in_exp: HttpUrl = f'{settings.api_url}/getGroupResult'
+    all_result: HttpUrl = f'{settings.api_url}/getResultdetailed'
 
 
 class User(BaseModel):

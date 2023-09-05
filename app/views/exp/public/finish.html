@@ -18,6 +18,47 @@
                         </h2>
                     </div>
                     <div class="card-body">
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <span class="fs-5">
+                                    <span class="iconify-inline" data-icon="carbon:raw"></span>
+                                    <span>原始資料</span>
+                                </span>
+                            </div>
+                            <div class="card-body">
+                                <button class="btn btn-secondary w-100 fs-5 mb-2" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#rawCollapse">
+                                    <span>展開</span>
+                                </button>
+                                <div class="collapse" id="rawCollapse">
+                                    <div class="card card-body" id="rawData">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <span class="fs-5">
+                                    <span class="iconify-inline" data-icon="carbon:raw"></span>
+                                    <span>解盲資料 JSON</span>
+                                </span>
+                            </div>
+                            <div class="card-body">
+                                <button class="btn btn-secondary w-100 fs-5 mb-2" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#finishCollapse">
+                                    <span>展開</span>
+                                </button>
+                                <div class="collapse" id="finishCollapse">
+                                    <div class="card card-body" id="finishData">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card mb-4">
                             <div class="card-header d-inline-flex justify-content-between align-items-center">
                                 <span class="fs-5">
@@ -40,9 +81,9 @@
                                            data-locale="zh-TW">
                                         <thead>
                                         <tr>
-                                            <th data-width="70" data-width-unit="%" data-field="topic">題目</th>
-                                            <th data-width="15" data-width-unit="%" data-sortable="true" data-field="score">分數</th>
-                                            <th data-width="15" data-width-unit="%" data-field="group">組別</th>
+                                            <th data-width="70" data-width-unit="%" data-field="topic" data-sortable="true">題目</th>
+                                            <th data-width="15" data-width-unit="%" data-field="score" data-sortable="true">分數</th>
+                                            <th data-width="15" data-width-unit="%" data-field="group" data-sortable="true">組別</th>
                                         </tr>
                                         </thead>
                                     </table>
@@ -71,24 +112,13 @@
                                            data-locale="zh-TW">
                                         <thead>
                                         <tr>
-                                            <th data-width="45" data-width-unit="%" data-field="topic">題目</th>
+                                            <th data-width="45" data-width-unit="%" data-field="topic" data-sortable="true" >題目</th>
                                             <th data-width="40" data-width-unit="%" data-field="scale">回答</th>
-                                            <th data-width="15" data-width-unit="%" data-field="group">組別</th>
+                                            <th data-width="15" data-width-unit="%" data-field="group" data-sortable="true">組別</th>
                                         </tr>
                                         </thead>
                                     </table>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <span class="fs-5">
-                                    <span class="iconify-inline" data-icon="carbon:raw"></span>
-                                    <span>原始資料</span>
-                                </span>
-                            </div>
-                            <div class="card-body" id="finishData">
-
                             </div>
                         </div>
                     </div>

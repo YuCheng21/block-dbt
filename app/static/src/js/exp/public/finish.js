@@ -37,6 +37,13 @@ if (server.endpoint === endpoint.exp.public.show && ['finish'].includes(page.sta
             $(unblindSATable).bootstrapTable('load', unblind_sa)
         })
 
+        utils.fetch_data(server.url.exp.all_result, server.basic_auth, 'POST', body).then(data => {
+            let div = document.querySelector("#rawData")
+            div.innerHTML = `<pre>${JSON.stringify(data, null, 4)}</pre>`
+
+            // console.log(data)
+        })
+
         utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
             utils.load_info(data)
         })
