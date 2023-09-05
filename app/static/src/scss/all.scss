@@ -28,3 +28,7 @@
 }
 
 .setLoading {}
+
+input[type=checkbox]{
+    @extend .form-check-input;
+}
