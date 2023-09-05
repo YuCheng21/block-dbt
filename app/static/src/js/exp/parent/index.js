@@ -54,7 +54,7 @@ function component_action(id, status, key) {
         `<a href="${href[3]}" class="btn btn-outline-primary fw-bold">新增實驗物${newPage}</a>`,
         `<a href="${href[4]}" class="btn btn-outline-primary fw-bold">開始實驗${newPage}</a>`,
         `<a href="${href[5]}" class="btn btn-outline-primary fw-bold">實驗物清單${newPage}</a>`,
-        `<a href="${href[6]}" class="btn btn-outline-primary fw-bold setLoading">[測試]強制解盲</a>`,
+        `<!--<a href="${href[6]}" class="btn btn-outline-primary fw-bold setLoading">[測試]強制解盲</a>-->`,
         `<a href="#" class="btn btn-outline-primary fw-bold disabled">無</a>`,
     ]
     // buttonList = buttonList.filter((v, k) => [0, 1, 2, 3, 4, 5, 6].includes(k))
