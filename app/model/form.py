@@ -103,3 +103,34 @@ class Form:
             tasks += [loop.create_task(make_func_async(func=i_func, loop=loop))]
         results = await asyncio.gather(*tasks)
         return results
+
+
+    @staticmethod
+    def delete_mc(data, account=None, password=None):
+        payload = {
+            'scaddress': data['address'],
+            'index': data['index'],
+        }
+        result = req().basic_auth(account=account, password=password).delete(
+            url=url.topic.destroy_mc, data=payload, timeout=30
+        )
+
+        if result.status_code is not status_code.ok:
+            raise Exception(exception_code.fail)
+
+        return status_code.ok
+
+    @staticmethod
+    def delete_sa(data, account=None, password=None):
+        payload = {
+            'scaddress': data['address'],
+            'index': data['index'],
+        }
+        result = req().basic_auth(account=account, password=password).delete(
+            url=url.topic.destroy_sa, data=payload, timeout=30
+        )
+
+        if result.status_code is not status_code.ok:
+            raise Exception(exception_code.fail)
+
+        return status_code.ok
