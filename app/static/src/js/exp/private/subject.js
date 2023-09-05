@@ -14,3 +14,16 @@ if (server.endpoint === endpoint.exp.private.scan4run) {
 
     })
 }
+
+if (server.endpoint === endpoint.exp.private.show && ['subject'].includes(page.state)) {
+    document.addEventListener("DOMContentLoaded", function () {
+        const body = {"scaddress": page.id};
+        utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
+            utils.load_info(data)
+        })
+        utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
+            utils.load_topic(data)
+        })
+
+    })
+}
