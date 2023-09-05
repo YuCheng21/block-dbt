@@ -28,7 +28,7 @@ class PublicController(BasicController):
     #             return render_template('./exp/public/finish.html', **locals())
     #     elif request.method == 'POST':
     #         if state in ['experiment']:
-    #             print('TODO')
+    #             pass
     #         elif state in ['subject']:
     #             file_consent = request.files.getlist('consentData')
     #             args = request.values.to_dict()
