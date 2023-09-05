@@ -20,7 +20,7 @@ class ExceptionHandler:
                         return redirect(request.referrer)
                     if hasattr(exception, 'code'):
                         return abort(exception.code)
-                    current_app.logger.error(f'error msg: {exception}')
+                    current_app.logger.error(f'error msg: {exception}', exc_info=True)
                     abort(500)
 
             return wrapper
