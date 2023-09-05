@@ -3,7 +3,8 @@ export let endpoint = {
         'parent': {
             'obj4sub': 'exp.parent.obj4sub',
             'obj4run': 'exp.parent.obj4run',
-            'sign_up': 'exp.parent.sign_up',
+            // 'sign_up': 'exp.parent.sign_up',
+            'experiment': 'exp.parent.experiment',
             'start4sub': 'exp.parent.start4sub',
             'build': 'exp.parent.build',
             'exp2sub': 'exp.parent.exp2sub',

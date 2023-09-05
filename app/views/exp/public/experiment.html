@@ -22,7 +22,7 @@
                             <input id="expLocation" type="text" class="form-control fs-5" placeholder="請輸入實驗地點名稱">
                         </div>
                         <button type="button" class="btn btn-secondary w-100 fs-5" id="stateExpSend"
-                                data-url="{{ url_for(g.endpoint.exp.parent.sign_up, address=id, type=3, location='location') }}">
+                                data-url="{{ url_for(g.endpoint.exp.parent.experiment, address=id, location='location') }}">
                             <span class="iconify-inline" data-icon="ph:user-circle-plus-bold"></span>
                             <span>註冊實驗地點</span>
                         </button>

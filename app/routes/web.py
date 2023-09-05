@@ -63,11 +63,12 @@ def init_blueprint():
     parent.add_url_rule('/build/destroy/<id>', None, ctrl.exp.parent.destroy4build, methods=['GET', 'POST'])
     parent.add_url_rule('/build/auth/<id>', None, ctrl.exp.parent.build2auth, methods=['GET'])
     parent.add_url_rule('/experiment/subject/<id>', None, ctrl.exp.parent.exp2sub, methods=['GET'])
+    # parent.add_url_rule('/sign_up/<address>/<type>/<location>', None, ctrl.exp.parent.sign_up, methods=['GET'])
+    parent.add_url_rule('/sign_up/<address>/<location>', None, ctrl.exp.parent.experiment, methods=['GET'])
     parent.add_url_rule('/subject/object/<id>', None, ctrl.exp.parent.obj4sub, methods=['GET', 'POST'])
     parent.add_url_rule('/subject/start/<id>', None, ctrl.exp.parent.start4sub, methods=['GET', 'POST'])
     parent.add_url_rule('/running/object/<id>', None, ctrl.exp.parent.obj4run, methods=['GET', 'POST'])
     parent.add_url_rule('/running/finish/<id>', None, ctrl.exp.parent.run2finish, methods=['GET'])
-    parent.add_url_rule('/sign_up/<address>/<type>/<location>', None, ctrl.exp.parent.sign_up, methods=['GET'])
 
     ## Private Blueprint
     private = Blueprint('private', __name__, url_prefix='/private')
