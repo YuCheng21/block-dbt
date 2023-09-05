@@ -12,21 +12,48 @@ class PrivateController(BasicController):
             return render_template('./exp/private/index.html', **locals())
         abort(404)
 
-    def show(self, id, state):
+    # def show(self, id, state):
+    #     if request.method == 'GET':
+    #         title = id
+    #         if state in ['experiment']:
+    #             return render_template('./exp/private/experiment.html', **locals())
+    #         elif state in ['subject']:
+    #             return render_template('./exp/private/subject.html', **locals())
+    #         elif state in ['running']:
+    #             return render_template('./exp/private/running.html', **locals())
+    #     elif request.method == 'POST':
+    #         if state in ['experiment']:
+    #             form_data = request.values.to_dict()
+    #             exp = Exp.sign_exp(form_data)
+    #             flash('新增成功', category='success-toast')
+    #             return redirect(url_for(endpoint.exp.public.index))
+    #     abort(404)
+
+    def experiment(self, id):
+        title = id
         if request.method == 'GET':
-            title = id
-            if state in ['experiment']:
-                return render_template('./exp/private/experiment.html', **locals())
-            elif state in ['subject']:
-                return render_template('./exp/private/subject.html', **locals())
-            elif state in ['running']:
-                return render_template('./exp/private/running.html', **locals())
+            return render_template('./exp/private/experiment.html', **locals())
         elif request.method == 'POST':
-            if state in ['experiment']:
-                form_data = request.values.to_dict()
-                exp = Exp.sign_exp(form_data)
-                flash('新增成功', category='success-toast')
-                return redirect(url_for(endpoint.exp.public.index))
+            form_data = request.values.to_dict()
+            exp = Exp.sign_exp(form_data)
+            flash('新增成功', category='success-toast')
+            return redirect(url_for(endpoint.exp.public.index))
+        abort(404)
+
+    def subject(self, id):
+        title = id
+        if request.method == 'GET':
+            return render_template('./exp/private/subject.html', **locals())
+        elif request.method == 'POST':
+            pass
+        abort(404)
+
+    def running(self, id):
+        title = id
+        if request.method == 'GET':
+            return render_template('./exp/private/running.html', **locals())
+        elif request.method == 'POST':
+            pass
         abort(404)
 
     def scan4run(self, id):

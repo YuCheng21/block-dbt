@@ -32,7 +32,7 @@ function load_table(data) {
 }
 
 function component_action(id, code) {
-    const href = utils.route2url(server.route.exp.private.show, state[code], id)
+    const href = utils.route2url(server.route.exp.private[state[code]], id)
     return `
         <a href="${href}" class="btn btn-primary w-100 text-white">查看</a>
     `

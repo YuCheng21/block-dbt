@@ -2,7 +2,7 @@ import * as utils from "@static/src/js/utilities"
 import {endpoint} from "@static/src/js/config/endpoint";
 
 
-if (server.endpoint === endpoint.exp.private.show && page.state === 'experiment') {
+if (server.endpoint === endpoint.exp.private.experiment) {
     let expList = document.querySelector("#expList")
     let contentSend = document.querySelector('#contentSend')
     contentSend.addEventListener('click', function () {
