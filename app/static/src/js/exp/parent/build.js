@@ -3,6 +3,18 @@ import {endpoint} from "@static/src/js/config/endpoint";
 import {storeAction as MCStoreAction, destroyAction as MCDestroyAction} from "@static/src/js/form/multiple-choice";
 import {storeAction as SAStoreAction, destroyAction as SADestroyAction} from "@static/src/js/form/short-answer";
 
+if (server.endpoint === endpoint.exp.parent.confirm4build) {
+    document.addEventListener("DOMContentLoaded", function () {
+        const body = {"scaddress": page.id};
+        utils.fetch_data(server.url.exp.index, server.basic_auth).then(data => {
+            utils.load_info(data)
+        })
+        utils.fetch_data(server.url.topic.index, server.basic_auth, 'POST', body).then(data => {
+            utils.load_topic(data)
+        })
+    })
+}
+
 
 if (server.endpoint === endpoint.exp.parent.store4build) {
     document.addEventListener("DOMContentLoaded", function () {

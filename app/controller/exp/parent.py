@@ -123,3 +123,19 @@ class ParentController(BasicController):
             flash('成功', category='success')
             return redirect(url_for(endpoint.exp.public.index))
         abort(404)
+
+    def confirm4build(self, id):
+        title = '確認問卷'
+        if request.method == 'GET':
+            return render_template('./exp/parent/build-confirm-form.html', **locals())
+        elif request.method == 'POST':
+            pass
+        abort(404)
+
+    def confirm4exp(self, id):
+        title = '招募受測員'
+        if request.method == 'GET':
+            return render_template('./exp/parent/experiment-confirm.html', **locals())
+        elif request.method == 'POST':
+            pass
+        abort(404)

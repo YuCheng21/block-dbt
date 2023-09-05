@@ -1,0 +1,49 @@
+{% extends "base/all.html" %}
+
+{% block main %}
+    <div class="container-fluid p-4">
+
+        <div class="row">
+            <div class="col-12 col-lg-6">
+
+                {% with url=url_for(g.endpoint.exp.parent.index) %}
+                    {% include 'includes/back.html' %}
+                {% endwith %}
+
+                <div class="card hv-shadow mb-4">
+                    <div class="card-header">
+                        <h2>
+                            <span class="iconify-inline" data-icon="game-icons:confirmed"></span>
+                            <span>確認問卷</span>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ url_for(g.endpoint.exp.parent.build2auth, id=id) }}" class="btn btn-secondary w-100 fs-5 setLoading">
+                            <span class="iconify-inline" data-icon="subway:tick"></span>
+                            <span>確認</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-6">
+
+                {% include 'includes/card/exp/info.html' %}
+                {% include 'includes/card/exp/form.html' %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <!--  Parameters  -->
+    <script>
+        const page = {
+            'id': '{{id}}',
+            'state': '{{ state }}'
+        }
+    </script>
+    {{ super() }}
+    <!--  Page Customize Javascript  -->
+{% endblock %}

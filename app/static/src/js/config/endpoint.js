@@ -11,6 +11,8 @@ export let endpoint = {
             'run2finish': 'exp.parent.run2finish',
             'store4build': 'exp.parent.store4build',
             'destroy4build': 'exp.parent.destroy4build',
+            'confirm4build': 'exp.parent.confirm4build',
+            'confirm4exp': 'exp.parent.confirm4exp',
             'index': 'exp.parent.index'
         },
         'private': {

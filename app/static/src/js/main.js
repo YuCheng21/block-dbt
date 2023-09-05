@@ -17,6 +17,7 @@ import './exp/public/finish'
 
 import './exp/parent'
 import './exp/parent/build'
+import './exp/parent/experiment'
 import './exp/parent/subject'
 import './exp/parent/running'
 
