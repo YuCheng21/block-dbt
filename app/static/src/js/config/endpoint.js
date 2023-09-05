@@ -21,7 +21,13 @@ export let endpoint = {
         },
         'public': {
             'index': ['exp.public.index', 'exp.index', 'index'],
-            'show': 'exp.public.show'
+            // 'show': 'exp.public.show',
+            'build': 'exp.public.build',
+            'auth': 'exp.public.auth',
+            'experiment': 'exp.public.experiment',
+            'subject': 'exp.public.subject',
+            'running': 'exp.public.running',
+            'finish': 'exp.public.finish',
         }
     },
     'oauth': {

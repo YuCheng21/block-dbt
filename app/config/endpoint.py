@@ -3,7 +3,13 @@ from pydantic import BaseModel
 
 class Public(BaseModel):
     index = 'exp.public.index'
-    show = 'exp.public.show'
+    # show = 'exp.public.show'
+    build = 'exp.public.build'
+    auth = 'exp.public.auth'
+    experiment = 'exp.public.experiment'
+    subject = 'exp.public.subject'
+    running = 'exp.public.running'
+    finish = 'exp.public.finish'
 
 
 class Parent(BaseModel):

@@ -46,7 +46,13 @@ def init_blueprint():
     public = Blueprint('public', __name__, url_prefix='/public')
     public.add_url_rule('/', None, ctrl.exp.public.index, methods=['GET'])
     public.add_url_rule('/index', None, ctrl.exp.public.index, methods=['GET'])
-    public.add_url_rule('/show/<state>/<id>', None, ctrl.exp.public.show, methods=['GET', 'POST'])
+    # public.add_url_rule('/show/<state>/<id>', None, ctrl.exp.public.show, methods=['GET', 'POST'])
+    public.add_url_rule('/show/build/<id>', None, ctrl.exp.public.build, methods=['GET', 'POST'])
+    public.add_url_rule('/show/auth/<id>', None, ctrl.exp.public.auth, methods=['GET', 'POST'])
+    public.add_url_rule('/show/experiment/<id>', None, ctrl.exp.public.experiment, methods=['GET', 'POST'])
+    public.add_url_rule('/show/subject/<id>', None, ctrl.exp.public.subject, methods=['GET', 'POST'])
+    public.add_url_rule('/show/running/<id>', None, ctrl.exp.public.running, methods=['GET', 'POST'])
+    public.add_url_rule('/show/finish/<id>', None, ctrl.exp.public.finish, methods=['GET', 'POST'])
 
     ## Parent Blueprint
     parent = Blueprint('parent', __name__, url_prefix='/parent')

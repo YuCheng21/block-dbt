@@ -2,7 +2,7 @@ import * as utils from "@static/src/js/utilities"
 import {endpoint} from "@static/src/js/config/endpoint";
 
 
-if (server.endpoint === endpoint.exp.public.show && ['finish'].includes(page.state)) {
+if (server.endpoint === endpoint.exp.public.finish) {
     document.addEventListener("DOMContentLoaded", function () {
         const body = {"scaddress": page.id};
 

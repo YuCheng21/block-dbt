@@ -32,7 +32,7 @@ function load_table(data) {
 }
 
 function component_action(id, code) {
-    let href = utils.route2url(server.route.exp.public.show, state[code], id)
+    let href = utils.route2url(server.route.exp.public[state[code]], id)
     if (code === '4') {
         href = utils.route2url(server.route.exp.private.show, state[code], id)
     }
