@@ -10,6 +10,7 @@ export let endpoint = {
             'build2auth': 'exp.parent.build2auth',
             'run2finish': 'exp.parent.run2finish',
             'update4build': 'exp.parent.update4build',
+            'delete4build': 'exp.parent.delete4build',
             'index': 'exp.parent.index'
         },
         'private': {

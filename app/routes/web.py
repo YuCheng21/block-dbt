@@ -53,6 +53,7 @@ def init_blueprint():
     parent.add_url_rule('/index', None, ctrl.exp.parent.index, methods=['GET'])
     parent.add_url_rule('/build', None, ctrl.exp.parent.build, methods=['GET', 'POST'])
     parent.add_url_rule('/build/update/<id>', None, ctrl.exp.parent.update4build, methods=['GET', 'POST'])
+    parent.add_url_rule('/build/delete/<id>', None, ctrl.exp.parent.delete4build, methods=['GET', 'POST'])
     parent.add_url_rule('/build/auth/<id>', None, ctrl.exp.parent.build2auth, methods=['GET'])
     parent.add_url_rule('/experiment/subject/<id>', None, ctrl.exp.parent.exp2sub, methods=['GET'])
     parent.add_url_rule('/subject/object/<id>', None, ctrl.exp.parent.obj4sub, methods=['GET', 'POST'])

@@ -34,8 +34,9 @@ class User(BaseModel):
 class Topic(BaseModel):
     index: HttpUrl = f'{settings.api_url}/getQuestionaire'
     store_mc: HttpUrl = f'{settings.api_url}/setNewOptions'
-    destroy: HttpUrl = f'{settings.api_url}/deleteOptions'
     store_sa: HttpUrl = f'{settings.api_url}/setNewFillinOptions'
+    destroy_mc: HttpUrl = f'{settings.api_url}/deleteOptions'
+    destroy_sa: HttpUrl = f'{settings.api_url}/deletefillinOptions'
     submit: HttpUrl = f'{settings.api_url}/checkQuestionaire'
 
 
