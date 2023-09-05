@@ -38,8 +38,8 @@ function load_table(data) {
 
 function component_action(id, status, key) {
     let href = [
-        utils.route2url(server.route.exp.parent.update4build, id),
-        utils.route2url(server.route.exp.parent.delete4build, id),
+        utils.route2url(server.route.exp.parent.store4build, id),
+        utils.route2url(server.route.exp.parent.destroy4build, id),
         utils.route2url(server.route.exp.parent.build2auth, id),
         utils.route2url(server.route.exp.parent.build2auth, id),
         utils.route2url(server.route.exp.parent.exp2sub, id),

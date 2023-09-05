@@ -1,13 +1,13 @@
 /*
 * click confirm button on sa modal: update/add the data on sa table
 * */
-export let addAction = `
+export let storeAction = `
 <div class="btn-group w-100">
     <button class="btn btn-secondary fs-6 fw-bold w-100 ws-nowrap SAUpdate">編輯</button>
     <button class="btn btn-danger fs-6 fw-bold w-100 ws-nowrap SADelete">刪除</button>
 </div>
 `
-export let deleteAction = `
+export let destroyAction = `
 <div class="btn-group w-100">
     <button class="btn btn-close fs-6 fw-bold w-100 ws-nowrap SADelete disabled"></button>
 </div>
@@ -30,14 +30,14 @@ if (shortAnswerSend){
             // Insert items to table
             $(SATable).bootstrapTable('insertRow', {
                 index: 0, row: {
-                    shortAnswer: topic, SAAction: addAction,
+                    shortAnswer: topic, SAAction: storeAction,
                 }
             });
         } else {
             // update items to table
             $(SATable).bootstrapTable('updateRow', {
                 index: index, row: {
-                    shortAnswer: topic, SAAction: addAction,
+                    shortAnswer: topic, SAAction: storeAction,
                 }
             });
         }

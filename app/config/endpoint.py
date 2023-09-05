@@ -9,8 +9,8 @@ class Public(BaseModel):
 class Parent(BaseModel):
     index = 'exp.parent.index'
     build = 'exp.parent.build'
-    update4build = 'exp.parent.update4build'
-    delete4build = 'exp.parent.delete4build'
+    store4build = 'exp.parent.store4build'
+    destroy4build = 'exp.parent.destroy4build'
     exp2sub = 'exp.parent.exp2sub'
     obj4sub = 'exp.parent.obj4sub'
     sign_up = 'exp.parent.sign_up'

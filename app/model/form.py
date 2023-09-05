@@ -106,7 +106,7 @@ class Form:
 
 
     @staticmethod
-    def delete_mc(data, account=None, password=None):
+    def destroy_mc(data, account=None, password=None):
         payload = {
             'scaddress': data['address'],
             'index': data['index'],
@@ -121,7 +121,7 @@ class Form:
         return status_code.ok
 
     @staticmethod
-    def delete_sa(data, account=None, password=None):
+    def destroy_sa(data, account=None, password=None):
         payload = {
             'scaddress': data['address'],
             'index': data['index'],

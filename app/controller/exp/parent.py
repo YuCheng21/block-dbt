@@ -26,10 +26,10 @@ class ParentController(BasicController):
             return redirect(url_for(endpoint.exp.parent.index))
         abort(404)
 
-    def update4build(self, id):
+    def store4build(self, id):
         if request.method == 'GET':
             title = '新增問卷'
-            return render_template('./exp/parent/build-add-form.html', **locals())
+            return render_template('./exp/parent/build-store-form.html', **locals())
         elif request.method == 'POST':
             form_data = request.values.to_dict()
             multiple_choice = json_loads(form_data['MCTable'])
@@ -45,19 +45,19 @@ class ParentController(BasicController):
             return redirect(url_for(endpoint.exp.parent.index))
         abort(404)
 
-    def delete4build(self, id):
+    def destroy4build(self, id):
         if request.method == 'GET':
             title = '刪除問卷'
-            return render_template('./exp/parent/build-delete-form.html', **locals())
+            return render_template('./exp/parent/build-destroy-form.html', **locals())
         elif request.method == 'POST':
             form_data = request.values.to_dict()
             multiple_choice, short_answer = json_loads(form_data['MCSelected']), json_loads(form_data['SASelected'])
             for _, value in enumerate(multiple_choice):
                 data = dict(address=id, index=value)
-                Form.delete_mc(data)
+                Form.destroy_mc(data)
             for _, value in enumerate(short_answer):
                 data = dict(address=id, index=value)
-                Form.delete_sa(data)
+                Form.destroy_sa(data)
             flash('刪除成功', category='success-toast')
             return redirect(request.referrer)
         abort(404)

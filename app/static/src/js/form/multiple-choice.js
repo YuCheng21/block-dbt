@@ -1,13 +1,13 @@
 /*
 * click confirm button on mc modal: update/add the data on mc table
 * */
-export let addAction = `
+export let storeAction = `
 <div class="btn-group w-100">
     <button class="btn btn-secondary fs-6 fw-bold w-100 ws-nowrap MCUpdate">編輯</button>
     <button class="btn btn-danger fs-6 fw-bold w-100 ws-nowrap MCDelete">刪除</button>
 </div>
 `
-export let deleteAction = `
+export let destroyAction = `
 <div class="btn-group w-100">
     <button class="btn btn-close fs-6 fw-bold w-100 ws-nowrap MCDelete disabled"></button>
 </div>
@@ -33,14 +33,14 @@ if (multipleChoiceSend){
             // Insert items to table
             $(MCTable).bootstrapTable('insertRow', {
                 index: 0, row: {
-                    multipleChoice: topic, maxScore: score, MCAction: addAction,
+                    multipleChoice: topic, maxScore: score, MCAction: storeAction,
                 }
             });
         } else {
             // update items to table
             $(MCTable).bootstrapTable('updateRow', {
                 index: index, row: {
-                    multipleChoice: topic, maxScore: score, MCAction: addAction,
+                    multipleChoice: topic, maxScore: score, MCAction: storeAction,
                 }
             });
         }

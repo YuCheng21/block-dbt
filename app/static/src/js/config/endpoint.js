@@ -9,8 +9,8 @@ export let endpoint = {
             'exp2sub': 'exp.parent.exp2sub',
             'build2auth': 'exp.parent.build2auth',
             'run2finish': 'exp.parent.run2finish',
-            'update4build': 'exp.parent.update4build',
-            'delete4build': 'exp.parent.delete4build',
+            'store4build': 'exp.parent.store4build',
+            'destroy4build': 'exp.parent.destroy4build',
             'index': 'exp.parent.index'
         },
         'private': {
