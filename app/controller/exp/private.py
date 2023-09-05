@@ -37,7 +37,9 @@ class PrivateController(BasicController):
             form_data = request.values.to_dict()
             data = dict(address=id, form_data=form_data)
             exp = Exp.scan_obj(data)
-            flash(f'受測人員: <br>{exp.text}', category='success')
+            result = exp.json()
+            message = f'受測人員: {result.get("0").get("subject")}<br><br>實驗人員: {result.get("0").get("experimenter")}'
+            flash(message, category='success')
             return redirect(request.referrer)
         abort(404)
 
