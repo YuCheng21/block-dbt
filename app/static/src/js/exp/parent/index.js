@@ -41,7 +41,6 @@ function component_action(id, status, key) {
         utils.route2url(server.route.exp.parent.store4build, id),
         utils.route2url(server.route.exp.parent.destroy4build, id),
         utils.route2url(server.route.exp.parent.build2auth, id),
-        utils.route2url(server.route.exp.parent.build2auth, id),
         utils.route2url(server.route.exp.parent.exp2sub, id),
         utils.route2url(server.route.exp.parent.obj4sub, id),
         utils.route2url(server.route.exp.parent.start4sub, id),
@@ -57,7 +56,7 @@ function component_action(id, status, key) {
         `<a href="${href[4]}" class="btn btn-outline-primary fw-bold">新增實驗物${newPage}</a>`,
         `<a href="${href[5]}" class="btn btn-outline-primary fw-bold">開始實驗${newPage}</a>`,
         `<a href="${href[6]}" class="btn btn-outline-primary fw-bold">實驗物清單${newPage}</a>`,
-        `<!--<a href="${href[7]}" class="btn btn-outline-primary fw-bold setLoading">[測試]強制解盲</a>-->`,
+        `<a href="${href[7]}" class="btn btn-outline-primary fw-bold setLoading">[測試]強制解盲</a>`,
         `<a href="#" class="btn btn-outline-primary fw-bold disabled">無</a>`,
     ]
     // buttonList = buttonList.filter((v, k) => [0, 1, 2, 3, 4, 5, 6, 7].includes(k))
@@ -65,7 +64,8 @@ function component_action(id, status, key) {
     if (state[status] === 'auth') buttonList = buttonList.filter((v, k) => [8].includes(k))
     if (state[status] === 'experiment') buttonList = buttonList.filter((v, k) => [3].includes(k))
     if (state[status] === 'subject') buttonList = buttonList.filter((v, k) => [4, 5].includes(k))
-    if (state[status] === 'running') buttonList = buttonList.filter((v, k) => [6, 7].includes(k))
+    // if (state[status] === 'running') buttonList = buttonList.filter((v, k) => [6, 7].includes(k))
+    if (state[status] === 'running') buttonList = buttonList.filter((v, k) => [6].includes(k))
     if (state[status] === 'finish') buttonList = buttonList.filter((v, k) => [8].includes(k))
     return `
         <button class="btn btn-primary text-nowrap w-100 text-white" data-bs-toggle="collapse" data-bs-target="#key${key}">
