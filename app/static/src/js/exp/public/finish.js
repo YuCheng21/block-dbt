@@ -10,14 +10,14 @@ if (server.endpoint === endpoint.exp.public.show && ['finish'].includes(page.sta
             let div = document.querySelector("#finishData")
             div.innerHTML = `<pre>${JSON.stringify(data, null, 4)}</pre>`
 
-            console.log(data)
+            // console.log(data)
 
             let unblindMCTable = document.querySelector("#unblindMCTable")
             let unblindSATable = document.querySelector("#unblindSATable")
             let unblind_mc = [];
             let unblind_sa = [];
             Object.entries(data).forEach(([key, value]) => {
-                console.log(key, value)
+                // console.log(key, value)
                 if (value._type === 'choose') {
                     unblind_mc.push({
                         topic: `${value._topic}`,
@@ -26,11 +26,20 @@ if (server.endpoint === endpoint.exp.public.show && ['finish'].includes(page.sta
                     })
                 }
                 if (value._type === 'filling') {
-                    unblind_sa.push({
-                        topic: `${value._topic}`,
-                        scale: `${value._scale}`,
-                        group: `${component_group(value._group)}`,
+
+                    Object.entries(value._scale).forEach(([i_key, i_value]) => {
+                        unblind_sa.push({
+                            topic: `${value._topic[i_key]}`,
+                            scale: `${value._scale[i_key]}`,
+                            group: `${component_group(value._group)}`,
+                        })
                     })
+                    // unblind_sa.push({
+                    //     topic: `${value._topic}`,
+                    //     scale: `${value._scale}`,
+                    //     group: `${component_group(value._group)}`,
+                    // })
+
                 }
             })
             $(unblindMCTable).bootstrapTable('load', unblind_mc)
