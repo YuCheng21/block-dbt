@@ -17,7 +17,8 @@ if (server.endpoint === endpoint.exp.public.experiment) {
         let stateExpSend = document.querySelector('#stateExpSend')
         stateExpSend.addEventListener('click', function (event) {
             let location = document.querySelector('#expLocation').value
-            let path = event.target.dataset.url
+            let findURL = event.target.closest('[data-url]')
+            let path = findURL.dataset.url
             path = path.split('/')
             path[path.length - 1] = location
             path = path.join('/')
