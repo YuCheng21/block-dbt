@@ -10,12 +10,14 @@
                 </h2>
             </div>
             <div class="card-body">
-                <div class="input-group mb-2">
-                    <label for="subId" class="input-group-text fs-5">受測人員編號</label>
-                    <input name="subId" id="subId" type="text"
-                           class="form-control fs-5" placeholder="請輸入受測人員編號">
+                <div class="d-none">  {# Deprecated #}
+                    <div class="input-group mb-2">
+                        <label for="subId" class="input-group-text fs-5">受測人員編號</label>
+                        <input name="subId" id="subId" type="text"
+                               class="form-control fs-5" placeholder="請輸入受測人員編號">
+                    </div>
+                    <hr>
                 </div>
-                <hr>
                 <h3>選擇題</h3>
                 <div class="table-responsive">
                     <table id="MCTable" class="table table-striped text-center align-middle fs-5 ws-nowrap"
