@@ -33,6 +33,7 @@ def create_app():
 
         g.website_name = settings.website_name
         g.url = url
+        g.debug = app.config.get('DEBUG')
 
         g.endpoint = endpoint
 

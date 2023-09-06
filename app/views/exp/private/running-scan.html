@@ -14,13 +14,15 @@
 
                 <form action="" enctype="multipart/form-data" method="post" class="w-100">
 
-{#                    <div class="input-group mb-4">#}
-{#                        <div class="input-group-text">#}
-{#                            <input class="form-check-input" type="checkbox" name="objTest" id="objTest">#}
-{#                        </div>#}
-{#                        <label class="input-group-text fs-5" for="objectID">實驗物 ID</label>#}
-{#                        <input name="objectID" id="objectID" type="text" class="form-control fs-5" placeholder="[測試]手動輸入 ID" disabled>#}
-{#                    </div>#}
+                    {% if g.debug is not true %}
+                        <div class="input-group mb-4">
+                            <div class="input-group-text">
+                                <input class="form-check-input" type="checkbox" name="objTest" id="objTest">
+                            </div>
+                            <label class="input-group-text fs-5" for="objectID">實驗物 ID</label>
+                            <input name="objectID" id="objectID" type="text" class="form-control fs-5" placeholder="[測試]手動輸入 ID" disabled>
+                        </div>
+                    {% endif %}
 
                     <div class="btn-group w-100">
                         <button type="button" class="btn btn-outline-secondary fs-5 fw-bold w-100 ws-nowrap"

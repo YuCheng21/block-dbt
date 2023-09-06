@@ -123,6 +123,7 @@
     <script>
         const server = {
             'page_title': '{{ title }}',
+            'debug': '{{ g.debug }}',
             'endpoint': '{{ request.endpoint }}',
             'route': JSON.parse('{{ g.route | tojson }}'),
             {#'endpoint_list': {{ g.endpoint_list | tojson}},#}
