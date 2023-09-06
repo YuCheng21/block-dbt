@@ -11,33 +11,41 @@
                 {% endwith %}
 
                 <div class="card hv-shadow mb-4">
-                    <div class="card-header">
+                    <div class="card-header d-inline-flex justify-content-between align-items-center">
                         <h2 class="my-2">
                             <span class="iconify-inline" data-icon="mingcute:unlock-fill"></span>
                             <span>解盲資料</span>
                         </h2>
+                        <div class="d-flex flex-column flex-sm-row">
+                            <form action="" method="post" target="_blank">
+                                <button type="submit" class="btn btn-outline-secondary fs-5 fw-bold w-100 ws-nowrap">
+                                    <span class="iconify-inline" data-icon="carbon:raw"></span>
+                                    <span>下載原始資料</span>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     <div class="card-body">
 
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <span class="fs-5">
-                                    <span class="iconify-inline" data-icon="carbon:raw"></span>
-                                    <span>原始資料</span>
-                                </span>
-                            </div>
-                            <div class="card-body">
-                                <button class="btn btn-secondary w-100 fs-5 mb-2" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#rawCollapse">
-                                    <span>展開</span>
-                                </button>
-                                <div class="collapse" id="rawCollapse">
-                                    <div class="card card-body" id="rawData">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{#                        <div class="card mb-4">#}
+{#                            <div class="card-header">#}
+{#                                <span class="fs-5">#}
+{#                                    <span class="iconify-inline" data-icon="carbon:raw"></span>#}
+{#                                    <span>原始資料</span>#}
+{#                                </span>#}
+{#                            </div>#}
+{#                            <div class="card-body">#}
+{#                                <button class="btn btn-secondary w-100 fs-5 mb-2" type="button"#}
+{#                                        data-bs-toggle="collapse" data-bs-target="#rawCollapse">#}
+{#                                    <span>展開</span>#}
+{#                                </button>#}
+{#                                <div class="collapse" id="rawCollapse">#}
+{#                                    <div class="card card-body" id="rawData">#}
+{##}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
 
 {#                        <div class="card mb-4">#}
 {#                            <div class="card-header">#}

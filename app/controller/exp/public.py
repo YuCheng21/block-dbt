@@ -64,5 +64,6 @@ class PublicController(BasicController):
         if request.method == 'GET':
             return render_template('./exp/public/finish.html', **locals())
         elif request.method == 'POST':
-            pass
+            result = Exp.raw_data(data={'address': id})
+            return result.text
         abort(404)
