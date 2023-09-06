@@ -37,36 +37,42 @@ function load_table(data) {
 }
 
 function component_action(id, status, key) {
-    let href = [
-        utils.route2url(server.route.exp.parent.store4build, id),
-        utils.route2url(server.route.exp.parent.destroy4build, id),
-        utils.route2url(server.route.exp.parent.confirm4build, id),
-        utils.route2url(server.route.exp.parent.confirm4exp, id),
-        utils.route2url(server.route.exp.parent.obj4sub, id),
-        utils.route2url(server.route.exp.parent.start4sub, id),
-        utils.route2url(server.route.exp.parent.obj4run, id),
-        utils.route2url(server.route.exp.parent.run2finish, id),
-    ]
+    let href = {
+        storeForm: utils.route2url(server.route.exp.parent.store4build, id),
+        destroyForm: utils.route2url(server.route.exp.parent.destroy4build, id),
+        confirmForm: utils.route2url(server.route.exp.parent.confirm4build, id),
+        confirmExp: utils.route2url(server.route.exp.parent.confirm4exp, id),
+        storeObject: utils.route2url(server.route.exp.parent.obj4sub, id),
+        confirmSub: utils.route2url(server.route.exp.parent.start4sub, id),
+        showObject: utils.route2url(server.route.exp.parent.obj4run, id),
+        confirmRun: utils.route2url(server.route.exp.parent.run2finish, id),
+        none: '#',
+    }
     let newPage = '<span class="iconify-inline" data-icon="ph:arrow-square-out-duotone"></span>'
+    let parentClass = `btn btn-outline-primary fw-bold`
     let buttonList = [
-        `<a href="${href[0]}" class="btn btn-outline-primary fw-bold">新增問卷${newPage}</a>`,
-        `<a href="${href[1]}" class="btn btn-outline-primary fw-bold">查看與刪除問卷${newPage}</a>`,
-        `<a href="${href[2]}" class="btn btn-outline-primary fw-bold">確認問卷${newPage}</a>`,
-        `<a href="${href[3]}" class="btn btn-outline-primary fw-bold">招募受測員${newPage}</a>`,
-        `<a href="${href[4]}" class="btn btn-outline-primary fw-bold">新增實驗物${newPage}</a>`,
-        `<a href="${href[5]}" class="btn btn-outline-primary fw-bold">開始實驗${newPage}</a>`,
-        `<a href="${href[6]}" class="btn btn-outline-primary fw-bold">實驗物清單${newPage}</a>`,
-        `<a href="${href[7]}" class="btn btn-outline-primary fw-bold setLoading">[測試]強制解盲</a>`,
-        `<a href="#" class="btn btn-outline-primary fw-bold disabled">無</a>`,
+        `<a href="${href.storeForm}" class="${parentClass}">新增問卷${newPage}</a>`,
+        `<a href="${href.destroyForm}" class="${parentClass}">查看與刪除問卷${newPage}</a>`,
+        `<a href="${href.confirmForm}" class="${parentClass}">確認問卷${newPage}</a>`,
+        `<a href="${href.confirmExp}" class="${parentClass}">招募受測員${newPage}</a>`,
+        `<a href="${href.storeObject}" class="${parentClass}">新增實驗物${newPage}</a>`,
+        `<a href="${href.confirmSub}" class="${parentClass}">開始實驗${newPage}</a>`,
+        `<a href="${href.showObject}" class="${parentClass}">實驗物清單${newPage}</a>`,
+        `<a href="${href.confirmRun}" class="${parentClass} setLoading">[測試]強制解盲</a>`,
+        `<a href="${href.none}" class="${parentClass} disabled">無</a>`,
     ]
-    // buttonList = buttonList.filter((v, k) => [0, 1, 2, 3, 4, 5, 6, 7].includes(k))
-    if (state[status] === 'build') buttonList = buttonList.filter((v, k) => [0, 1, 2].includes(k))
-    if (state[status] === 'auth') buttonList = buttonList.filter((v, k) => [8].includes(k))
-    if (state[status] === 'experiment') buttonList = buttonList.filter((v, k) => [3].includes(k))
-    if (state[status] === 'subject') buttonList = buttonList.filter((v, k) => [4, 5].includes(k))
-    // if (state[status] === 'running') buttonList = buttonList.filter((v, k) => [6, 7].includes(k))
-    if (state[status] === 'running') buttonList = buttonList.filter((v, k) => [6].includes(k))
-    if (state[status] === 'finish') buttonList = buttonList.filter((v, k) => [8].includes(k))
+    let includeList = [0, 1, 2, 3, 4, 5, 6, 7]
+    if (state[status] === 'build') includeList = [0, 1, 2]
+    if (state[status] === 'auth') includeList = [8]
+    if (state[status] === 'experiment') includeList = [3]
+    if (state[status] === 'subject') includeList = [4, 5]
+    if (state[status] === 'running') {
+        if (server.debug === true) includeList = [6, 7]
+        else includeList = [6]
+    }
+    if (state[status] === 'finish') includeList = [8]
+    buttonList = buttonList.filter((v, k) => includeList.includes(k))
+
     return `
         <button class="btn btn-primary text-nowrap w-100 text-white" data-bs-toggle="collapse" data-bs-target="#key${key}">
             <span class="iconify-inline" data-icon="icon-park-solid:down-c"></span>
