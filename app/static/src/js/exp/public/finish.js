@@ -7,10 +7,9 @@ if (server.endpoint === endpoint.exp.public.finish) {
         const body = {"scaddress": page.id};
 
         utils.fetch_data(server.url.exp.data, server.basic_auth, 'POST', body).then(data => {
-            let div = document.querySelector("#finishData")
-            div.innerHTML = `<pre>${JSON.stringify(data, null, 4)}</pre>`
+            // let div = document.querySelector("#finishData")
+            // div.innerHTML = `<pre>${JSON.stringify(data, null, 4)}</pre>`
 
-            // console.log(data)
 
             let unblindMCTable = document.querySelector("#unblindMCTable")
             let unblindSATable = document.querySelector("#unblindSATable")
@@ -34,12 +33,6 @@ if (server.endpoint === endpoint.exp.public.finish) {
                             group: `${component_group(value._group)}`,
                         })
                     })
-                    // unblind_sa.push({
-                    //     topic: `${value._topic}`,
-                    //     scale: `${value._scale}`,
-                    //     group: `${component_group(value._group)}`,
-                    // })
-
                 }
             })
             $(unblindMCTable).bootstrapTable('load', unblind_mc)
