@@ -48,7 +48,10 @@ class PrivateController(BasicController):
             data = dict(address=id, form_data=form_data)
             exp = Exp.scan_obj(data)
             result = exp.json()
-            message = f'受測人員: {result.get("0").get("subject")}<br><br>實驗人員: {result.get("0").get("experimenter")}'
+            subject = f'受測人員: <p>{result.get("0").get("subject")}</p>'
+            experimenter = f'實驗人員: <p>{result.get("0").get("experimenter")}</p>'
+            RFID = f'RFID: <p>{result.get("0").get("RFID")}</p>'
+            message = f'{subject}{experimenter}{RFID}'
             flash(message, category='success')
             return redirect(request.referrer)
         abort(404)
