@@ -7,7 +7,7 @@ services:
       - '${app_port}'
     volumes:
       - .:/code
-      - /etc/localtime:/etc/localtime:ro
+#      - /etc/localtime:/etc/localtime:ro
     working_dir: "/code"
     entrypoint: ["/bin/sh", "-c"]
     command:
